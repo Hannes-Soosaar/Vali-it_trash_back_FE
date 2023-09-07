@@ -1,0 +1,2 @@
+export const  LOCATION_NAME_UNAVAILABLE = 333;
+export const INCORRECT_CREDENTIALS = 111;
