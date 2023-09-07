@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/">Kodu</router-link> |
-    <router-link to="/about">Logi sisse</router-link>
+    <router-link to="/">search view</router-link> |
+    <router-link to="/login">Logi sisse</router-link>
   </nav>
   <router-view/>
 </template>
