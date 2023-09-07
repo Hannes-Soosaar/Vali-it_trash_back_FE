@@ -1,12 +1,10 @@
+
 <template>
-  <div class="home">
-Home view
-  </div>
+<div>Test component </div>
 </template>
 
 <script>
 export default {
-  name: "ErrorView"
+  name: "LoginView"
 }
-
 </script>
