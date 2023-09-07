@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col col-6">
