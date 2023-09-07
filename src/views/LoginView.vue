@@ -40,11 +40,11 @@ export default {
         message: '',
         errorCode: 0
       }
-      
+
     }
   },
   methods: {
- //todo: teeme siia login meetodi ja muud vajalikud meetodid
+    //todo: teeme siia login meetodi ja muud vajalikud meetodid
 
     sendLoginRequest() {
       this.$http.get("/login", {
