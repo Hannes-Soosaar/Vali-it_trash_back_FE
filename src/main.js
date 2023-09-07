@@ -17,8 +17,6 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 // Add the imported icons to the library
 library.add(faUserSecret, fas, faR, far)
 
-const app = createApp(App)
-
 
 app.use(router)
 app.use(VueAxios, axios)
