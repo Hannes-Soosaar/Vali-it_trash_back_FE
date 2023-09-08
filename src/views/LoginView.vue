@@ -52,7 +52,8 @@ export default {
       this.resetErrorMessage()
       if (this.mandatoryFieldsAreFilled()) {
         this.sendLoginRequest();
-
+        sessionStorage.setItem('userId', this.loginResponse.userId)
+        sessionStorage.setItem('email', this.email)
       } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
       }
