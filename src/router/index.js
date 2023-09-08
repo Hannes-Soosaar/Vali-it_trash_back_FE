@@ -27,7 +27,7 @@ const routes = [
     component: ErrorView
   },
   {
-    path: '/registration',
+    path: '/registration',``
     name: 'registration',
     component: RegistrationView
   }

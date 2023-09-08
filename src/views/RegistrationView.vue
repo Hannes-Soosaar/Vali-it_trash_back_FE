@@ -71,7 +71,8 @@ export default {
           return this.email = 'email'
         }
       } catch (error) {
-        // todo:add rout to Tairis error page.
+
+        router.push(name: 'errorRout')
       }
     }
 
