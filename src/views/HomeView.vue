@@ -27,7 +27,25 @@
 
 <script>
 export default {
-  name: "HomeView"
+  name: "HomeView",
+  data(){
+    return {
+      companyId: 0,
+      companyName: '',
+      registrationCode: 0
+    }
+  },
+
+
+  methods: {
+
+  },
+  beforeMount() {
+    let companyName = this.companyName;
+
+
+
+  }
 }
 </script>
 
