@@ -7,11 +7,11 @@
       <div class="col col-4">
 
         <div class="form-floating mb-4 ">
-          <input v-model="email"  type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input v-model="email"  type="email" class="form-control" id="floatingInput" placeholder="name@example.com" @keyup.enter="login">
           <label for="floatingInput">E-posti aadress</label>
         </div>
         <div class="form-floating">
-          <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" @keyup.enter="login">
           <label  for="floatingPassword">Salasõna</label>
         </div>
         <div class="mt-2">
@@ -28,7 +28,8 @@
 <script>
 
 import router from "@/router";
-import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
+import {FILL_MANDATORY_FIELDS, UPSIS_SOMETHING_UNEXPECTED_IS_WRONG} from "@/assets/script/AlertMessage";
+import {INCORRECT_CREDENTIALS} from "@/assets/script/ErrorCode";
 
 export default {
   name: "LoginView",
@@ -68,12 +69,8 @@ export default {
 
     mandatoryFieldsAreFilled(){
       return this.email.length > 0 && this.password.length > 0
-      },
+    },
 
-
-
-
- //todo: teeme siia login meetodi ja muud vajalikud meetodid
 
     sendLoginRequest() {
       this.$http.get("/login", {
@@ -84,15 +81,15 @@ export default {
           }
       ).then(response => {
         this.loginResponse = response.data
-
-
+        router.push({name: 'homeRoute'})
 
       }).catch(error => {
         this.errorResponse = error.response.data
+        if(this.errorResponse.errorCode !== INCORRECT_CREDENTIALS){
+          this.errorResponse.message = UPSIS_SOMETHING_UNEXPECTED_IS_WRONG
+        }
       })
     },
-
-
 
   }
 

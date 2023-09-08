@@ -1,10 +1,22 @@
 <template>
   <nav>
-    <router-link to="/">search view</router-link> |
-    <router-link to="/login">Logi sisse</router-link>
+    <router-link to="/"></router-link>
+    <router-link to="/login">Logi sisse</router-link> |
+    <router-link to="/login">Logi välja</router-link> |
+    <router-link to="/home">Kodu</router-link>
   </nav>
   <router-view/>
 </template>
+
+<script>
+export default {
+
+
+
+
+}
+</script>
+
 
 <style>
 #app {
