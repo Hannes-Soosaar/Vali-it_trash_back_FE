@@ -26,7 +26,8 @@
 <script>
 
 import router from "@/router";
-import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
+import {FILL_MANDATORY_FIELDS, UPSIS_SOMETHING_UNEXPECTED_IS_WRONG} from "@/assets/script/AlertMessage";
+import {INCORRECT_CREDENTIALS} from "@/assets/script/ErrorCode";
 
 export default {
   name: "LoginView",
@@ -76,11 +77,13 @@ export default {
           }
       ).then(response => {
         this.loginResponse = response.data
-
+        alert(this.loginResponse)
 
       }).catch(error => {
         this.errorResponse = error.response.data
-
+        if(this.errorResponse.errorCode !== INCORRECT_CREDENTIALS){
+          this.errorResponse.message = UPSIS_SOMETHING_UNEXPECTED_IS_WRONG
+        }
       })
     },
 
