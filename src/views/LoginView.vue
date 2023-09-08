@@ -1,18 +1,19 @@
 <template>
   <div class="container text-center position-absolute top-50 start-50 translate-middle">
+    <div>{{ errorResponse.message }}</div>
     <div class="row justify-content-center ">
       <div class="col col-4">
 
         <div class="form-floating mb-4 ">
-          <input v-model="email"  type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input v-model="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
           <label for="floatingInput">E-posti aadress</label>
         </div>
         <div class="form-floating">
           <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label  for="floatingPassword">Salasõna</label>
+          <label for="floatingPassword">Salasõna</label>
         </div>
         <div class="mt-2">
-          <button @click="sendLoginRequest" class="btn btn-primary m-2 " type="button">Logi sisse</button>
+          <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
           <button class="btn btn-primary m-2" type="button">Registreeri</button>
         </div>
 
@@ -25,6 +26,7 @@
 <script>
 
 import router from "@/router";
+import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
 
 export default {
   name: "LoginView",
@@ -46,6 +48,25 @@ export default {
   methods: {
     //todo: teeme siia login meetodi ja muud vajalikud meetodid
 
+    login() {
+      this.resetErrorMessage()
+      if(this.mandatoryFieldsAreFilled()){
+        this.sendLoginRequest();
+      } else{
+        this.errorResponse.message = FILL_MANDATORY_FIELDS
+      }
+
+    },
+
+    resetErrorMessage() {
+      this.errorResponse.message = ''
+    },
+
+    mandatoryFieldsAreFilled() {
+      return this.email.length > 0 && this.password.length > 0
+    },
+
+
     sendLoginRequest() {
       this.$http.get("/login", {
             params: {
@@ -57,9 +78,9 @@ export default {
         this.loginResponse = response.data
 
 
-
       }).catch(error => {
         this.errorResponse = error.response.data
+
       })
     },
 
