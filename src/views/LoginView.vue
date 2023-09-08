@@ -28,6 +28,7 @@
 import router from "@/router";
 import {FILL_MANDATORY_FIELDS, UPSIS_SOMETHING_UNEXPECTED_IS_WRONG} from "@/assets/script/AlertMessage";
 import {INCORRECT_CREDENTIALS} from "@/assets/script/ErrorCode";
+import ErrorView from "@/views/ErrorView.vue";
 
 export default {
   name: "LoginView",
@@ -82,13 +83,10 @@ export default {
       }).catch(error => {
         this.errorResponse = error.response.data
         if(this.errorResponse.errorCode !== INCORRECT_CREDENTIALS){
-          this.errorResponse.message = UPSIS_SOMETHING_UNEXPECTED_IS_WRONG
+          router.push({name: 'errorRoute'})
         }
       })
     },
-
-
   }
-
 }
 </script>
