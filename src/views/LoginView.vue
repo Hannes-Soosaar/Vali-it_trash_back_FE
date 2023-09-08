@@ -57,7 +57,6 @@ export default {
       } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
       }
-
     },
 
     resetErrorMessage() {
@@ -69,7 +68,7 @@ export default {
     },
 
     registerNewUser() {
-      router.push({name: 'registration'})
+      router.push({name: 'registrationRoute'})
     },
 
     sendLoginRequest() {
@@ -94,8 +93,6 @@ export default {
         }
       })
     },
-
-
   }
 
 }

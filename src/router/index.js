@@ -9,7 +9,7 @@ import ProfileView from "@/views/ProfileView.vue";
 const routes = [
   {
     path: '/',
-    name: 'search',
+    name: 'searchRout',
     component: SearchView
   },
   {
@@ -28,8 +28,8 @@ const routes = [
     component: ErrorView
   },
   {
-    path: '/registration',``
-    name: 'registration',
+    path: '/registration',
+    name: 'registrationRoute',
     component: RegistrationView
   },
   {
