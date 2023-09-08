@@ -33,10 +33,15 @@
     </div>
 
   </div>
+
+
 </template>
 
 
 <script>
+//todo email must be filled in not only suggested in placeholder
+// todo create component from  template contents
+
 export default {
   name: "RegistrationView",
 
@@ -70,7 +75,6 @@ export default {
       }
     }
 
-    //todo:   add methods go here
   },
 
 
