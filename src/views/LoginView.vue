@@ -52,6 +52,7 @@ export default {
       this.resetErrorMessage()
       if (this.mandatoryFieldsAreFilled()) {
         this.sendLoginRequest();
+
       } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
       }
@@ -79,6 +80,8 @@ export default {
           }
       ).then(response => {
         this.loginResponse = response.data
+        sessionStorage.setItem('userId', this.loginResponse.userId)
+        sessionStorage.setItem('email', this.email)
         router.push({name: 'homeRoute'})
 
       }).catch(error => {

@@ -1,5 +1,8 @@
 <template>
 
+  <div class="custom-message-style mb-5">
+    <h1> Tere, {{companyInfo.companyName}} </h1>
+  </div>
   <div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row">
       <div class="col-md-6">
@@ -30,20 +33,39 @@ export default {
   name: "HomeView",
   data(){
     return {
-      companyId: 0,
-      companyName: '',
-      registrationCode: 0
+      userId: sessionStorage.getItem('userId'),
+      companyInfo: {
+        companyId: 0,
+        companyName: '',
+        registrationCode: 0
+      },
+      errorResponse: {
+        message: '',
+        errorCode: 0
+      }
     }
   },
 
-
   methods: {
 
+    getCompanyInfo() {
+      this.$http.get("/company/info", {
+            params: {
+              userId: this.userId
+            }
+          }
+      ).then(response => {
+        this.companyInfo.companyName = response.data.companyId
+        this.companyInfo.companyName = response.data.companyName
+      }).catch(error => {
+        this.errorResponse = error.response.data.companyId
+
+      })
+    },
   },
+
   beforeMount() {
-    let companyName = this.companyName;
-
-
+    this.getCompanyInfo()
 
   }
 }
@@ -65,7 +87,7 @@ export default {
   background-color: #bdbdbd;
   color: black;
   border-color: #bdbdbd;
-  font-family: Arial;
+  font-family: Tahoma, serif;
   transition: transform 0.3s;
 
 }
@@ -74,6 +96,11 @@ export default {
   color: black;
   border-color: #bdbdbd;
   transform: scale(1.01);
+}
+
+.custom-message-style {
+  font-family: Tahoma, serif;
+  ;
 }
 
 </style>
