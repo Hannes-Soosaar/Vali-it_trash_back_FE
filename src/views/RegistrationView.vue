@@ -4,23 +4,23 @@
 
       <div class=" col-3">
         <div class="form-floating m-2  ">
-          <input type="email" class="form-control" id="fleoatingInput" placeholder="name@example.com">
-          <label for="floatingInput">E-posti aadress</label>
+          <input type="email" class="form-control"  placeholder="name@example.com">
+          <label for="floatingInput">{{ email }}</label>
         </div>
         <div class="form-floating m-2 ">
-          <input type="email" class="form-control" id="fleoatingInput" placeholder="parool">
+          <input type="email" class="form-control" i placeholder="parool">
           <label for="floatingInput">parool</label>
         </div>
         <div class="form-floating m-2 ">
-          <input type="password" class="form-control" id="fleoatingInput" placeholder="parool uuesti">
+          <input type="password" class="form-control"  placeholder="parool uuesti">
           <label for="floatingInput">parool uuesti</label>
         </div>
         <div class="form-floating m-2 ">
-          <input type="email" class="form-control" id="fleoatingInput" placeholder="ettevote">
+          <input type="email" class="form-control"  placeholder="ettevote">
           <label for="floatingInput">Ettevote</label>
         </div>
         <div class="form-floating m-2 ">
-          <input type="email" class="form-control" id="fleoatingInput" placeholder="ettevõte reg kood">
+          <input type="email" class="form-control"  placeholder="ettevõte reg kood">
           <label for="floatingInput">Reg kood</label>
         </div>
       </div>
@@ -42,13 +42,11 @@ export default {
 
   data() {
     return {
-      email: '',
+      email: 'email',
       password: '',
       passwordCheck: '',
       companyName: '',
       companyRegistrationCode: '',
-
-
       // all data structure and variable go here.
     }
 
@@ -59,13 +57,13 @@ export default {
       alert('Test')
     },
 
-    getEmailWithNoAccount() {
+    getEmailFromFailedLogin() {
       try {
         const loginEmail = localStorage.getItem('email')
         if (loginEmail.length > 0) {
           this.email = loginEmail
         } else {
-          return this.email = ''
+          return this.email = 'email'
         }
       } catch (error) {
         // todo:add rout to Tairis error page.
@@ -75,11 +73,11 @@ export default {
     //todo:   add methods go here
   },
 
-//
-//   beforeMount() {
-// this.getEmailWithNoAccount()
-//   }
-//todo: add email if an email was entered but no such user exists   all before methods go here
+
+  beforeMount() {
+    this.getEmailFromFailedLogin()
+  }
+
 
 }
 </script>
