@@ -14,7 +14,7 @@
         </div>
         <div class="mt-2">
           <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
-          <button class="btn btn-primary m-2" type="button">Registreeri</button>
+          <button @click="registerNewUser" class="btn btn-primary m-2" type="button">Registreeri</button>
         </div>
 
       </div>
@@ -48,13 +48,11 @@ export default {
     }
   },
   methods: {
-    //todo: teeme siia login meetodi ja muud vajalikud meetodid
-
-    login() {
+       login() {
       this.resetErrorMessage()
-      if(this.mandatoryFieldsAreFilled()){
+      if (this.mandatoryFieldsAreFilled()) {
         this.sendLoginRequest();
-      } else{
+      } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
       }
 
@@ -68,6 +66,9 @@ export default {
       return this.email.length > 0 && this.password.length > 0
     },
 
+    registerNewUser() {
+      router.push({name: 'registration'})
+    },
 
     sendLoginRequest() {
       this.$http.get("/login", {
@@ -82,6 +83,8 @@ export default {
 
       }).catch(error => {
         this.errorResponse = error.response.data
+        localStorage.setItem('email',this.email)
+
         if(this.errorResponse.errorCode !== INCORRECT_CREDENTIALS){
           router.push({name: 'errorRoute'})
         }
