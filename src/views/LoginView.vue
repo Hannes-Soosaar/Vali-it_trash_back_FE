@@ -14,7 +14,7 @@
         </div>
         <div class="mt-2">
           <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
-          <button class="btn btn-primary m-2" type="button">Registreeri</button>
+          <button @click="registerNewUser" class="btn btn-primary m-2" type="button">Registreeri</button>
         </div>
 
       </div>
@@ -47,26 +47,29 @@ export default {
     }
   },
   methods: {
-    //todo: teeme siia login meetodi ja muud vajalikud meetodid
 
     login() {
       this.resetErrorMessage()
-      if(this.mandatoryFieldsAreFilled()){
+      if (this.mandatoryFieldsAreFilled()) {
         this.sendLoginRequest();
-      } else{
+      } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
       }
 
-    },
-
-    resetErrorMessage() {
-      this.errorResponse.message = ''
     },
 
     mandatoryFieldsAreFilled() {
       return this.email.length > 0 && this.password.length > 0
     },
 
+    registerNewUser() {
+      router.push({name: 'registration'})
+    }
+    ,
+
+    resetErrorMessage() {
+      this.errorResponse.message = ''
+    },
 
     sendLoginRequest() {
       this.$http.get("/login", {
@@ -81,14 +84,18 @@ export default {
 
       }).catch(error => {
         this.errorResponse = error.response.data
-        if(this.errorResponse.errorCode !== INCORRECT_CREDENTIALS){
+        localStorage.setItem('email',this.email)
+        if (this.errorResponse.errorCode !== INCORRECT_CREDENTIALS) {
           this.errorResponse.message = UPSIS_SOMETHING_UNEXPECTED_IS_WRONG
         }
       })
-    },
+    }
+    ,
 
 
   }
+
+
 
 }
 </script>
