@@ -5,12 +5,12 @@
       <div class="col col-4">
 
         <div class="form-floating mb-4 ">
-          <input v-model="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input v-model="email"  type="email" class="form-control" id="floatingInput" placeholder="name@example.com" @keyup.enter="login">
           <label for="floatingInput">E-posti aadress</label>
         </div>
         <div class="form-floating">
-          <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Salasõna</label>
+          <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" @keyup.enter="login">
+          <label  for="floatingPassword">Salasõna</label>
         </div>
         <div class="mt-2">
           <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
@@ -44,7 +44,7 @@ export default {
         message: '',
         errorCode: 0
       }
-
+      
     }
   },
   methods: {
@@ -79,7 +79,7 @@ export default {
           }
       ).then(response => {
         this.loginResponse = response.data
-        alert(this.loginResponse)
+        router.push({name: 'homeRoute'})
 
       }).catch(error => {
         this.errorResponse = error.response.data
@@ -90,6 +90,9 @@ export default {
         }
       })
     },
+
+
   }
+
 }
 </script>

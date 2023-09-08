@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col col-6">
@@ -15,13 +15,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  },
+  name: "SearchView"
 }
 </script>
