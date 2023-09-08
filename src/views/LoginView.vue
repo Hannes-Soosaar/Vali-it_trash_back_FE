@@ -1,5 +1,8 @@
 <template>
   <div class="container text-center position-absolute top-50 start-50 translate-middle">
+
+    <div class="mb-5">{{errorResponse.message}}</div>
+
     <div class="row justify-content-center ">
       <div class="col col-4">
 
@@ -12,7 +15,7 @@
           <label  for="floatingPassword">Salasõna</label>
         </div>
         <div class="mt-2">
-          <button @click="sendLoginRequest" class="btn btn-primary m-2 " type="button">Logi sisse</button>
+          <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
           <button class="btn btn-primary m-2" type="button">Registreeri</button>
         </div>
 
@@ -25,6 +28,7 @@
 <script>
 
 import router from "@/router";
+import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
 
 export default {
   name: "LoginView",
@@ -44,6 +48,31 @@ export default {
     }
   },
   methods: {
+
+    login() {
+      this.resetErrorMessage()
+
+      if(this.mandatoryFieldsAreFilled()){
+        this.sendLoginRequest()
+      } else {
+        this.errorResponse.message = FILL_MANDATORY_FIELDS
+      }
+
+
+    },
+
+
+    resetErrorMessage(){
+      this.errorResponse.message = ''
+    },
+
+    mandatoryFieldsAreFilled(){
+      return this.email.length > 0 && this.password.length > 0
+      },
+
+
+
+
  //todo: teeme siia login meetodi ja muud vajalikud meetodid
 
     sendLoginRequest() {
@@ -62,6 +91,7 @@ export default {
         this.errorResponse = error.response.data
       })
     },
+
 
 
   }
