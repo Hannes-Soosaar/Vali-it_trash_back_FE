@@ -17,11 +17,11 @@
         </div>
         <div class="form-floating m-2 ">
           <input type="email" class="form-control"  placeholder="ettevote">
-          <label for="floatingInput">Ettevote</label>
+          <label for="floatingInput">Ettevõtte nimi</label>
         </div>
         <div class="form-floating m-2 ">
           <input type="email" class="form-control"  placeholder="ettevõte reg kood">
-          <label for="floatingInput">Reg kood</label>
+          <label for="floatingInput">Ettevõtte registrikood</label>
         </div>
       </div>
     </div>
