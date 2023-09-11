@@ -13,8 +13,8 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <button class="btn btn-primary btn-custom-size btn-block m-2">
-          <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;" /> Muuda kasutaja andmeid</button>
+        <button @click="$router.push({name: 'profileRoute'})" class="btn btn-primary btn-custom-size btn-block m-2">
+          <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;"/> Muuda kasutaja andmeid</button>
       </div>
       <div class="col-md-6">
         <button class="btn btn-primary btn-custom-size btn-block m-2">
@@ -26,6 +26,8 @@
 
 
 <script>
+import router from "@/router";
+
 export default {
   name: "HomeView",
   data(){
@@ -38,6 +40,9 @@ export default {
 
 
   methods: {
+    router() {
+      return router
+    }
 
   },
   beforeMount() {

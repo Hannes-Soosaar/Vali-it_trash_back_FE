@@ -27,8 +27,21 @@
             {{email}}
           </div>
         </div>
+
+        <div class="row justify-content-center m-5">
+          <div class="col-3">
+            <button type="button" class="btn btn-secondary">Muuda andmeid</button>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-secondary">Muuda parooli</button>
+          </div>
+        </div>
+
+
       </div>
     </div>
+
+
 
   </div>
 </template>
