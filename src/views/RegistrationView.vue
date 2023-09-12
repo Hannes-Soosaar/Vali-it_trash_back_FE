@@ -17,7 +17,8 @@
         <label for="floatingInput">Parool</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input v-model="passwordAgain" type="password" class="form-control" id="floatingInput"
+               placeholder="name@example.com">
         <label for="floatingInput">Parool uuesti</label>
       </div>
       <div class="form-floating mb-3">
@@ -50,6 +51,7 @@ export default {
   components: {AlertDanger, AlertSuccess},
   data() {
     return {
+      passwordAgain: '',
       successMessage: '',
       requestBody:
           {
@@ -67,64 +69,82 @@ export default {
   },
   methods: {
 
+    sendPostCompanyRequest: function () {
+      this.$http.post("/company", this.requestBody)
+          .then(response => {
+                this.handleUserCreateSuccessResponse();
+                setTimeout(() => {
+                  router.push({name: 'loginRoute'});
+                }, 2000)
+              }
+          ).catch(error => {
 
+        this.handleErrorStatusCode500(error);
+        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
+        this.errorResponse = error.response.data;
+      })
+    },
 
     createUser() {
 
       this.resetMessageFields();
-      if (this.mandatoryFieldsAreFilled()) {
-        this.$http.post("/company", this.requestBody)
-            .then(response => {
-                  this.handleUserCreateSuccessResponse();
-                  setTimeout(() => {
-                    router.push({name: 'loginRoute'});
-                  }, 2000)
-                }
-            ).catch(error => {
 
-          this.handleErrorStatusCode500(error);
-          // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
-          this.errorResponse = error.response.data;
-        })
+      if (!this.passwordsAreSame()) {
+        this.errorResponse.message = 'Parool ei ole sama'
+
+      } else if (this.mandatoryFieldsAreFilled()) {
+        this.sendPostCompanyRequest()
       } else {
         this.displayFillAllFieldsError();
-
       }
+
     },
+
+
 
     resetMessageFields: function () {
       this.successMessage = ''
       this.errorResponse.message = ''
-    },
+    }
+    ,
 
     handleUserCreateSuccessResponse() {
       this.successMessage = 'Kasutaja registreeritud'
-    },
+    }
+    ,
 
     mandatoryFieldsAreFilled() {
       let hasEmail = this.requestBody.email !== '';
       let hasPassword = this.requestBody.password !== '';
       let hasCompanyName = this.requestBody.companyName !== '';
       let hasRegistrationCode = this.requestBody.registrationCode != null;
-      return  hasEmail &&
+      return hasEmail &&
           hasPassword &&
           hasCompanyName &&
           hasRegistrationCode
 
-    },
+    }
+    ,
 
     handleErrorStatusCode500: function (error) {
       if (error.response.status === 500) {
         router.push({name: 'errorRoute'})
       }
-    },
+    }
+    ,
     displayFillAllFieldsError: function () {
       this.errorResponse.message = 'Täida kõik väljad'
 
       setTimeout(() => {
         this.errorResponse.message = ''
       }, 3000)
-    },
+    }
+    ,
+
+    passwordsAreSame() {
+      return this.requestBody.password === this.passwordAgain
+    }
+    ,
   }
 }
 
