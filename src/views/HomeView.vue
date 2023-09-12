@@ -1,23 +1,30 @@
 <template>
 
+  <div class="custom-message-style mb-5">
+    <h1> Tere, {{companyInfo.companyName}}! </h1>
+    <p> Siin võiks mingi visuaal või taustapilt ka olla</p>
+  </div>
   <div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row">
-      <div class="col-md-6">
-        <button class="btn btn-primary btn-custom-size btn-block mb-lg-4">
+      <div class="col-sm-6 bg-success">
+        <button class="btn btn-custom-size btn-block mb-sm-4">
           <font-awesome-icon icon="fa-solid fa-suitcase" size="xl" style="color: #000000;" /> Vaata/muuda olemasolevaid tooteid</button>
       </div>
-      <div class="col-md-6">
-        <button class="btn btn-primary btn-custom-size btn-block mb-lg-4">
+      <div class="col-sm-6 bg-info">
+        <button class="btn btn-custom-size btn-block mb-sm-4">
           <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" style="color: black;" /> Lisa toode</button>
       </div>
     </div>
     <div class="row">
+      <div class="col-sm-6 bg-danger">
+        <button class="btn btn-custom-size btn-block m-sm-2">
+          <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;" /> Muuda kasutaja andmeid</button>
       <div class="col-md-6">
         <button @click="$router.push({name: 'profileRoute'})" class="btn btn-primary btn-custom-size btn-block m-2">
           <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;"/> Muuda kasutaja andmeid</button>
       </div>
-      <div class="col-md-6">
-        <button class="btn btn-primary btn-custom-size btn-block m-2">
+      <div class="col-sm-6 bg-warning">
+        <button class="btn btn-custom-size btn-block m-sm-2">
           <font-awesome-icon icon="circle-question" size="xl" style="color: black;" /> Abi</button>
       </div>
     </div>
@@ -32,23 +39,39 @@ export default {
   name: "HomeView",
   data(){
     return {
-      companyId: 0,
-      companyName: '',
-      registrationCode: 0
+      userId: sessionStorage.getItem('userId'),
+      companyInfo: {
+        companyId: 0,
+        companyName: '',
+        registrationCode: 0
+      },
+      errorResponse: {
+        message: '',
+        errorCode: 0
+      }
     }
   },
 
 
   methods: {
-    router() {
-      return router
-    }
 
+    getCompanyInfo() {
+      this.$http.get("/company/info", {
+            params: {
+              userId: this.userId
+            }
+          }
+      ).then(response => {
+        this.companyInfo.companyName = response.data.companyId
+        this.companyInfo.companyName = response.data.companyName
+      }).catch(error => {
+        this.errorResponse = error.response.data.companyId
+
+      })
+    },
   },
   beforeMount() {
-    let companyName = this.companyName;
-
-
+    this.getCompanyInfo()
 
   }
 }
@@ -57,28 +80,56 @@ export default {
 
 
 <style scoped>
-.btn-custom-size {
-  width: 500px;
-  height: 100px;
-  padding: 20px 20px;
-  font-size: 20px;
-  border-radius: 10px;
+
+h1 {
+  margin: 20px;
 }
 
-.btn-primary {
+.btn-custom-size {
+  width: 550px;
+  height: 120px;
+  padding: 20px;
+  font-size: 15pt;
   text-align: left;
   background-color: #bdbdbd;
   color: black;
-  border-color: #bdbdbd;
-  font-family: Arial;
-  transition: transform 0.3s;
-
-}
-.btn-primary:hover {
-  background-color: #dedede;
-  color: black;
-  border-color: #bdbdbd;
-  transform: scale(1.01);
+  border: 1px solid #bdbdbd;
+  font-family: Tahoma, serif;
+  transition: transform 0.1s, font-size 0.1s;
+  border-radius: 30px;
+  transform-origin: center center;
 }
 
+.btn-custom-size span {
+  transition: font-size 0.1s; /* Add a smooth transition effect for font size */
+}
+
+.btn-custom-size:hover span {
+  font-size: 1.05em; /* Increase the font size slightly on hover */
+}
+
+
+.btn-custom-size:hover {
+  background-color: #eeeeee;
+  color: black; /* teksti värv */
+  border-color: #bdbdbd;
+  transform: scale(1.005);
+  font-size: 17pt;
+  box-shadow: black;
+}
+
+.custom-message-style {
+  font-family: Tahoma, serif;
+  ;
+}
+
+@media (max-width: 768px) {
+  .btn-custom-size {
+    width: 400px; /* Allow the width to be determined by content */
+    height: 90px; /* Allow the height to be determined by content */
+    font-size: 16px; /* Adjust font size for smaller screens */
+    margin: 5px;
+    /* Other responsive styles */
+  }
+}
 </style>
