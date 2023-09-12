@@ -7,8 +7,9 @@
   <div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row">
       <div class="col-sm-6 bg-success">
-        <button class="btn btn-custom-size btn-block mb-sm-4">
-          <font-awesome-icon icon="fa-solid fa-suitcase" size="xl" style="color: #000000;" /> Vaata/muuda olemasolevaid tooteid</button>
+        <button @click="$router.push({name: 'productsRoute'})"  class="btn btn-custom-size btn-block mb-sm-4">
+          <font-awesome-icon icon="fa-solid fa-suitcase" size="xl" style="color: #000000;" />
+          Vaata/muuda olemasolevaid tooteid</button>
       </div>
       <div class="col-sm-6 bg-info">
         <button class="btn btn-custom-size btn-block mb-sm-4">
