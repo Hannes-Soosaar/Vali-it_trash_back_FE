@@ -1,88 +1,104 @@
 <template>
   <div>
-    <div class="row justify-content-center ">
-
-      <div class=" col-3">
-        <div class="form-floating m-2  ">
-          <input type="email" class="form-control"  placeholder="name@example.com">
-          <label for="floatingInput">{{ email }}</label>
-        </div>
-        <div class="form-floating m-2 ">
-          <input type="email" class="form-control" i placeholder="parool">
-          <label for="floatingInput">parool</label>
-        </div>
-        <div class="form-floating m-2 ">
-          <input type="password" class="form-control"  placeholder="parool uuesti">
-          <label for="floatingInput">parool uuesti</label>
-        </div>
-        <div class="form-floating m-2 ">
-          <input type="email" class="form-control"  placeholder="ettevote">
-          <label for="floatingInput">Ettevote</label>
-        </div>
-        <div class="form-floating m-2 ">
-          <input type="email" class="form-control"  placeholder="ettevõte reg kood">
-          <label for="floatingInput">Reg kood</label>
-        </div>
-      </div>
+    <h1>Registreeri kasutaja</h1>
+    <div v-show="successMessage != null && successMessage.length > 0" class="alert alert-success" role="alert">
+      {{ successMessage }}
     </div>
-    <div class="row justify-content-center">
-      <div class="col-3 m-2">
-        <button @click="test" class="btn btn-primary  m-3 " type="button">Loo kasutaja</button>
-        <button @click="test" class="btn btn-primary  m-3 " type="button">Login</button>
+  </div>
+  <div class="row justify-content-center ">
+    <div class="col col-4">
+      <div class="form-floating mb-3">
+        <input v-model="requestBody.email" type="email" class="form-control" id="floatingInput"
+               placeholder="name@example.com">
+        <label for="floatingInput">E-post</label>
       </div>
+      <div class="form-floating mb-3">
+        <input v-model="requestBody.password" type="password" class="form-control" id="floatingInput"
+               placeholder="name@example.com">
+        <label for="floatingInput">Parool</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Parool uuesti</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input v-model="requestBody.companyName" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Ettevõte</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input v-model="requestBody.registrationCode" class="form-control" id="floatingInput"
+               placeholder="name@example.com">
+        <label for="floatingInput">Ettevõtte registrikood</label>
+      </div>
+      <button @click="this.createUser" type="button" class="btn btn-secondary">Registreeri kasutaja</button>
     </div>
 
   </div>
-
 
 </template>
 
 
 <script>
-//todo email must be filled in not only suggested in placeholder
-// todo create component from  template contents
+
+
+import router from "@/router";
 
 export default {
-  name: "RegistrationView",
-
+  name: "CreateUserView",
   data() {
     return {
-      email: 'email',
-      password: '',
-      passwordCheck: '',
-      companyName: '',
-      companyRegistrationCode: '',
-      // all data structure and variable go here.
+      successMessage: '',
+      requestBody:
+          {
+            email: '',
+            password: '',
+            companyName: '',
+            registrationCode: 20
+          },
+      errorResponse:
+          {
+            errorMessage: '',
+            errorCode: 0
+          }
     }
-
   },
-
   methods: {
-    test() {
-      alert('Test')
+    createUser() {
+      if (!this.mandatoryFieldsAreFilled()) {
+        this.$http.post("/company", this.requestBody)
+            .then(response => {
+                  this.handleUserCreateSuccessResponse();
+                  setTimeout(() => {
+                    router.push({name: 'homeRoute'});
+                  }, 2000)
+                }
+            ).catch(error => {
+          // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
+          // this.errorResponse = error.response.data;
+        });
+      } else {
+        alert("Täida kõik väljad")
+      }
     },
 
-    getEmailFromFailedLogin() {
-      try {
-        const loginEmail = localStorage.getItem('email')
-        if (loginEmail.length > 0) {
-          this.email = loginEmail
-        } else {
-          return this.email = 'email'
-        }
-      } catch (error) {
-        // todo:add rout to Tairis error page.
+    handleUserCreateSuccessResponse() {
+      this.successMessage = 'Kasutaja registreeritud'
+    },
+
+    mandatoryFieldsAreFilled() {
+      if (this.requestBody.email != null &&
+          this.requestBody.password != null &&
+          this.requestBody.companyName !== null &&
+          this.requestBody.registrationCode != null) {
+        return true
       }
     }
-
-  },
-
-
-  beforeMount() {
-    this.getEmailFromFailedLogin()
   }
-
-
 }
+
 </script>
 
+
+<style scoped>
+
+</style>
