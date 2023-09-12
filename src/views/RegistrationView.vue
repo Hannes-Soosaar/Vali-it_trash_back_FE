@@ -1,9 +1,8 @@
 <template>
   <div>
     <h1>Registreeri kasutaja</h1>
-    <div v-show="successMessage != null && successMessage.length > 0" class="alert alert-success" role="alert">
-      {{ successMessage }}
-    </div>
+    <AlertSuccess :success-message="successMessage"/>
+    <AlertDanger :error-message="errorResponse.message"/>
   </div>
   <div class="row justify-content-center ">
     <div class="col col-4">
@@ -30,7 +29,7 @@
                placeholder="name@example.com">
         <label for="floatingInput">Ettevõtte registrikood</label>
       </div>
-      <button @click="this.createUser" type="button" class="btn btn-secondary">Registreeri kasutaja</button>
+      <button @click="createUser" type="button" class="btn btn-secondary">Registreeri kasutaja</button>
     </div>
 
   </div>
@@ -43,9 +42,12 @@
 
 
 import router from "@/router";
+import AlertSuccess from "@/components/AlertSuccess.vue";
+import AlertDanger from "@/views/AlertDanger.vue";
 
 export default {
   name: "CreateUserView",
+  components: {AlertDanger, AlertSuccess},
   data() {
     return {
       successMessage: '',
@@ -54,31 +56,45 @@ export default {
             email: '',
             password: '',
             companyName: '',
-            registrationCode: 20
+            registrationCode: null
           },
       errorResponse:
           {
-            errorMessage: '',
+            message: '',
             errorCode: 0
           }
     }
   },
   methods: {
+
+
+
     createUser() {
-      if (!this.mandatoryFieldsAreFilled()) {
+
+      this.resetMessageFields();
+      if (this.mandatoryFieldsAreFilled()) {
         this.$http.post("/company", this.requestBody)
             .then(response => {
                   this.handleUserCreateSuccessResponse();
                   setTimeout(() => {
-                    router.push({name: 'homeRoute'});
+                    router.push({name: 'loginRoute'});
                   }, 2000)
                 }
             ).catch(error => {
+
+          this.handleErrorStatusCode500(error);
+          // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
           this.errorResponse = error.response.data;
-        });
+        })
       } else {
-        alert("Täida kõik väljad")
+        this.displayFillAllFieldsError();
+
       }
+    },
+
+    resetMessageFields: function () {
+      this.successMessage = ''
+      this.errorResponse.message = ''
     },
 
     handleUserCreateSuccessResponse() {
@@ -86,19 +102,30 @@ export default {
     },
 
     mandatoryFieldsAreFilled() {
-      if (this.requestBody.email != null &&
-          this.requestBody.password != null &&
-          this.requestBody.companyName !== null &&
-          this.requestBody.registrationCode != null) {
-        return true
+      let hasEmail = this.requestBody.email !== '';
+      let hasPassword = this.requestBody.password !== '';
+      let hasCompanyName = this.requestBody.companyName !== '';
+      let hasRegistrationCode = this.requestBody.registrationCode != null;
+      return  hasEmail &&
+          hasPassword &&
+          hasCompanyName &&
+          hasRegistrationCode
+
+    },
+
+    handleErrorStatusCode500: function (error) {
+      if (error.response.status === 500) {
+        router.push({name: 'errorRoute'})
       }
-    }
+    },
+    displayFillAllFieldsError: function () {
+      this.errorResponse.message = 'Täida kõik väljad'
+
+      setTimeout(() => {
+        this.errorResponse.message = ''
+      }, 3000)
+    },
   }
 }
 
 </script>
-
-
-<style scoped>
-
-</style>
