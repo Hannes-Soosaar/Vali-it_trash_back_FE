@@ -5,6 +5,8 @@ import SearchView from "@/views/SearchView.vue";
 import RegistrationView from "@/views/RegistrationView.vue";
 import ErrorView from "@/views/ErrorView.vue";
 import ProfileView from "@/views/ProfileView.vue";
+import CreateUserView from "@/views/RegistrationView.vue";
+import MyProductsView from "@/views/MyProductsView.vue";
 
 const routes = [
   {
@@ -36,7 +38,13 @@ const routes = [
     path: '/profile',
     name: 'profileRoute',
     component: ProfileView
-  }
+  },
+  {
+    path: '/products',
+    name: 'productsRoute',
+    component: MyProductsView
+  },
+
 ]
 
 const router = createRouter({
