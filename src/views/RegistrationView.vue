@@ -74,8 +74,8 @@ export default {
                   }, 2000)
                 }
             ).catch(error => {
-          // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
-          // this.errorResponse = error.response.data;
+          Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
+          this.errorResponse = error.response.data;
         });
       } else {
         alert("Täida kõik väljad")
