@@ -1,5 +1,6 @@
 <template>
   <div>
+  <div>
     <h1>Registreeri kasutaja</h1>
     <AlertSuccess :success-message="successMessage"/>
     <AlertDanger :error-message="errorResponse.message"/>
@@ -32,10 +33,8 @@
       </div>
       <button @click="createUser" type="button" class="btn btn-secondary">Registreeri kasutaja</button>
     </div>
-
   </div>
-
-
+  </div>
 </template>
 
 
@@ -44,7 +43,7 @@
 
 import router from "@/router";
 import AlertSuccess from "@/components/AlertSuccess.vue";
-import AlertDanger from "@/views/AlertDanger.vue";
+import AlertDanger from "@/components/AlertDanger.vue";
 
 export default {
   name: "CreateUserView",
@@ -69,7 +68,7 @@ export default {
   },
   methods: {
 
-    sendPostCompanyRequest: function () {
+    sendPostCompanyRequest() {
       this.$http.post("/company", this.requestBody)
           .then(response => {
                 this.handleUserCreateSuccessResponse();
@@ -102,7 +101,7 @@ export default {
 
 
 
-    resetMessageFields: function () {
+    resetMessageFields() {
       this.successMessage = ''
       this.errorResponse.message = ''
     }
@@ -126,13 +125,13 @@ export default {
     }
     ,
 
-    handleErrorStatusCode500: function (error) {
+    handleErrorStatusCode500(error) {
       if (error.response.status === 500) {
         router.push({name: 'errorRoute'})
       }
     }
     ,
-    displayFillAllFieldsError: function () {
+    displayFillAllFieldsError() {
       this.errorResponse.message = 'Täida kõik väljad'
 
       setTimeout(() => {
