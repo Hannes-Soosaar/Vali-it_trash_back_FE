@@ -1,7 +1,7 @@
 <template>
 
   <div class="custom-message-style mb-5">
-    <h1> Tere, {{companyInfo.companyName}}! </h1>
+    <h1> Tere, {{ companyInfo.companyName }}! </h1>
     <p> Siin võiks mingi visuaal või taustapilt ka olla</p>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle">
@@ -17,11 +17,8 @@
     </div>
     <div class="row">
       <div class="col-sm-6 bg-danger">
-        <button class="btn btn-custom-size btn-block m-sm-2">
+        <button @click="$router.push({name: 'profileRoute'})" class="btn btn-custom-size btn-block m-sm-2">
           <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;" /> Muuda kasutaja andmeid</button>
-      <div class="col-md-6">
-        <button @click="$router.push({name: 'profileRoute'})" class="btn btn-primary btn-custom-size btn-block m-2">
-          <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;"/> Muuda kasutaja andmeid</button>
       </div>
       <div class="col-sm-6 bg-warning">
         <button class="btn btn-custom-size btn-block m-sm-2">
@@ -37,7 +34,7 @@ import router from "@/router";
 
 export default {
   name: "HomeView",
-  data(){
+  data() {
     return {
       userId: sessionStorage.getItem('userId'),
       companyInfo: {
@@ -76,7 +73,6 @@ export default {
   }
 }
 </script>
-
 
 
 <style scoped>
@@ -119,8 +115,7 @@ h1 {
 }
 
 .custom-message-style {
-  font-family: Tahoma, serif;
-  ;
+  font-family: Tahoma, serif;;
 }
 
 @media (max-width: 768px) {
