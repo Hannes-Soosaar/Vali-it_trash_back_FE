@@ -33,7 +33,7 @@ export default {
     },
     data(){
         return {
-            isOpen: true,
+            isOpen: false,
         }
     },
     methods: {

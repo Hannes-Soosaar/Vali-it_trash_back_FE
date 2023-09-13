@@ -2,7 +2,7 @@
   <div>
     <h1 class="">Minu andmed</h1>
 
-      <ChangePasswordModal/>
+      <ChangePasswordModal ref="ChangePasswordModalRef"/>
 
     <div class="container position-absolute top-50 start-50 translate-middle">
       <div class="row justify-content-center">
@@ -35,7 +35,7 @@
             <button type="button" class="btn btn-secondary">Muuda andmeid</button>
           </div>
           <div class="col-3">
-            <button type="button" class="btn btn-secondary">Muuda parooli</button>
+            <button type="button" class="btn btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
           </div>
         </div>
 
@@ -81,6 +81,10 @@ export default {
         // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
         const errorResponseBody = error.response.data
       })
+    },
+
+    openChangePasswordModal() {
+    this.$refs.ChangePasswordModalRef.$refs.ModalRef.openModal()
     },
   },
   beforeMount() {
