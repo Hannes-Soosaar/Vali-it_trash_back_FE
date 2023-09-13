@@ -3,6 +3,7 @@
     <h1 class="">Minu andmed</h1>
 
       <ChangePasswordModal ref="ChangePasswordModalRef"/>
+    <ChangeProfileInfoModal ref="ChangeProfileInfoModalRef"/>
 
     <div class="container position-absolute top-50 start-50 translate-middle">
       <div class="row justify-content-center">
@@ -32,7 +33,7 @@
 
         <div class="row justify-content-center m-5">
           <div class="col-3">
-            <button type="button" class="btn btn-secondary">Muuda andmeid</button>
+            <button type="button" class="btn btn-secondary" @click="openChangeProfileModal">Muuda andmeid</button>
           </div>
           <div class="col-3">
             <button type="button" class="btn btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
@@ -50,10 +51,11 @@
 
 <script>
 import ChangePasswordModal from "@/views/ChangePasswordModal.vue";
+import ChangeProfileInfoModal from "@/views/ChangeProfileInfoModal.vue";
 
 export default {
   name: "ProfileView",
-  components: {ChangePasswordModal},
+  components: {ChangeProfileInfoModal, ChangePasswordModal},
   data() {
     return {
       userId: sessionStorage.getItem('userId'),
@@ -85,6 +87,10 @@ export default {
 
     openChangePasswordModal() {
     this.$refs.ChangePasswordModalRef.$refs.ModalRef.openModal()
+    },
+
+    openChangeProfileModal() {
+      this.$refs.ChangeProfileInfoModalRef.$refs.ModalRef.openModal()
     },
   },
   beforeMount() {

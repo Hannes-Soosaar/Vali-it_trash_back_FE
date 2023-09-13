@@ -68,6 +68,15 @@ import Modal from "@/components/modal/Modal.vue";
 export default {
   name: 'ChangePasswordModal',
   components: {Modal},
+
+  data() {
+    return{
+      userId: sessionStorage.getItem('userId'),
+      oldPassword: '',
+      newPassword: ''
+    }
+
+  },
   methods: {
 
     sendChangePasswordRequest() {
