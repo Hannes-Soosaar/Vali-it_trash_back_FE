@@ -1,8 +1,9 @@
 <template>
   <div>
+
     <h1 class="">Minu andmed</h1>
 
-      <ChangePasswordModal ref="ChangePasswordModalRef"/>
+    <ChangePasswordModal ref="ChangePasswordModalRef"/>
     <ChangeProfileInfoModal ref="ChangeProfileInfoModalRef"/>
 
     <div class="container position-absolute top-50 start-50 translate-middle">
@@ -14,12 +15,12 @@
           {{ companyInfo.companyName }}
         </div>
         <div class="row justify-content-center">
-        <div class="col-3">
-          Registrikood
-        </div>
-        <div class="col col-3">
-          {{ companyInfo.registrationCode }}
-        </div>
+          <div class="col-3">
+            Registrikood
+          </div>
+          <div class="col col-3">
+            {{ companyInfo.registrationCode }}
+          </div>
         </div>
 
         <div class="row justify-content-center">
@@ -27,7 +28,7 @@
             e-post
           </div>
           <div class="col-3">
-            {{email}}
+            {{ email }}
           </div>
         </div>
 
@@ -43,7 +44,6 @@
 
       </div>
     </div>
-
 
 
   </div>
@@ -86,7 +86,7 @@ export default {
     },
 
     openChangePasswordModal() {
-    this.$refs.ChangePasswordModalRef.$refs.ModalRef.openModal()
+      this.$refs.ChangePasswordModalRef.$refs.ModalRef.openModal()
     },
 
     openChangeProfileModal() {

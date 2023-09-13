@@ -7,20 +7,20 @@
       </template>
 
       <template #body>
-<!--        <div class="input-group input-group-sm mb-3 ">-->
-<!--          <span class="input-group-text" id="inputGroup-sizing-sm">Kehtiv parool</span>-->
-<!--          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">-->
-<!--        </div>-->
+        <!--        <div class="input-group input-group-sm mb-3 ">-->
+        <!--          <span class="input-group-text" id="inputGroup-sizing-sm">Kehtiv parool</span>-->
+        <!--          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">-->
+        <!--        </div>-->
 
-<!--        <div class="input-group input-group-sm mb-3 ">-->
-<!--          <span class="input-group-text" id="inputGroup-sizing-sm">Uus parool</span>-->
-<!--          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">-->
-<!--        </div>-->
+        <!--        <div class="input-group input-group-sm mb-3 ">-->
+        <!--          <span class="input-group-text" id="inputGroup-sizing-sm">Uus parool</span>-->
+        <!--          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">-->
+        <!--        </div>-->
 
-<!--        <div class="input-group input-group-sm mb-3 ">-->
-<!--          <span class="input-group-text" id="inputGroup-sizing-sm">Uus parool uuesti</span>-->
-<!--          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">-->
-<!--        </div>-->
+        <!--        <div class="input-group input-group-sm mb-3 ">-->
+        <!--          <span class="input-group-text" id="inputGroup-sizing-sm">Uus parool uuesti</span>-->
+        <!--          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">-->
+        <!--        </div>-->
 
         <div>
           <div class="row">
@@ -43,14 +43,13 @@
 
           <div class="row">
             <div class="col">
-             Parool uuesti
+              Parool uuesti
             </div>
             <div class="col">
               <input type="password">
             </div>
           </div>
         </div>
-
 
 
       </template>
@@ -70,7 +69,7 @@ export default {
   components: {Modal},
 
   data() {
-    return{
+    return {
       userId: sessionStorage.getItem('userId'),
       oldPassword: '',
       newPassword: ''
