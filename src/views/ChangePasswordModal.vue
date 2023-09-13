@@ -56,7 +56,7 @@
       </template>
 
       <template #footer>
-        <button type="button" class="btn btn-secondary">Muuda parooli</button>
+        <button type="button" class="btn btn-secondary" @click="sendChangePasswordRequest">Muuda parooli</button>
       </template>
 
     </Modal>
@@ -67,7 +67,13 @@ import Modal from "@/components/modal/Modal.vue";
 
 export default {
   name: 'ChangePasswordModal',
-  components: {Modal}
+  components: {Modal},
+  methods: {
+
+    sendChangePasswordRequest() {
+
+    },
+  }
 
 }
 </script>
