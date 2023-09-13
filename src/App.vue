@@ -3,6 +3,7 @@
     <router-link to="/">Otsing</router-link>
     <router-link v-if="isLoggedIn" to="/home">Kodu</router-link>
     <router-link v-if="isLoggedIn" to="/products">Minu tooted</router-link>
+    <router-link to="/help">Abi</router-link>
     <router-link v-if="!isLoggedIn" to="/login">Logi sisse</router-link>
     <router-link v-if="isLoggedIn" @click="handleLogout" to="/#">Logi välja</router-link>
 
@@ -36,8 +37,6 @@ export default {
   watch: {
     $route: "updateNavBar"
   },
-
-
 
 
 }

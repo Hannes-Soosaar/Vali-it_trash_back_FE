@@ -22,7 +22,7 @@
           <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;" /> Muuda kasutaja andmeid</button>
       </div>
       <div class="col-sm-6 bg-warning">
-        <button class="btn btn-custom-size btn-block m-sm-2">
+        <button @click="$router.push({name: 'helpRoute'})" class="btn btn-custom-size btn-block m-sm-2">
           <font-awesome-icon icon="circle-question" size="xl" style="color: black;" /> Abi</button>
       </div>
     </div>
@@ -60,8 +60,9 @@ export default {
             }
           }
       ).then(response => {
-        this.companyInfo.companyName = response.data.companyId
+        this.companyInfo.companyId = response.data.companyId
         this.companyInfo.companyName = response.data.companyName
+        sessionStorage.setItem('companyId', this.companyInfo.companyId)
       }).catch(error => {
         this.errorResponse = error.response.data.companyId
 

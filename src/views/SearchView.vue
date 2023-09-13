@@ -16,7 +16,19 @@
 
 <script>
 
+import data from "bootstrap/js/src/dom/data";
+
+
+
 export default {
-  name: "SearchView"
+  name: "SearchView",
+
+  data(){
+    return{
+
+    }
+  }
+
 }
+
 </script>
