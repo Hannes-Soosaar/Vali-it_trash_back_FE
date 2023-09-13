@@ -7,7 +7,7 @@
 export default {
   name: 'AlertSuccess',
   props: {
-    successMessage: {}
+    successMessage: String
   }
 }
 </script>
