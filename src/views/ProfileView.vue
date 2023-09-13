@@ -2,6 +2,8 @@
   <div>
     <h1 class="">Minu andmed</h1>
 
+      <ChangePasswordModal/>
+
     <div class="container position-absolute top-50 start-50 translate-middle">
       <div class="row justify-content-center">
         <div class="col col-3">
@@ -47,8 +49,11 @@
 </template>
 
 <script>
+import ChangePasswordModal from "@/views/ChangePasswordModal.vue";
+
 export default {
   name: "ProfileView",
+  components: {ChangePasswordModal},
   data() {
     return {
       userId: sessionStorage.getItem('userId'),
