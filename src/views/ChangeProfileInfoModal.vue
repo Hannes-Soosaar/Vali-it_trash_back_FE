@@ -60,14 +60,20 @@ export default {
         this.handleUpdateProfileInfoError();
       })
     },
+
+
     handleUpdateProfileInfoSuccess() {
-      alert('Kasutaja andmed muudetud')
+      this.emitProfileInfoSuccess();
       this.$refs.ModalRef.closeModal()
       location.reload();
 
     },
-    handleUpdateProfileInfoError: function () {
+    handleUpdateProfileInfoError() {
       router.push({name: 'errorRoute'})
+    },
+
+    emitProfileInfoSuccess() {
+      this.$emit('event-show-profile-success-message')
     },
   }
 }

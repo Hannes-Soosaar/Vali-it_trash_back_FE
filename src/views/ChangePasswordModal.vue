@@ -2,7 +2,6 @@
   <div>
     <div class="row">
       <div class="col">
-        <!--        <AlertDanger :alert-message="errorResponse.message"/>-->
 
       </div>
     </div>
