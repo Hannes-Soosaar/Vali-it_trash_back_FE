@@ -5,7 +5,7 @@
   <h1 class="mt-5">Minu andmed</h1>
   <div class="container w-50 myContainer mt-5">
 
-    <div class="container text-center">
+    <div class="container text-center mt-3">
       <div class="row">
         <div class="col">
           Email
@@ -38,8 +38,8 @@
       </div>
     </div>
     <div class="mt-3 ">
-    <button type="button" class="btn m-1 btn-secondary" @click="openChangeProfileModal">Muuda andmeid</button>
-    <button type="button" class="btn m-1 btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
+    <button type="button" class="btn m-4 btn-secondary" @click="openChangeProfileModal">Muuda andmeid</button>
+    <button type="button" class="btn m-4 btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
     </div>
   </div>
   </div>
