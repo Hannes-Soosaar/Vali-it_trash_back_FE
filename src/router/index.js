@@ -7,6 +7,7 @@ import ErrorView from "@/views/ErrorView.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import CreateUserView from "@/views/RegistrationView.vue";
 import MyProductsView from "@/views/MyProductsView.vue";
+import HelpView from "@/views/HelpView.vue";
 
 const routes = [
   {
@@ -43,6 +44,11 @@ const routes = [
     path: '/products',
     name: 'productsRoute',
     component: MyProductsView
+  },
+  {
+    path: '/help',
+    name: 'helpRoute',
+    component: HelpView
   },
 
 ]
