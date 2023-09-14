@@ -1,50 +1,47 @@
 <template>
   <ChangePasswordModal ref="ChangePasswordModalRef"/>
   <ChangeProfileInfoModal ref="ChangeProfileInfoModalRef"/>
-  <div>
-    <div class="container text-center bg-danger mt-5">
-      <div class="row justify-content-center">
-        <h1> Minu andmed </h1>
-<!--    <AlertSuccess @event-show-success-message="handleSuccessMessage" :alert-message="successMessage"/>-->
+  <div class="justify-content-center">
+  <h1 class="mt-5">Minu andmed</h1>
+  <div class="container w-50 myContainer mt-5">
 
-    <div class="container position-absolute top-50 start-50 translate-middle bg-info">
-      <div class="row justify-content-center">
-        <div class="col col-3">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          Email
+        </div>
+        <div class="col">
+          {{email}}
+        </div>
+        </div>
+        </div>
+
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
           Ettevõte
         </div>
-        <div class="col col-3">
-          {{ companyInfo.companyName }}
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-3">
-            Registrikood
-          </div>
-          <div class="col col-3">
-            {{ companyInfo.registrationCode }}
-          </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="col-3">
-            e-post
-          </div>
-          <div class="col-3">
-            {{ email }}
-          </div>
-        </div>
-
-        <div class="row justify-content-center m-5">
-          <div class="col-3">
-            <button type="button" class="btn btn-secondary" @click="openChangeProfileModal">Muuda andmeid</button>
-          </div>
-          <div class="col-3">
-            <button type="button" class="btn btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
-          </div>
+        <div class="col">
+          {{companyInfo.companyName}}
         </div>
       </div>
     </div>
+
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          Ettevõtte registrikood
+        </div>
+        <div class="col">
+          {{companyInfo.registrationCode}}
+        </div>
+      </div>
     </div>
+    <div class="mt-3 ">
+    <button type="button" class="btn m-1 btn-secondary" @click="openChangeProfileModal">Muuda andmeid</button>
+    <button type="button" class="btn m-1 btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
     </div>
+  </div>
   </div>
 </template>
 
@@ -105,5 +102,13 @@ export default {
     }
 }
 </script>
+
+<style>
+.myContainer {
+  background-color: lightgray; /* Set the background color to red */
+  border-radius: 10px;   /* Round the container's corners */
+  padding: 20px;         /* Add some padding for spacing inside the container */
+}
+</style>
 
 
