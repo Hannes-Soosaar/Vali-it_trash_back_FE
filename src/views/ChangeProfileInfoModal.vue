@@ -37,13 +37,14 @@
 </template>
 <script>
 import Modal from "@/components/modal/Modal.vue";
+import router from "@/router";
 
 export default {
   name: 'ChangeProfileInfoModal',
   components: {Modal},
   data() {
-    return{
-      UpdateProfileInfoRequest:{
+    return {
+      UpdateProfileInfoRequest: {
         userId: sessionStorage.getItem("userId"),
         name: '',
         registrationcode: null
@@ -51,19 +52,23 @@ export default {
     }
   },
   methods: {
-
     updateProfileInfo() {
       this.$http.patch("/company/profileInfo", this.UpdateProfileInfoRequest
       ).then(response => {
-        // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
-        const responseBody = response.data
+        this.handleUpdateProfileInfoSuccess();
       }).catch(error => {
-        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
-        const errorResponseBody = error.response.data
+        this.handleUpdateProfileInfoError();
       })
     },
+    handleUpdateProfileInfoSuccess() {
+      alert('Kasutaja andmed muudetud')
+      this.$refs.ModalRef.closeModal()
+      location.reload();
 
-
+    },
+    handleUpdateProfileInfoError: function () {
+      router.push({name: 'errorRoute'})
+    },
   }
 }
 </script>

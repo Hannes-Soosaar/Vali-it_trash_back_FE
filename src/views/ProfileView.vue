@@ -5,6 +5,7 @@
 
     <ChangePasswordModal ref="ChangePasswordModalRef"/>
     <ChangeProfileInfoModal ref="ChangeProfileInfoModalRef"/>
+<!--    <AlertSuccess @event-show-success-message="handleSuccessMessage" :alert-message="successMessage"/>-->
 
     <div class="container position-absolute top-50 start-50 translate-middle">
       <div class="row justify-content-center">
@@ -52,10 +53,12 @@
 <script>
 import ChangePasswordModal from "@/views/ChangePasswordModal.vue";
 import ChangeProfileInfoModal from "@/views/ChangeProfileInfoModal.vue";
+import AlertSuccess from "@/components/AlertSuccess.vue";
+import {PASSWORD_UPDATED} from "@/assets/script/AlertMessage";
 
 export default {
   name: "ProfileView",
-  components: {ChangeProfileInfoModal, ChangePasswordModal},
+  components: {AlertSuccess, ChangeProfileInfoModal, ChangePasswordModal},
   data() {
     return {
       userId: sessionStorage.getItem('userId'),
@@ -92,11 +95,16 @@ export default {
     openChangeProfileModal() {
       this.$refs.ChangeProfileInfoModalRef.$refs.ModalRef.openModal()
     },
-  },
-  beforeMount() {
-    this.sendGetCompanyInfo()
 
-  }
+    // handleSuccessMessage() {
+    //   this.successMessage = PASSWORD_UPDATED;
+    // }
+  },
+
+    beforeMount() {
+      this.sendGetCompanyInfo()
+
+    }
 }
 </script>
 
