@@ -6,7 +6,6 @@
       </template>
       <template #body>
         <div class="container text-center">
-
           <div class="row">
             <div class="col mt-1">
               Ettevõte
@@ -15,7 +14,6 @@
               <input v-model="UpdateProfileInfoRequest.name">
             </div>
           </div>
-
           <div class="row">
             <div class="col mt-1">
               Ettevõtte registrikood
@@ -24,21 +22,17 @@
               <input v-model="UpdateProfileInfoRequest.registrationcode">
             </div>
           </div>
-
         </div>
       </template>
-
       <template #footer>
         <button type="button" class="btn btn-secondary" @click="updateProfileInfo">Muuda andmeid</button>
       </template>
-
     </Modal>
   </div>
 </template>
 <script>
 import Modal from "@/components/modal/Modal.vue";
 import router from "@/router";
-
 export default {
   name: 'ChangeProfileInfoModal',
   components: {Modal},
@@ -60,18 +54,14 @@ export default {
         this.handleUpdateProfileInfoError();
       })
     },
-
-
     handleUpdateProfileInfoSuccess() {
       this.emitProfileInfoSuccess();
       this.$refs.ModalRef.closeModal()
       location.reload();
-
     },
     handleUpdateProfileInfoError() {
       router.push({name: 'errorRoute'})
     },
-
     emitProfileInfoSuccess() {
       this.$emit('event-show-profile-success-message')
     },

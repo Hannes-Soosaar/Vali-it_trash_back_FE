@@ -3,7 +3,6 @@
     <div>{{ errorResponse.message }}</div>
     <div class="row justify-content-center ">
       <div class="col col-4">
-
         <div class="form-floating mb-4 ">
           <input v-model="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
                  @keyup.enter="login">
@@ -18,20 +17,15 @@
           <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
           <button @click="registerNewUser" class="btn btn-primary m-2" type="button">Registreeri kasutaja</button>
         </div>
-
       </div>
     </div>
   </div>
 </template>
-
-
 <script>
-
 import router from "@/router";
 import {FILL_MANDATORY_FIELDS, UPSIS_SOMETHING_UNEXPECTED_IS_WRONG} from "@/assets/script/AlertMessage";
 import {INCORRECT_CREDENTIALS} from "@/assets/script/ErrorCode";
 import ErrorView from "@/views/ErrorView.vue";
-
 export default {
   name: "LoginView",
   data() {
@@ -46,7 +40,6 @@ export default {
         message: '',
         errorCode: 0
       }
-
     }
   },
   methods: {
@@ -54,26 +47,19 @@ export default {
       this.resetErrorMessage()
       if (this.mandatoryFieldsAreFilled()) {
         this.sendLoginRequest();
-
       } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
       }
-
     },
-
     resetErrorMessage() {
       this.errorResponse.message = ''
     },
-
     mandatoryFieldsAreFilled() {
       return this.email.length > 0 && this.password.length > 0
     },
-
     registerNewUser() {
       router.push({name: 'registration'})
     },
-
-
     sendLoginRequest() {
       this.$http.get("/login", {
             params: {
@@ -86,23 +72,17 @@ export default {
         sessionStorage.setItem('userId', this.loginResponse.userId)
         sessionStorage.setItem('email', this.email)
         router.push({name: 'homeRoute'})
-
       }).catch(error => {
         this.handleError500(error);
-
         this.errorResponse = error.response.data;
         sessionStorage.setItem('email', this.email)
-
       })
     },
-
     handleError500(error) {
       if (error.response.status === 500) {
         router.push({name: 'errorRoute'})
       }
     },
-
   }
-
 }
 </script>
