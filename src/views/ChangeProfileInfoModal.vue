@@ -8,19 +8,19 @@
         <div class="container text-center">
 
           <div class="row">
-            <div class="col">
+            <div class="col mt-1">
               Ettevõte
             </div>
-            <div class="col">
+            <div class="col m-1">
               <input v-model="UpdateProfileInfoRequest.name">
             </div>
           </div>
 
           <div class="row">
-            <div class="col">
-              Ettevõtte registri nr
+            <div class="col mt-1">
+              Ettevõtte registrikood
             </div>
-            <div class="col">
+            <div class="col m-1">
               <input v-model="UpdateProfileInfoRequest.registrationcode">
             </div>
           </div>

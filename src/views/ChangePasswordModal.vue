@@ -13,27 +13,27 @@
       <template #body>
         <div>
           <div class="row">
-            <div class="col">
+            <div class="col mt-2">
               Kehtiv parool
             </div>
             <div class="col">
-              <input v-model="updatePasswordRequest.oldPassword" type="password">
+              <input v-model="updatePasswordRequest.oldPassword" type="password" class="m-1">
             </div>
           </div>
           <div class="row">
-            <div class="col">
+            <div class="col mt-2">
               Uus parool
             </div>
             <div class="col">
-              <input v-model="updatePasswordRequest.newPassword" type="password">
+              <input v-model="updatePasswordRequest.newPassword" type="password" class="m-1">
             </div>
           </div>
           <div class="row">
-            <div class="col">
+            <div class="col mt-2">
               Parool uuesti
             </div>
             <div class="col">
-              <input v-model="passwordAgain" type="password">
+              <input v-model="passwordAgain" type="password" class="m-1">
             </div>
           </div>
         </div>
