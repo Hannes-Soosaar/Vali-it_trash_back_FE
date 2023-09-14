@@ -1,13 +1,13 @@
 <template>
+  <ChangePasswordModal ref="ChangePasswordModalRef"/>
+  <ChangeProfileInfoModal ref="ChangeProfileInfoModalRef"/>
   <div>
-
-    <h1 class="">Minu andmed</h1>
-
-    <ChangePasswordModal ref="ChangePasswordModalRef"/>
-    <ChangeProfileInfoModal ref="ChangeProfileInfoModalRef"/>
+    <div class="container text-center bg-danger mt-5">
+      <div class="row justify-content-center">
+        <h1> Minu andmed </h1>
 <!--    <AlertSuccess @event-show-success-message="handleSuccessMessage" :alert-message="successMessage"/>-->
 
-    <div class="container position-absolute top-50 start-50 translate-middle">
+    <div class="container position-absolute top-50 start-50 translate-middle bg-info">
       <div class="row justify-content-center">
         <div class="col col-3">
           Ettevõte
@@ -41,12 +41,10 @@
             <button type="button" class="btn btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
           </div>
         </div>
-
-
       </div>
     </div>
-
-
+    </div>
+    </div>
   </div>
 </template>
 
