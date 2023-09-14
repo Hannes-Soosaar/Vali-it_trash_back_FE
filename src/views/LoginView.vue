@@ -16,7 +16,7 @@
         </div>
         <div class="mt-2">
           <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
-          <button @click="registerNewUser" class="btn btn-primary m-2" type="button">Registreeri</button>
+          <button @click="registerNewUser" class="btn btn-primary m-2" type="button">Registreeri kasutaja</button>
         </div>
 
       </div>

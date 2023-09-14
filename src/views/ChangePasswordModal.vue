@@ -2,14 +2,16 @@
   <div>
     <div class="row">
       <div class="col">
-<!--        <AlertDanger :alert-message="errorResponse.message"/>-->
+        <!--        <AlertDanger :alert-message="errorResponse.message"/>-->
 
       </div>
     </div>
     <Modal close-button-name="Sulge" ref="ModalRef">
-      <template #header>
-        Parooli muutmine
+
+      <template #header :style="{ color: this.errorResponse.message !== '' ? 'red' : 'black' + ' !important' }">
+      {{ modalHeaderText }}
       </template>
+
       <template #body>
         <div>
           <div class="row">
@@ -83,16 +85,14 @@ export default {
     },
 
     handleUpdatePasswordSuccess() {
-      // this.emitSuccessMessage()
       this.successMessage = PASSWORD_UPDATED
-      alert(this.successMessage)
+      this.emitSuccessMessage()
+      this.resetPasswordFields()
       this.$refs.ModalRef.closeModal()
-
-
     },
 
     handleUpdatePasswordError(error) {
-      alert(this.errorResponse.message)
+
       this.resetPasswordFields()
       // this.errorResponse.message = error.response.data.message
 
@@ -103,9 +103,19 @@ export default {
       this.passwordAgain = ''
     },
 
-    // emitSuccessMessage() {
-    //   this.$emit('event-show-success-message', PASSWORD_UPDATED)
-    // },
+    emitSuccessMessage() {
+      this.$emit('event-show-success-message', PASSWORD_UPDATED)
+    }
+
+  },
+  computed: {
+    modalHeaderText() {
+      if (this.errorResponse.message === '') {
+        return 'Parooli muutmine'
+      } else {
+        return 'Vale parool'
+      }
+    },
   }
 }
 </script>

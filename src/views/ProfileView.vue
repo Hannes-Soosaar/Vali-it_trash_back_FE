@@ -1,6 +1,7 @@
 <template>
-  <ChangePasswordModal ref="ChangePasswordModalRef"/>
+  <ChangePasswordModal @event-show-success-message="handleSuccessMessage" ref="ChangePasswordModalRef"/>
   <ChangeProfileInfoModal ref="ChangeProfileInfoModalRef"/>
+  <AlertSuccess :success-message="successMessage"/>
   <div class="justify-content-center">
   <h1 class="mt-5">Minu andmed</h1>
   <div class="container w-50 myContainer mt-5">
@@ -56,6 +57,7 @@ export default {
   components: {AlertSuccess, ChangeProfileInfoModal, ChangePasswordModal},
   data() {
     return {
+      successMessage: '',
       userId: sessionStorage.getItem('userId'),
       email: sessionStorage.getItem('email'),
 
@@ -91,9 +93,9 @@ export default {
       this.$refs.ChangeProfileInfoModalRef.$refs.ModalRef.openModal()
     },
 
-    // handleSuccessMessage() {
-    //   this.successMessage = PASSWORD_UPDATED;
-    // }
+    handleSuccessMessage() {
+      this.successMessage = PASSWORD_UPDATED;
+    }
   },
 
     beforeMount() {
