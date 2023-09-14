@@ -12,7 +12,7 @@
               Ettevõte
             </div>
             <div class="col">
-              <input>
+              <input v-model="UpdateProfileInfoRequest.name">
             </div>
           </div>
 
@@ -21,7 +21,7 @@
               Ettevõtte registri nr
             </div>
             <div class="col">
-              <input>
+              <input v-model="UpdateProfileInfoRequest.registrationcode">
             </div>
           </div>
 
@@ -29,7 +29,7 @@
       </template>
 
       <template #footer>
-        <button type="button" class="btn btn-secondary" @click="sendChangeProfileRequest">Muuda andmeid</button>
+        <button type="button" class="btn btn-secondary" @click="updateProfileInfo">Muuda andmeid</button>
       </template>
 
     </Modal>
@@ -41,11 +41,29 @@ import Modal from "@/components/modal/Modal.vue";
 export default {
   name: 'ChangeProfileInfoModal',
   components: {Modal},
+  data() {
+    return{
+      UpdateProfileInfoRequest:{
+        userId: sessionStorage.getItem("userId"),
+        name: '',
+        registrationcode: null
+      }
+    }
+  },
   methods: {
 
-    sendChangeProfileRequest() {
-
+    updateProfileInfo() {
+      this.$http.patch("/company/profileInfo", this.UpdateProfileInfoRequest
+      ).then(response => {
+        // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
+        const responseBody = response.data
+      }).catch(error => {
+        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
+        const errorResponseBody = error.response.data
+      })
     },
+
+
   }
 }
 </script>
