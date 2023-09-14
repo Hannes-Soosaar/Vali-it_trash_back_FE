@@ -12,16 +12,18 @@
               <th scope="col">Toote nimi</th>
               <th scope="col">UPC</th>
               <th scope="col">Materjalid</th>
-              <th scope="col"><font-awesome-icon icon="fa-solid fa-trash" size="lg" style="color: #000000;" /></th>
+              <th scope="col">
+                <font-awesome-icon icon="fa-solid fa-trash" size="lg" style="color: #000000;"/>
+              </th>
 
             </tr>
             </thead>
             <tbody>
-            <tr v-for="productProfile in productProfiles">
-              <th scope="row">{{productProfile.productId}}</th>
-              <td>{{productProfile.productName}}</td>
-              <td>{{productProfile.upc}}</td>
-              <td>placeholder</td>
+            <tr v-for="(productProfile, sequenceCounter) in productProfiles" :key="sequenceCounter">
+              <th>{{ counterValue + sequenceCounter + 1 }}</th>
+              <td>{{ productProfile.productName }}</td>
+              <td>{{ productProfile.upc }}</td>
+              <td>Placeholder</td>
               <td>
                 <div>
                   <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
@@ -41,11 +43,14 @@
 
 
 <script>
+
+
 export default {
   name: "MyProductsView",
 
   data() {
     return {
+      counterValue: 0,
       productProfiles: [
         {
           productId: 0,
@@ -53,7 +58,14 @@ export default {
           productName: '',
           upc: '',
           productInfo: '',
-          status: ''
+          status: '',
+          materials: [
+            {
+              materialId: 0,
+              materialCategoryName: '',
+              materialName: ''
+            }
+          ]
         }
       ]
     }

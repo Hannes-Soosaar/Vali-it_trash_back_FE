@@ -17,6 +17,7 @@
 <script>
 
 import data from "bootstrap/js/src/dom/data";
+import router from "@/router";
 
 
 
@@ -27,7 +28,7 @@ export default {
     return{
 
     }
-  }
+  },
 
 }
 
