@@ -3,7 +3,7 @@
     <div class="container text-center">
       <div class="row justify-content-center">
         <h1> Minu tooted </h1>
-        <MyProductsTable :counter-value="counterValue" :product-profiles="productProfiles"/>
+        <MyProductsTable  :product-profiles="productProfiles"/>
       </div>
     </div>
     <div>
@@ -25,11 +25,10 @@ export default {
 
   data() {
     return {
-      counterValue: 0,
       productProfiles: [
         {
           productId: 0,
-          imageData: '',
+          imageString: '',
           productName: '',
           upc: '',
           productInfo: '',
@@ -48,7 +47,7 @@ export default {
 
   methods: {
 
-    getProductProfile() {
+    getProductProfiles() {
       this.$http.get("/products", {
             params: {
               companyId: sessionStorage.getItem('companyId')
@@ -66,7 +65,7 @@ export default {
   },
 
   beforeMount() {
-    this.getProductProfile()
+    this.getProductProfiles()
   }
 
 }

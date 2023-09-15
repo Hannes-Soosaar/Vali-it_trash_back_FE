@@ -21,7 +21,7 @@
               Ettevõtte registri nr
             </div>
             <div class="col">
-              <input>
+              <input type="number">
             </div>
           </div>
 
