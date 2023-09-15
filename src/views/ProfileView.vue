@@ -101,6 +101,9 @@ export default {
 
     handlePasswordUpdatedMessage() {
       this.successMessage = PASSWORD_UPDATED;
+      setTimeout(() => {
+        this.successMessage = '';
+      }, 2000)
     },
     handleProfileInfoUpdatedMessage() {
       this.successMessage = PROFILE_INFO_UPDATED;
