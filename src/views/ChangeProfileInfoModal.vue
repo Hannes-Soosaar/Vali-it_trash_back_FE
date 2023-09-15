@@ -19,7 +19,7 @@
               Ettevõtte registrikood
             </div>
             <div class="col m-1">
-              <input v-model="UpdateProfileInfoRequest.registrationcode">
+              <input type="number" v-model="UpdateProfileInfoRequest.registrationcode">
             </div>
           </div>
         </div>
