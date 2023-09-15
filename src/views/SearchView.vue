@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>
+      <LogoComponent/>
+    </div>
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col col-6">
@@ -16,13 +19,12 @@
 
 <script>
 
-import data from "bootstrap/js/src/dom/data";
-import router from "@/router";
-
+import LogoComponent from "@/views/LogoComponent.vue";
 
 
 export default {
   name: "SearchView",
+  components: {LogoComponent},
 
   data(){
     return{
@@ -33,3 +35,4 @@ export default {
 }
 
 </script>
+
