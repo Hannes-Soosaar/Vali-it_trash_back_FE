@@ -7,6 +7,8 @@
     <h1 class="mt-5">Minu andmed</h1>
     <div class="container w-50 myContainer mt-5">
 
+
+
       <div class="container text-center mt-3">
         <div class="row">
           <div class="col">
@@ -52,6 +54,7 @@ import ChangePasswordModal from "@/views/ChangePasswordModal.vue";
 import ChangeProfileInfoModal from "@/views/ChangeProfileInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import {PASSWORD_UPDATED, PROFILE_INFO_UPDATED} from "@/assets/script/AlertMessage";
+import router from "@/router";
 
 export default {
   name: "ProfileView",
@@ -92,6 +95,8 @@ export default {
 
     openChangeProfileModal() {
       this.$refs.ChangeProfileInfoModalRef.$refs.ModalRef.openModal()
+      this.$refs.ChangeProfileInfoModalRef.UpdateProfileInfoRequest.name = this.companyInfo.companyName
+      this.$refs.ChangeProfileInfoModalRef.UpdateProfileInfoRequest.registrationcode = this.companyInfo.registrationCode
     },
 
     handlePasswordUpdatedMessage() {
@@ -99,6 +104,10 @@ export default {
     },
     handleProfileInfoUpdatedMessage() {
       this.successMessage = PROFILE_INFO_UPDATED;
+      setTimeout(() => {
+        this.successMessage = '';
+      }, 2000)
+      this.sendGetCompanyInfo()
     },
   },
 

@@ -57,7 +57,7 @@ export default {
     handleUpdateProfileInfoSuccess() {
       this.emitProfileInfoSuccess();
       this.$refs.ModalRef.closeModal()
-      location.reload();
+
     },
     handleUpdateProfileInfoError() {
       router.push({name: 'errorRoute'})

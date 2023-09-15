@@ -5,7 +5,7 @@
       </div>
     </div>
     <Modal close-button-name="Sulge" ref="ModalRef">
-      <template #header :style="{ color: this.errorResponse.message !== '' ? 'red' : 'black' + ' !important' }">
+      <template #header>
       {{ modalHeaderText }}
       </template>
       <template #body>
@@ -47,11 +47,14 @@ import Modal from "@/components/modal/Modal.vue";
 import {PASSWORD_UPDATED} from "@/assets/script/AlertMessage";
 import AlertDanger from "@/components/AlertDanger.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
+
+const CHANGE_PASSWORD = "Parooli muutmine";
 export default {
   name: 'ChangePasswordModal',
   components: {AlertSuccess, AlertDanger, Modal},
   data() {
     return {
+      modalHeaderText: CHANGE_PASSWORD,
       successMessage: '',
       passwordAgain: '',
       updatePasswordRequest: {
@@ -66,24 +69,38 @@ export default {
     }
   },
   methods: {
-    updatePassword() {
+    sendUpdatePasswordRequest () {
       this.$http.patch("/company/password", this.updatePasswordRequest
       ).then(response => {
         this.handleUpdatePasswordSuccess();
       }).catch(error => {
-        this.errorResponse.message = error.response.data.message
         this.handleUpdatePasswordError(error);
       })
     },
+
+    updatePassword() {
+      if (this.passwordAgain === this.updatePasswordRequest.newPassword) {
+        this.sendUpdatePasswordRequest();
+      } else {
+        this.modalHeaderText = 'Paroolid ei kattu'
+        setTimeout(() => {
+          this.modalHeaderText = CHANGE_PASSWORD;
+        }, 2000)
+        this.resetPasswordFields()
+      }
+    },
     handleUpdatePasswordSuccess() {
-      this.successMessage = PASSWORD_UPDATED
+      this.modalHeaderText = CHANGE_PASSWORD
       this.emitSuccessMessage()
       this.resetPasswordFields()
       this.$refs.ModalRef.closeModal()
     },
     handleUpdatePasswordError(error) {
-      this.resetPasswordFields()
-      // this.errorResponse.message = error.response.data.message
+      this.modalHeaderText = error.response.data.message
+      setTimeout(() => {
+        this.modalHeaderText = CHANGE_PASSWORD;
+        this.resetPasswordFields()
+      }, 2000)
     },
     resetPasswordFields() {
       this.updatePasswordRequest.oldPassword = ''
@@ -94,14 +111,5 @@ export default {
       this.$emit('event-show-success-message', PASSWORD_UPDATED)
     }
   },
-  computed: {
-    modalHeaderText() {
-      if (this.errorResponse.message === '') {
-        return 'Parooli muutmine'
-      } else {
-        return 'Vale parool'
-      }
-    },
-  }
 }
 </script>
