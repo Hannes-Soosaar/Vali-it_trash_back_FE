@@ -1,19 +1,34 @@
 <template>
-  <div class="container text-center">
-    <div class="row">
-      <div class="col">
+  <div class="container text-start" style="border: solid grey">
+    <div class="row justify-content-center">
+      <div class="col col-5 bg-success">
+        <h2 style="background-color: grey">{{ productName }}</h2>
+        <p>
+          UPC: {{ upc }}
+        </p>
+        <p>
+          Materjalide ja prügikastide info:
+        </p>
         <table class="table">
           <tbody>
-          <tr>
-            <td>mingi info ja pilt</td>
-            <td>{{ productId }}</td>
-            <td>{{ productName }}</td>
-            <td>{{ upc }}</td>
-            <td>toote infot oleks ka vaja</td>
-            <td>{{ productMaterials.materialName }}</td>
+          <tr v-for="productMaterial in productMaterials" :key="productMaterial.materialName">
+            <td>
+              <p>{{productMaterial.materialName}}</p>
+            </td>
+            <td>
+              <p>{{productMaterial.materialCategoryName}}</p>
+            </td>
+            <td>
+              <p>{{productMaterial.materialBinName}}</p>
+            </td>
           </tr>
           </tbody>
         </table>
+
+
+      </div>
+      <div class="col col-3">
+        tere
       </div>
     </div>
   </div>
@@ -30,7 +45,7 @@ export default {
       productId: Number(useRoute().query.productId),
       productName: String(useRoute().query.productName),
       upc: String(useRoute().query.upc),
-      productInfo:String(useRoute().query.productInfo),
+      productInfo: String(useRoute().query.productInfo),
       productMaterials: [
         {
           materialCategoryName: '',
@@ -46,14 +61,12 @@ export default {
     getProductMaterials() {
       this.$http.get("/product-materials", {
             params: {
-              productMaterials: this.productMaterials
+              productId: Number(useRoute().query.productId)
             }
           }
       ).then(response => {
-        // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
         this.productMaterials = response.data
       }).catch(error => {
-        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
         this.errorResponse = error.response.data
       })
     },
