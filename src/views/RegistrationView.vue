@@ -35,6 +35,8 @@
     </div>
   </div>
   </div>
+
+
 </template>
 
 
@@ -65,7 +67,9 @@ export default {
             errorCode: 0
           }
     }
+
   },
+
   methods: {
 
     sendPostCompanyRequest() {
@@ -152,3 +156,4 @@ export default {
 }
 
 </script>
+

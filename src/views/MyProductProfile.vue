@@ -1,4 +1,4 @@
-<template>
+|<template>
   <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
     <div class="row justify-content-center">
       <div class="col col-6">
