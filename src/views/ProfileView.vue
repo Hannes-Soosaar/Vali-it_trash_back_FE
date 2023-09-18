@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import ChangePasswordModal from "@/views/ChangePasswordModal.vue";
-import ChangeProfileInfoModal from "@/views/ChangeProfileInfoModal.vue";
+import ChangePasswordModal from "@/components/modal/ChangePasswordModal.vue";
+import ChangeProfileInfoModal from "@/components/modal/ChangeProfileInfoModal.vue";
 
 export default {
   name: "ProfileView",

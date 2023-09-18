@@ -3,7 +3,8 @@
     <div class="container text-center">
       <div class="row justify-content-center">
         <h1> Minu tooted </h1>
-        <MyProductsTable  :product-profiles="productProfiles"/>
+        <h2>{{ this.companyName }} </h2>
+        <MyProductsTable :product-profiles="productProfiles"/>
       </div>
     </div>
     <div>
@@ -13,10 +14,7 @@
 
 </template>
 
-
 <script>
-
-
 import MyProductsTable from "@/components/products/MyProductsTable.vue";
 
 export default {
@@ -25,6 +23,7 @@ export default {
 
   data() {
     return {
+      companyName: sessionStorage.getItem('companyName'),
       productProfiles: [
         {
           productId: 0,
@@ -54,13 +53,13 @@ export default {
             }
           }
       ).then(response => {
-
         this.productProfiles = response.data
 
       }).catch(error => {
         this.errorResponse = error.response.data;
       })
     },
+
 
   },
 
@@ -80,6 +79,10 @@ table {
 
 h1 {
   margin: 20px;
+}
+
+h2 {
+  font-size: 20px;
 }
 
 button {

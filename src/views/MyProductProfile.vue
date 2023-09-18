@@ -1,36 +1,48 @@
 <template>
-  <div class="container text-start" style="border: solid grey">
+  <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
     <div class="row justify-content-center">
-      <div class="col col-5 bg-success">
-        <h2 style="background-color: grey">{{ productName }}</h2>
+      <div class="col col-6">
+        <h2>{{ productName }}</h2>
         <p>
           UPC: {{ upc }}
         </p>
-        <p>
-          Materjalide ja prügikastide info:
-        </p>
         <table class="table">
           <tbody>
+          <tr>
+            <td>
+              <h5>materjalid</h5>
+            </td>
+            <td>
+              <h5>kategooriad</h5>
+            </td>
+            <td>
+              <h5>prügikastid</h5>
+            </td>
+          </tr>
           <tr v-for="productMaterial in productMaterials" :key="productMaterial.materialName">
             <td>
-              <p>{{productMaterial.materialName}}</p>
+              <p>{{ productMaterial.materialName }}</p>
             </td>
             <td>
-              <p>{{productMaterial.materialCategoryName}}</p>
+              <p>{{ productMaterial.materialCategoryName }}</p>
             </td>
             <td>
-              <p>{{productMaterial.materialBinName}}</p>
+              <p>{{ productMaterial.materialBinName }}</p>
             </td>
           </tr>
           </tbody>
         </table>
 
-
       </div>
-      <div class="col col-3">
-        tere
+      <div class="col col-6">
+        <p>siia tuleb pilt</p>
       </div>
     </div>
+
+  </div>
+  <div class="d-grid gap-2 d-md-block">
+    <button class="btn btn-success" type="button">Muuda toote andmeid</button>
+    <button class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
   </div>
 </template>
 
@@ -54,7 +66,10 @@ export default {
           materialBinRequirements: '',
           materialName: ''
         }
-      ]
+      ],
+      image: {
+        imageData: ''
+      },
     }
   },
   methods: {
@@ -72,10 +87,23 @@ export default {
     },
   },
 
+  getProductImage() {
+    this.$http.get("/products/product-get-image", {
+          params: {
+            productId: Number(useRoute().query.productId)
+          }
+        }
+    ).then(response => {
+      this.image = response.data
+    }).catch(error => {
+      this.errorResponse = error.response.data
+    })
+  },
+
+
   beforeMount() {
     this.getProductMaterials()
-  }
-
+  },
 
 }
 </script>
@@ -83,4 +111,10 @@ export default {
 
 <style scoped>
 
+h2 {
+  padding: 20px;
+}
+button {
+  margin: 10px;
+}
 </style>
