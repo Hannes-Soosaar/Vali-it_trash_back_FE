@@ -2,14 +2,14 @@
 
   <div class="custom-message-style mb-5">
     <h1> Tere, {{ companyInfo.companyName }}! </h1>
-    <p> Siin võiks mingi visuaal või taustapilt ka olla</p>
+    <p> ettvõtte logo? andmebaasis pole</p>
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row">
       <div class="col-sm-6 bg-success">
         <button @click="$router.push({name: 'productsRoute'})"  class="btn btn-custom-size btn-block mb-sm-4">
           <font-awesome-icon icon="fa-solid fa-suitcase" size="xl" style="color: #000000;" />
-          Vaata/muuda olemasolevaid tooteid</button>
+          Minu tooted</button>
       </div>
       <div class="col-sm-6 bg-info">
         <button class="btn btn-custom-size btn-block mb-sm-4">
@@ -63,6 +63,7 @@ export default {
         this.companyInfo.companyId = response.data.companyId
         this.companyInfo.companyName = response.data.companyName
         sessionStorage.setItem('companyId', this.companyInfo.companyId)
+        sessionStorage.setItem('companyName', this.companyInfo.companyName)
       }).catch(error => {
         this.errorResponse = error.response.data.companyId
 

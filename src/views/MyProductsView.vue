@@ -3,58 +3,31 @@
     <div class="container text-center">
       <div class="row justify-content-center">
         <h1> Minu tooted </h1>
-        <div class="col col-8 bg-warning">
-
-          <table class="table table-hover">
-            <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Toote nimi</th>
-              <th scope="col">UPC</th>
-              <th scope="col">Materjalid</th>
-              <th scope="col">
-                <font-awesome-icon icon="fa-solid fa-trash" size="lg" style="color: #000000;"/>
-              </th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(productProfile, sequenceCounter) in productProfiles" :key="sequenceCounter">
-              <th>{{ counterValue + sequenceCounter + 1 }}</th>
-              <td>{{ productProfile.productName }}</td>
-              <td>{{ productProfile.upc }}</td>
-              <td>Placeholder</td>
-              <td>
-                <div>
-                  <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                </div>
-              </td>
-
-            </tr>
-            </tbody>
-          </table>
-
-        </div>
+        <h2>{{ this.companyName }} </h2>
+        <MyProductsTable :product-profiles="productProfiles"/>
       </div>
+    </div>
+    <div>
+      <button class="btn btn-success" type="button">Lisa toode</button>
     </div>
   </div>
 
 </template>
 
-
 <script>
-
+import MyProductsTable from "@/components/products/MyProductsTable.vue";
 
 export default {
   name: "MyProductsView",
+  components: {MyProductsTable},
 
   data() {
     return {
-      counterValue: 0,
+      companyName: sessionStorage.getItem('companyName'),
       productProfiles: [
         {
           productId: 0,
-          imageData: '',
+          imageString: '',
           productName: '',
           upc: '',
           productInfo: '',
@@ -73,14 +46,13 @@ export default {
 
   methods: {
 
-    getProductProfile() {
+    getProductProfiles() {
       this.$http.get("/products", {
             params: {
               companyId: sessionStorage.getItem('companyId')
             }
           }
       ).then(response => {
-
         this.productProfiles = response.data
 
       }).catch(error => {
@@ -88,10 +60,11 @@ export default {
       })
     },
 
+
   },
 
   beforeMount() {
-    this.getProductProfile()
+    this.getProductProfiles()
   }
 
 }
@@ -106,6 +79,14 @@ table {
 
 h1 {
   margin: 20px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+button {
+  margin: 10px;
 }
 
 </style>

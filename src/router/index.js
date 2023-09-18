@@ -8,6 +8,8 @@ import ProfileView from "@/views/ProfileView.vue";
 import CreateUserView from "@/views/RegistrationView.vue";
 import MyProductsView from "@/views/MyProductsView.vue";
 import HelpView from "@/views/HelpView.vue";
+import MyProductProfile from "@/views/MyProductProfile.vue";
+import AddProductView from "@/views/AddProductView.vue";
 
 const routes = [
   {
@@ -49,6 +51,16 @@ const routes = [
     path: '/help',
     name: 'helpRoute',
     component: HelpView
+  },
+  {
+    path: '/productprofile',
+    name: 'productProfileRoute',
+    component: MyProductProfile
+  },
+  {
+    path: '/addproduct',
+    name: 'addProductProfileRoute',
+    component: AddProductView
   },
 
 ]
