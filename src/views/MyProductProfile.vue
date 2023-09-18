@@ -42,7 +42,9 @@
 
       </div>
       <div class="col col-6">
-        <p>siia tuleb pilt</p>
+
+      <p>pilt</p>
+
       </div>
     </div>
 
@@ -59,10 +61,11 @@
 import {useRoute} from "vue-router";
 import DeleteProductModal from "@/views/DeleteProductModal.vue";
 import router from "@/router";
+import ImageInput from "@/components/ImageInput.vue";
 
 export default {
   name: "MyProductProfile",
-  components: {DeleteProductModal},
+  components: {ImageInput, DeleteProductModal},
   data() {
     return {
       productId: Number(useRoute().query.productId),
@@ -116,6 +119,9 @@ export default {
       this.$refs.DeleteProductModalRef.productId = this.productId
     },
 
+   handleImage(imageDataBase64){
+      this.image.imageData = imageDataBase64
+   }
   },
   beforeMount() {
     this.getProductMaterials()

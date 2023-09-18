@@ -5,6 +5,7 @@
       <div class="col col-5">
 
         <h1>Uue toote lisamine</h1>
+        <AlertDanger :error-message="errorResponse.message"/>
 
         <div class="form-floating mb-4">
           <input v-model="newProduct.productName" type="text" class="form-control" id="floatingInput"
@@ -53,10 +54,11 @@
 import ImageInput from "@/components/ImageInput.vue";
 import {FILL_MANDATORY_FIELDS, UPSIS_SOMETHING_UNEXPECTED_IS_WRONG} from "@/assets/script/AlertMessage";
 import router from "@/router";
+import AlertDanger from "@/components/AlertDanger.vue";
 
 export default {
   name: "AddProductView",
-  components: {ImageInput},
+  components: {AlertDanger, ImageInput},
   data() {
     return {
       successMessage: '',
@@ -82,6 +84,9 @@ export default {
         this.sendNewProductProfile()
       } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
+        setTimeout(() => {
+          this.errorResponse.message = '';
+        }, 2000)
       }
     },
 
@@ -92,6 +97,7 @@ export default {
       }).catch(error => {
         //
         this.errorResponse = error.response.data
+
       })
     },
 
@@ -100,7 +106,7 @@ export default {
     },
 
     mandatoryFieldsAreFilled() {
-      return this.newProduct.imageData.length > 0 && this.newProduct.upc.length > 0
+      return this.newProduct.productName.length > 0 && this.newProduct.upc.length > 0 && this.newProduct.status !== ''
     },
 
 
