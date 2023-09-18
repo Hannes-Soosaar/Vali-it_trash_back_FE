@@ -116,12 +116,11 @@ export default {
       this.$refs.DeleteProductModalRef.productId = this.productId
     },
 
-    beforeMount() {
-      this.getProductMaterials()
-      this.getProductImage()
-    },
-
-  }
+  },
+  beforeMount() {
+    this.getProductMaterials()
+    this.getProductImage()
+  },
 }
 </script>
 
