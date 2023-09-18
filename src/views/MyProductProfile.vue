@@ -19,6 +19,9 @@
             <td>
               <h5>prügikastid</h5>
             </td>
+            <td>
+              <h5>värv</h5>
+            </td>
           </tr>
           <tr v-for="productMaterial in productMaterials" :key="productMaterial.materialName">
             <td>
@@ -29,6 +32,9 @@
             </td>
             <td>
               <p>{{ productMaterial.materialBinName }}</p>
+            </td>
+            <td>
+              <p>{{ productMaterial.materialBinColorName }}</p>
             </td>
           </tr>
           </tbody>
@@ -43,8 +49,8 @@
   </div>
   <div class="d-grid gap-2 d-md-block">
     <button class="btn btn-success" type="button">Muuda toote andmeid</button>
-    <button @click="navigateToMyProductsView"  class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
     <button  @click="openDeleteProductModal"  class="btn btn-danger" type="button">Kustuta toode</button>
+    <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
   </div>
 </template>
 
@@ -92,34 +98,30 @@ export default {
     },
 
 
-  getProductImage() {
-    this.$http.get("/products/product-get-image", {
-          params: {
-            productId: Number(useRoute().query.productId)
+    getProductImage() {
+      this.$http.get("/products/product-get-image", {
+            params: {
+              productId: Number(useRoute().query.productId)
+            }
           }
-        }
-    ).then(response => {
-      this.image = response.data
-    }).catch(error => {
-      this.errorResponse = error.response.data
-    })
-  },
-
-  openDeleteProductModal() {
-    this.$refs.DeleteProductModalRef.$refs.ModalRef.openModal()
-    this.$refs.DeleteProductModalRef.productId = this.productId
-  },
-
-    navigateToMyProductsView() {
-      router.push({name: 'productsRoute'})
+      ).then(response => {
+        this.image = response.data
+      }).catch(error => {
+        this.errorResponse = error.response.data
+      })
     },
 
-  },
-  beforeMount() {
-    this.getProductMaterials()
-    this.getProductImage()
-  },
+    openDeleteProductModal() {
+      this.$refs.DeleteProductModalRef.$refs.ModalRef.openModal()
+      this.$refs.DeleteProductModalRef.productId = this.productId
+    },
 
+    beforeMount() {
+      this.getProductMaterials()
+      this.getProductImage()
+    },
+
+  }
 }
 </script>
 
