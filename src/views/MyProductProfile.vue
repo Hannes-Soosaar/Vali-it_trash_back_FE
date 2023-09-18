@@ -1,4 +1,5 @@
 <template>
+  <DeleteProductModal ref="DeleteProductModalRef"/>
   <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
     <div class="row justify-content-center">
       <div class="col col-6">
@@ -43,16 +44,18 @@
   <div class="d-grid gap-2 d-md-block">
     <button class="btn btn-success" type="button">Muuda toote andmeid</button>
     <button class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
-    <button class="btn btn-danger" type="button">Kustuta toode</button>
+    <button  @click=""  class="btn btn-danger" type="button">Kustuta toode</button>
   </div>
 </template>
 
 
 <script>
 import {useRoute} from "vue-router";
+import DeleteProductModal from "@/views/DeleteProductModal.vue";
 
 export default {
   name: "MyProductProfile",
+  components: {DeleteProductModal},
   data() {
     return {
       productId: Number(useRoute().query.productId),
@@ -101,6 +104,9 @@ export default {
     })
   },
 
+  openDeleteProductModal() {
+    this.$refs.DeleteProductModalRef.$refs.ModalRef.openModal()
+  },
 
 
   beforeMount() {
