@@ -43,6 +43,7 @@
   <div class="d-grid gap-2 d-md-block">
     <button class="btn btn-success" type="button">Muuda toote andmeid</button>
     <button class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
+    <button class="btn btn-danger" type="button">Kustuta toode</button>
   </div>
 </template>
 
@@ -99,6 +100,7 @@ export default {
       this.errorResponse = error.response.data
     })
   },
+
 
 
   beforeMount() {
