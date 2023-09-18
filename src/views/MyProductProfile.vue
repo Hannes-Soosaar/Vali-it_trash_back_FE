@@ -43,8 +43,8 @@
   </div>
   <div class="d-grid gap-2 d-md-block">
     <button class="btn btn-success" type="button">Muuda toote andmeid</button>
-    <button class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
-    <button  @click=""  class="btn btn-danger" type="button">Kustuta toode</button>
+    <button @click="navigateToMyProductsView"  class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
+    <button  @click="openDeleteProductModal"  class="btn btn-danger" type="button">Kustuta toode</button>
   </div>
 </template>
 
@@ -52,6 +52,7 @@
 <script>
 import {useRoute} from "vue-router";
 import DeleteProductModal from "@/views/DeleteProductModal.vue";
+import router from "@/router";
 
 export default {
   name: "MyProductProfile",
@@ -89,7 +90,7 @@ export default {
         this.errorResponse = error.response.data
       })
     },
-  },
+
 
   getProductImage() {
     this.$http.get("/products/product-get-image", {
@@ -106,11 +107,17 @@ export default {
 
   openDeleteProductModal() {
     this.$refs.DeleteProductModalRef.$refs.ModalRef.openModal()
+    this.$refs.DeleteProductModalRef.productId = this.productId
   },
 
+    navigateToMyProductsView() {
+      router.push({name: 'productsRoute'})
+    },
 
+  },
   beforeMount() {
     this.getProductMaterials()
+    this.getProductImage()
   },
 
 }

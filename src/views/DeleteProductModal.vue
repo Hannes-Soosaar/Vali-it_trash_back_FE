@@ -8,7 +8,7 @@
         Kas oled kindel, et soovid toote kustutada?
       </template>
       <template #footer>
-        <button>Kustuta toode</button>
+        <button @click="deleteProduct">Kustuta toode</button>
       </template>
     </Modal>
   </div>
@@ -17,10 +17,39 @@
 
 <script>
 import Modal from "@/components/modal/Modal.vue";
+import router from "@/router";
+import {PRODUCT_DELETED} from "@/assets/script/AlertMessage";
 
 export default {
   name: 'DeleteProductModal',
-  components: {Modal}
+  components: {Modal},
+  data() {
+    return{
+      productId:Number
+    }
+  },
+  methods:{
+
+
+    deleteProduct() {
+      this.$http.delete("/products", {
+            params: {
+              productId: this.productId
+            }
+          }
+      ).then(response => {
+       this.handleDeleteProductSuccess()
+      }).catch(error => {
+        router.push({name:'errorRoute'})
+      })
+    },
+
+    handleDeleteProductSuccess() {
+      this.$emit('event-show-deleted-product-success-message', PRODUCT_DELETED)
+      router.push({name:'productsRoute'})
+    },
+
+  }
 }
 </script>
 
