@@ -18,6 +18,9 @@
             <td>
               <h5>prügikastid</h5>
             </td>
+            <td>
+              <h5>värv</h5>
+            </td>
           </tr>
           <tr v-for="productMaterial in productMaterials" :key="productMaterial.materialName">
             <td>
@@ -28,6 +31,9 @@
             </td>
             <td>
               <p>{{ productMaterial.materialBinName }}</p>
+            </td>
+            <td>
+              <p>{{ productMaterial.materialBinColorName }}</p>
             </td>
           </tr>
           </tbody>
@@ -42,7 +48,7 @@
   </div>
   <div class="d-grid gap-2 d-md-block">
     <button class="btn btn-success" type="button">Muuda toote andmeid</button>
-    <button class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
+    <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
   </div>
 </template>
 

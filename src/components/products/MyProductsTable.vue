@@ -20,7 +20,6 @@
         <th scope="col">Toote nimi</th>
         <th scope="col">UPC</th>
         <th scope="col">Materjalid</th>
-        <th scope="col">Lisainfo</th>
         <th scope="col">
           <font-awesome-icon icon="fa-solid fa-trash" size="lg" style="color: #000000;"/>
         </th>
@@ -37,7 +36,6 @@
         <td>{{ productProfile.upc }}</td>
         <td><p v-for="(material, index) in productProfile.materials" :key="index">
           {{ material.materialName }}</p></td>
-        <td>{{productProfile.productInfo}}</td>
         <td @click.stop>
           <div>
             <input  class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
