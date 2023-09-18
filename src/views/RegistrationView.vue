@@ -90,6 +90,7 @@ export default {
 
       if (!this.passwordsAreSame()) {
         this.errorResponse.message = 'Parool ei ole sama'
+        this.resetPasswordFields()
 
       } else if (this.mandatoryFieldsAreFilled()) {
         this.sendPostCompanyRequest()
@@ -98,8 +99,6 @@ export default {
       }
 
     },
-
-
 
     resetMessageFields() {
       this.successMessage = ''
@@ -142,8 +141,13 @@ export default {
 
     passwordsAreSame() {
       return this.requestBody.password === this.passwordAgain
-    }
-    ,
+    },
+
+    resetPasswordFields() {
+      this.requestBody.password = ''
+      this.passwordAgain = ''
+    },
+
   }
 }
 
