@@ -1,6 +1,6 @@
 <template>
 
- <img :src="imageDataBase64">
+ <img :src="imageDataBase64" class="img-thumbnail">
 
 </template>
 <script>

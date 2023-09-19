@@ -1,17 +1,18 @@
 <template>
   <div class="col col-8">
 
-    <div class="dropdown text-end justify-content-end">
-      <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-         aria-expanded="false">
-        Sorteeri
-      </a>
+<!--    <div class="dropdown text-end justify-content-end">-->
+<!--      <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
+<!--         aria-expanded="false">-->
+<!--        Sorteeri-->
+<!--      </a>-->
 
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Aktiivsed</a></li>
-        <li><a class="dropdown-item" href="#">Mitteaktiivsed</a></li>
-      </ul>
-    </div>
+<!--      <ul class="dropdown-menu">-->
+<!--        <li><a class="dropdown-item" href="#">Aktiivsed</a></li>-->
+<!--        <li><a class="dropdown-item" href="#">Mitteaktiivsed</a></li>-->
+<!--      </ul>-->
+<!--    </div>-->
+
     <table class="table table-hover">
 
       <thead>
@@ -25,7 +26,7 @@
 
       <tbody>
       <tr class="fingerPointer"
-          @click="navigateToMyProductProfile(productProfile.productId, productProfile.productName, productProfile.upc)"
+          @click="navigateToMyProductProfile(productProfile.productId)"
           v-for="(productProfile, sequenceCounter) in productProfiles"
           :key="productProfile.productId">
         <th>{{ sequenceCounter + 1 }}</th>
@@ -60,14 +61,8 @@ export default {
 
 
   methods: {
-    navigateToMyProductProfile(productId, productName, upc) {
-      router.push({
-        name: 'productProfileRoute',
-        query: {
-          productId: productId,
-          productName: productName,
-          upc: upc
-        }
+    navigateToMyProductProfile(productId) {
+      router.push({ name: 'productProfileRoute', query: {productId: productId}
       })
 
     }
