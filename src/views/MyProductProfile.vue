@@ -27,7 +27,6 @@
             <td>
               <h5>Värv</h5>
             </td>
-
           </tr>
           <tr v-for="material in productResponse.materials" :key="productResponse.materials.materialId">
             <td>
@@ -42,7 +41,6 @@
             <td>
               <p>{{ material.materialBinColorName }}</p>
             </td>
-
           </tr>
           </tbody>
         </table>
@@ -70,10 +68,13 @@ import DeleteProductModal from "@/views/DeleteProductModal.vue";
 import ProductImage from "@/views/ProductImage.vue";
 import ChangeProductInfoModal from "@/views/ChangeProductInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
+import router from "@/router";
+import ImageInput from "@/components/ImageInput.vue";
 
 export default {
   name: "MyProductProfile",
-  components: {AlertSuccess, ChangeProductInfoModal, ProductImage, DeleteProductModal},
+  components: {AlertSuccess, ChangeProductInfoModal, ProductImage, DeleteProductModal, ImageInput},
+
   data() {
     return {
       productId: Number(useRoute().query.productId),
@@ -112,7 +113,6 @@ export default {
       })
     },
 
-
     openDeleteProductModal() {
       this.$refs.DeleteProductModalRef.$refs.ModalRef.openModal()
       this.$refs.DeleteProductModalRef.productId = this.productId
@@ -131,6 +131,9 @@ export default {
     },
 
 
+   handleImage(imageDataBase64){
+      this.image.imageData = imageDataBase64
+   }
   },
   beforeMount() {
     this.getProductInfo()

@@ -1,39 +1,40 @@
 <template>
   <div>
-  <div>
-    <h1>Registreeri kasutaja</h1>
-    <AlertSuccess :success-message="successMessage"/>
-    <AlertDanger :error-message="errorResponse.message"/>
-  </div>
-  <div class="row justify-content-center ">
-    <div class="col col-4">
-      <div class="form-floating mb-3">
-        <input v-model="requestBody.email" type="email" class="form-control" id="floatingInput"
-               placeholder="name@example.com">
-        <label for="floatingInput">E-post</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input v-model="requestBody.password" type="password" class="form-control" id="floatingInput"
-               placeholder="name@example.com">
-        <label for="floatingInput">Parool</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input v-model="passwordAgain" type="password" class="form-control" id="floatingInput"
-               placeholder="name@example.com">
-        <label for="floatingInput">Parool uuesti</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input v-model="requestBody.companyName" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Ettevõte</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input v-model="requestBody.registrationCode" class="form-control" id="floatingInput"
-               placeholder="name@example.com">
-        <label for="floatingInput">Ettevõtte registrikood</label>
-      </div>
-      <button @click="createUser" type="button" class="btn btn-secondary">Registreeri kasutaja</button>
+    <div>
+      <h1>Registreeri kasutaja</h1>
+      <AlertSuccess :success-message="successMessage"/>
+      <AlertDanger :error-message="errorResponse.message"/>
     </div>
-  </div>
+    <div class="row justify-content-center ">
+      <div class="col col-4">
+        <div class="form-floating mb-3">
+          <input v-model="requestBody.email" type="email" class="form-control" id="floatingInput"
+                 placeholder="name@example.com">
+          <label for="floatingInput">E-post</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input v-model="requestBody.password" type="password" class="form-control" id="floatingInput"
+                 placeholder="name@example.com">
+          <label for="floatingInput">Parool</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input v-model="passwordAgain" type="password" class="form-control" id="floatingInput"
+                 placeholder="name@example.com">
+          <label for="floatingInput">Parool uuesti</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input v-model="requestBody.companyName" class="form-control" id="floatingInput"
+                 placeholder="name@example.com">
+          <label for="floatingInput">Ettevõte</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input v-model="requestBody.registrationCode" class="form-control" id="floatingInput"
+                 placeholder="name@example.com">
+          <label for="floatingInput">Ettevõtte registrikood</label>
+        </div>
+        <button @click="createUser" type="button" class="btn btn-secondary">Registreeri kasutaja</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -104,13 +105,11 @@ export default {
     resetMessageFields() {
       this.successMessage = ''
       this.errorResponse.message = ''
-    }
-    ,
+    },
 
     handleUserCreateSuccessResponse() {
       this.successMessage = 'Kasutaja registreeritud'
-    }
-    ,
+    },
 
     mandatoryFieldsAreFilled() {
       let hasEmail = this.requestBody.email !== '';
@@ -122,23 +121,20 @@ export default {
           hasCompanyName &&
           hasRegistrationCode
 
-    }
-    ,
+    },
 
     handleErrorStatusCode500(error) {
       if (error.response.status === 500) {
         router.push({name: 'errorRoute'})
       }
-    }
-    ,
+    },
     displayFillAllFieldsError() {
       this.errorResponse.message = 'Täida kõik väljad'
 
       setTimeout(() => {
         this.errorResponse.message = ''
       }, 3000)
-    }
-    ,
+    },
 
     passwordsAreSame() {
       return this.requestBody.password === this.passwordAgain

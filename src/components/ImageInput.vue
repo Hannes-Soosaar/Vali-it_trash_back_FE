@@ -1,7 +1,12 @@
 <template>
     <div>
+      <button type="submit" class="btn btn-primary mb-3">
         <input type="file" @change="handleImage" accept="image/x-png,image/jpeg,image/gif">
+      </button>
     </div>
+
+
+
 </template>
 
 <script>
