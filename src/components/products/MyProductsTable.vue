@@ -32,13 +32,7 @@
         <th>{{ sequenceCounter + 1 }}</th>
         <td>{{ productProfile.productName }}</td>
         <td>{{ productProfile.upc }}</td>
-        <td><p v-for="(material, index) in productProfile.materials" :key="index">
-          {{ material.materialName }}</p></td>
-        <td @click.stop>
-          <div>
-            <input  class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-          </div>
-        </td>
+
         <td></td>
       </tr>
       </tbody>

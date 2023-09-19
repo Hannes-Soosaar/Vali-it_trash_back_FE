@@ -8,7 +8,7 @@
       </div>
     </div>
     <div>
-      <button @click="$router.push({name: 'addProductProfileRoute'})"  class="btn btn-success" type="button">Lisa toode</button>
+      <button @click="$router.push({name: 'newProductRoute'})"  class="btn btn-success" type="button">Lisa toode</button>
     </div>
   </div>
 

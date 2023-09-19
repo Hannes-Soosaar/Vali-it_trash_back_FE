@@ -148,6 +148,10 @@ h2 {
   padding: 20px;
 }
 
+.container{
+padding: 50px;
+}
+
 button {
   margin: 10px;
 }
