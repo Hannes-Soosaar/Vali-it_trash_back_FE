@@ -1,4 +1,7 @@
 <template>
+  <DeleteProductModal ref="DeleteProductModalRef"/>
+  <ChangeProductInfoModal :product-response="productResponse" ref="ChangeProductInfoModal" @event-show-product-info-changed-success="handleSuccessMessage"/>
+  <AlertSuccess :success-message="successMessage"/>
   <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
     <div class="row justify-content-center">
       <div class="col col-6">
@@ -141,6 +144,7 @@ export default {
 h2 {
   padding: 20px;
 }
+
 button {
   margin: 10px;
 }
