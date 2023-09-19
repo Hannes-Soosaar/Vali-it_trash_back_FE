@@ -2,18 +2,18 @@
   <div>
     <h2>Materjalide lisamine tootele {{ }}</h2>
 
-    <select v-model="selectedCategoryId" @change="categoryIsSelected" class="form-select" aria-label="Default select example">
+    <select v-model="selectedCategoryId" @change="categoryIsSelected" class="form-select">
       <option value="" disabled selected>Materjali tüüp</option>
       <option v-for="category in categories" :value="category.categoryId" :key="category">{{ category.categoryName}} </option>
     </select>
   </div>
 
-<!--  <div>-->
-<!--    <select class="form-select">-->
-<!--      <option value="" disabled selected>Materjalid</option>-->
-<!--      <option v-for="material in materialResponse" :key="material" >{{materialResponse.materialName}}</option>-->
-<!--    </select>-->
-<!--  </div>-->
+  <div>
+    <select v-show="selectedCategoryId>0" class="form-select">
+      <option value="" disabled selected>Materjalid</option>
+      <option v-for="material in materialResponse" :key="material" >{{material.materialName}}</option>
+    </select>
+  </div>
 
 </template>
 
