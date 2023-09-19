@@ -1,110 +1,137 @@
-|<template>
+<template>
   <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
     <div class="row justify-content-center">
       <div class="col col-6">
-        <h2>{{ productName }}</h2>
+        <h2>{{ productResponse.productName }}</h2>
         <p>
-          UPC: {{ upc }}
+          UPC: {{ productResponse.upc }}
+        </p>
+        <p>
+          Toote info: {{ productResponse.productInfo }}
         </p>
         <table class="table">
           <tbody>
           <tr>
             <td>
-              <h5>materjalid</h5>
+              <h5>Materjalid</h5>
             </td>
             <td>
-              <h5>kategooriad</h5>
+              <h5>Kategooriad</h5>
             </td>
             <td>
-              <h5>prügikastid</h5>
+              <h5>Prügikastid</h5>
             </td>
+            <td>
+              <h5>Värv</h5>
+            </td>
+
           </tr>
-          <tr v-for="productMaterial in productMaterials" :key="productMaterial.materialName">
+          <tr v-for="material in productResponse.materials" :key="productResponse.materials.materialId">
             <td>
-              <p>{{ productMaterial.materialName }}</p>
+              <p>{{ material.materialName }}</p>
             </td>
             <td>
-              <p>{{ productMaterial.materialCategoryName }}</p>
+              <p>{{ material.materialCategoryName }}</p>
             </td>
             <td>
-              <p>{{ productMaterial.materialBinName }}</p>
+              <p>{{ material.materialBinName }}</p>
             </td>
+            <td>
+              <p>{{ material.materialBinColorName }}</p>
+            </td>
+
           </tr>
           </tbody>
         </table>
 
       </div>
       <div class="col col-6">
-        <p>siia tuleb pilt</p>
+        <ProductImage :image-data-base64="productResponse.imageString"/>
       </div>
     </div>
 
   </div>
   <div class="d-grid gap-2 d-md-block">
-    <button class="btn btn-success" type="button">Muuda toote andmeid</button>
-    <button class="btn btn-success" type="button">Tagasi toodete nimekirja</button>
+    <button class="btn btn-success" type="button" @click="openChangeProductInfoModal">Muuda toote andmeid</button>
+    <button @click="openDeleteProductModal" class="btn btn-danger" type="button">Kustuta toode</button>
+    <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete
+      nimekirja
+    </button>
   </div>
 </template>
 
 
 <script>
 import {useRoute} from "vue-router";
+import DeleteProductModal from "@/views/DeleteProductModal.vue";
+import ProductImage from "@/views/ProductImage.vue";
+import ChangeProductInfoModal from "@/views/ChangeProductInfoModal.vue";
+import AlertSuccess from "@/components/AlertSuccess.vue";
 
 export default {
   name: "MyProductProfile",
+  components: {AlertSuccess, ChangeProductInfoModal, ProductImage, DeleteProductModal},
   data() {
     return {
       productId: Number(useRoute().query.productId),
-      productName: String(useRoute().query.productName),
-      upc: String(useRoute().query.upc),
-      productInfo: String(useRoute().query.productInfo),
-      productMaterials: [
-        {
-          materialCategoryName: '',
-          materialBinColorName: '',
-          materialBinName: '',
-          materialBinRequirements: '',
-          materialName: ''
-        }
-      ],
-      image: {
-        imageData: ''
-      },
+      successMessage: '',
+      productResponse: {
+        productId: 0,
+        imageString: '',
+        productName: '',
+        upc: '',
+        productInfo: '',
+        status: '',
+        materials: [
+          {
+            materialId: 0,
+            materialCategoryName: '',
+            materialName: ''
+          }
+        ]
+      }
     }
   },
   methods: {
-    getProductMaterials() {
-      this.$http.get("/product-materials", {
+
+    getProductInfo() {
+      this.$http.get("/products/product", {
             params: {
-              productId: Number(useRoute().query.productId)
+              productId: this.productId
             }
           }
       ).then(response => {
-        this.productMaterials = response.data
+        // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
+        this.productResponse = response.data
       }).catch(error => {
-        this.errorResponse = error.response.data
+        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
+        const errorResponseBody = error.response.data
       })
     },
+
+
+    openDeleteProductModal() {
+      this.$refs.DeleteProductModalRef.$refs.ModalRef.openModal()
+      this.$refs.DeleteProductModalRef.productId = this.productId
+    },
+
+    openChangeProductInfoModal() {
+      this.$refs.ChangeProductInfoModal.productRequest.productName = this.productResponse.productName
+      this.$refs.ChangeProductInfoModal.productRequest.upc = this.productResponse.upc
+      this.$refs.ChangeProductInfoModal.productRequest.productInfo = this.productResponse.productInfo
+      this.$refs.ChangeProductInfoModal.$refs.ModalRef.openModal()
+    },
+
+    handleSuccessMessage() {
+      this.successMessage = 'Toote andmed on muudetud'
+      this.getProductInfo()
+    },
+
+
   },
-
-  getProductImage() {
-    this.$http.get("/products/product-get-image", {
-          params: {
-            productId: Number(useRoute().query.productId)
-          }
-        }
-    ).then(response => {
-      this.image = response.data
-    }).catch(error => {
-      this.errorResponse = error.response.data
-    })
-  },
-
-
   beforeMount() {
-    this.getProductMaterials()
+    this.getProductInfo()
   },
-
 }
 </script>
 

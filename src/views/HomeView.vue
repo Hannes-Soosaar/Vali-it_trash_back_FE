@@ -12,7 +12,7 @@
           Minu tooted</button>
       </div>
       <div class="col-sm-6 bg-info">
-        <button class="btn btn-custom-size btn-block mb-sm-4">
+        <button @click="$router.push({name: 'addProductProfileRoute'})" class="btn btn-custom-size btn-block mb-sm-4">
           <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" style="color: black;" /> Lisa toode</button>
       </div>
     </div>
