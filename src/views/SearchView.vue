@@ -9,7 +9,8 @@
       <div class="row justify-content-center">
         <div class="col col-6">
           <div class="input-group mb-5">
-            <input v-model="searchInput" type="text" class="form-control" placeholder="UPC/materjali nimi">
+            <input v-model="searchInput" type="text" class="form-control"
+                   placeholder="Otsing triipkoodi või materjali nimejärgi">
             <button @click="determineSearchCriteria" class="btn btn-outline-secondary" type="button" id="button-addon2">
               Otsi
             </button>
