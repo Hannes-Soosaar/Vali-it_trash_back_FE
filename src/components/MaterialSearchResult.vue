@@ -4,7 +4,7 @@
 
     <div class="container my-4">
 
-      <div class="row justify-content-center mb-1" style="font: bold">
+      <div class="row justify-content-center mb-1">
         <h5>Viska konteinerisse
         </h5>
       </div>
@@ -15,7 +15,7 @@
         </h2>
       </div>
 
-      <div class="row justify-content-center mb-1" style="font: bold">
+      <div class="row justify-content-center mb-1">
         <h5>Konteineri värv
         </h5>
       </div>
@@ -25,7 +25,7 @@
         <h2 class="row justify-content-center mt-2 mb-2">{{ materialResponseBody.binColor }}</h2>
       </div>
 
-      <div class="row justify-content-center mb-1" style="font:">
+      <div class="row justify-content-center mb-1">
         <h5>Lisa info
         </h5>
       </div>
