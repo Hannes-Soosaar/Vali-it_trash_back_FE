@@ -1,5 +1,7 @@
 <template>
   <DeleteProductModal ref="DeleteProductModalRef"/>
+  <ChangeProductInfoModal :product-response="productResponse" ref="ChangeProductInfoModal" @event-show-product-info-changed-success="handleSuccessMessage"/>
+  <AlertSuccess :success-message="successMessage"/>
   <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
     <div class="row justify-content-center">
       <div class="col col-6">
@@ -53,7 +55,7 @@
 
   </div>
   <div class="d-grid gap-2 d-md-block">
-    <button class="btn btn-success" type="button">Muuda toote andmeid</button>
+    <button class="btn btn-success" type="button" @click="openChangeProductInfoModal">Muuda toote andmeid</button>
     <button @click="openDeleteProductModal" class="btn btn-danger" type="button">Kustuta toode</button>
     <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete
       nimekirja
@@ -65,16 +67,17 @@
 <script>
 import {useRoute} from "vue-router";
 import DeleteProductModal from "@/views/DeleteProductModal.vue";
-import router from "@/router";
 import ProductImage from "@/views/ProductImage.vue";
+import ChangeProductInfoModal from "@/views/ChangeProductInfoModal.vue";
+import AlertSuccess from "@/components/AlertSuccess.vue";
 
 export default {
   name: "MyProductProfile",
-  components: {ProductImage, DeleteProductModal},
+  components: {AlertSuccess, ChangeProductInfoModal, ProductImage, DeleteProductModal},
   data() {
     return {
       productId: Number(useRoute().query.productId),
-
+      successMessage: '',
       productResponse: {
         productId: 0,
         imageString: '',
@@ -113,6 +116,18 @@ export default {
     openDeleteProductModal() {
       this.$refs.DeleteProductModalRef.$refs.ModalRef.openModal()
       this.$refs.DeleteProductModalRef.productId = this.productId
+    },
+
+    openChangeProductInfoModal() {
+      this.$refs.ChangeProductInfoModal.productRequest.productName = this.productResponse.productName
+      this.$refs.ChangeProductInfoModal.productRequest.upc = this.productResponse.upc
+      this.$refs.ChangeProductInfoModal.productRequest.productInfo = this.productResponse.productInfo
+      this.$refs.ChangeProductInfoModal.$refs.ModalRef.openModal()
+    },
+
+    handleSuccessMessage() {
+      this.successMessage = 'Toote andmed on muudetud'
+      this.getProductInfo()
     },
 
 
