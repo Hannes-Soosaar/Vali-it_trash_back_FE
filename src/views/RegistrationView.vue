@@ -35,8 +35,6 @@
     </div>
   </div>
   </div>
-
-
 </template>
 
 
@@ -83,7 +81,6 @@ export default {
           ).catch(error => {
 
         this.handleErrorStatusCode500(error);
-        // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
         this.errorResponse = error.response.data;
       })
     },

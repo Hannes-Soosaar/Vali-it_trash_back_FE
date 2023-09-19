@@ -14,7 +14,7 @@ import AddProductView from "@/views/AddProductView.vue";
 const routes = [
   {
     path: '/',
-    name: 'searchRout',
+    name: 'search',
     component: SearchView
   },
   {
@@ -34,7 +34,7 @@ const routes = [
   },
   {
     path: '/registration',
-    name: 'registrationRoute',
+    name: 'registration',
     component: RegistrationView
   },
   {

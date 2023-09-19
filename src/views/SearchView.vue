@@ -3,6 +3,8 @@
     <div>
       <LogoComponent/>
     </div>
+
+<!-- Search bar component -->
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col col-6">
@@ -15,20 +17,48 @@
         </div>
       </div>
       <div class="row justify-content-center">
+
+<!--This is a new modal component-->
+
         <div class="col col-6 justify-content-center ">
+          <div v-if="materialResponseBody.binName" class="input-group mb-3 justify-content-center"
+               :key="materialResponseBody.binColor">
+
+            <div>
+              {{searchInput}}
+            </div>
+
+            <div>
+              {{ materialResponseBody.binName }}
+            </div>
+
+            <div>
+              {{materialResponseBody.binColor }}
+            </div>
+
+            <div>
+              {{ materialResponseBody.binRequirements }}
+            </div>
+
+          </div>
+
+
+<!--This is a new  modal componet-->
+
+
           <div v-if="upcResponseBody.productId" class="input-group mb-3 justify-content-center"
                :key="upcResponseBody.productName">
             {{ upcResponseBody.productName }}{{ upcResponseBody.productId }}{{ upcResponseBody.materials.flat() }}
           </div>
-          <div v-if="materialResponseBody.binName" class="input-group mb-3 justify-content-center"
-               :key="materialResponseBody.binColor">
-            {{ materialResponseBody.binName }}{{ materialResponseBody.binColor }}{{ materialResponseBody.binRequirements}}
-          </div>
 
 
+
+          <searchResultWithNoMatch :error-response="errorResponse" :search-input="searchInput"/>
         </div>
       </div>
     </div>
+
+
 
   </div>
 </template>
@@ -36,11 +66,12 @@
 <script>
 
 import LogoComponent from "@/views/LogoComponent.vue";
+import SearchResultWithNoMatch from "@/components/SearchResultWithNoMatch.vue";
 
 
 export default {
   name: "SearchView",
-  components: {LogoComponent},
+  components: {SearchResultWithNoMatch, LogoComponent},
 
   data() {
     return {
@@ -115,9 +146,10 @@ export default {
       })
     },
 
-    resetProductId(){
+    resetProductId() {
+      this.errorResponse.message=''
       this.upcResponseBody.productId = 0
-      this.materialResponseBody.binName=''
+      this.materialResponseBody.binName = ''
     }
 
   }// end of methods block

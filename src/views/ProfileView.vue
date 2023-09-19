@@ -47,11 +47,11 @@
 </template>
 
 <script>
+import router from "@/router";
 import ChangePasswordModal from "@/components/modal/ChangePasswordModal.vue";
 import ChangeProfileInfoModal from "@/components/modal/ChangeProfileInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import {PASSWORD_UPDATED, PROFILE_INFO_UPDATED} from "@/assets/script/AlertMessage";
-import router from "@/router";
 
 export default {
   name: "ProfileView",
@@ -68,6 +68,9 @@ export default {
         registrationCode: 0
       }
     }
+
+    //todo missing errorResponseBody
+
   },
   methods: {
 
@@ -82,7 +85,7 @@ export default {
         this.companyInfo = response.data
       }).catch(error => {
         // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
-        const errorResponseBody = error.response.data
+        this.errorResponseBody = error.response.data
       })
     },
 
