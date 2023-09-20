@@ -82,6 +82,7 @@ export default {
     addNewProduct() {
       if (this.mandatoryFieldsAreFilled()) {
         this.sendNewProductProfile()
+        sessionStorage.setItem('productName', this.newProduct.productName)
       } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
         setTimeout(() => {

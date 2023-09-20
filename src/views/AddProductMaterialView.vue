@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Materjalide lisamine tootele (siia peaks tulema toote nimi)</h2>
+    <h2>Materjalide lisamine tootele {{ productName }}</h2>
     <AlertSuccess :success-message="successMessage"/>
     <AlertDanger :error-message="errorResponse.message"/>
 
@@ -15,7 +15,6 @@
               </option>
             </select>
           </div>
-
           <div>
             <select v-model="selectedMaterialId" class="form-select">
               <option value="" disabled selected>Materjalid</option>
@@ -25,7 +24,6 @@
             </select>
             <button @click="addMaterialToProduct" type="button" class="btn btn-primary">Lisa materjal</button>
           </div>
-
         </div>
       </div>
 
@@ -35,44 +33,37 @@
             <h3>Valitud materjalid: </h3>
           </div>
 
-          <!--post-->
-          <!--delete-->
+          <div>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Kategooria</th>
+                <th scope="col">Materjal</th>
+                <th scope="col">Prügikastid</th>
+                <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="(productMaterial, sequenceCounter) in productMaterials" :key="productMaterial">
+                <th scope="row">{{ sequenceCounter + 1 }}</th>
+                <td>{{ productMaterial.materialCategoryName }}</td>
+                <td>{{ productMaterial.materialName }}</td>
+                <td>{{ productMaterial.materialBinName }}</td>
+                <td @click="deleteAddedMaterial(productMaterial.productMaterialId)">
+                  <font-awesome-icon icon="fa-solid fa-trash" size="xl" style="color: #000000;"/>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
 
-
-          <table class="table">
-            <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Katergooria</th>
-              <th scope="col">Materjal</th>
-              <th scope="col">Prügikastid</th>
-              <th scope="col"></th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr v-for="(productMaterial, sequenceCounter) in productMaterials" :key="productMaterial">
-              <th scope="row">{{sequenceCounter+1}}</th>
-              <td>{{productMaterial.materialCategoryName}}</td>
-              <td>{{productMaterial.materialName}}</td>
-              <td>{{productMaterial.materialBinName}}</td>
-              <td @click="deleteAddedMaterial(productMaterial.productMaterialId)"><font-awesome-icon icon="fa-solid fa-trash" size="xl" style="color: #000000;" /></td>
-            </tr>
-
-            </tbody>
-          </table>
 
         </div>
-
       </div>
     </div>
-
-
   </div>
-
-
 </template>
-
 
 <script>
 import {useRoute} from "vue-router";
@@ -84,8 +75,8 @@ export default {
   components: {AlertDanger, AlertSuccess},
   data() {
     return {
-      successMessage: 'Materjal lisatud',
-      alertMessage: 'Materjal eemaldatud',
+      productName: sessionStorage.getItem('productName'),
+      successMessage: '',
       selectedMaterialId: 0,
       selectedCategoryId: 0,
       productId: Number(useRoute().query.productId),
@@ -117,6 +108,7 @@ export default {
       ]
     }
   },
+
   methods: {
     getAllCategories() {
       this.$http.get("/categories")
@@ -150,7 +142,6 @@ export default {
 
     },
 
-
     addMaterialToProduct() {
       this.$http.post("/productmaterial", null, {
             params: {
@@ -160,6 +151,7 @@ export default {
           }
       ).then(response => {
         this.displayAddedMaterials()
+        this.handleAddedMaterialSuccessMessage()
       }).catch(error => {
         this.errorResponse = error.response.data
       })
@@ -172,7 +164,7 @@ export default {
             }
           }
       ).then(response => {
-       this.productMaterials = response.data
+        this.productMaterials = response.data
       }).catch(error => {
 
       })
@@ -183,18 +175,31 @@ export default {
     },
 
     deleteAddedMaterial(productMaterialId) {
-
       this.$http.delete("/product-material", {
             params: {
-              productMaterialId:productMaterialId
+              productMaterialId: productMaterialId
             }
           }
       ).then(response => {
-        // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
-
+        this.getProductMaterials()
+        this.handleDeletedMaterialDangerMessage()
       }).catch(error => {
 
       })
+    },
+
+    handleAddedMaterialSuccessMessage() {
+      this.successMessage = 'Materjal tootele lisatud'
+      setTimeout(() => {
+        this.successMessage = '';
+      }, 2000)
+    },
+
+    handleDeletedMaterialDangerMessage() {
+      this.errorResponse.message = 'Materjal tootelt eemaldatud'
+      setTimeout(() => {
+        this.errorResponse.message = '';
+      }, 2000)
     },
 
 
