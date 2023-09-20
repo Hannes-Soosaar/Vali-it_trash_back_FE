@@ -1,7 +1,7 @@
 <template>
   <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
     <h2>{{ upcResponseBody.productName }}</h2>
-    <div> {{ upcResponseBody.productInfo }}</div>
+
     <div class="container">
       <div class="row">
         <div class="col col-6">
@@ -9,36 +9,24 @@
             <tbody>
             <tr>
               <td>
-                <div class="justify-content-center">
-                  <h5 class="row justify-content-around">Materjal</h5>
-                </div>
+                <h5>Materjal</h5>
               </td>
               <td>
-                <div class="container ">
-                  <h5 class="row justify-content-around"> Konteiner </h5>
-                </div>
+                <h5> Konteiner </h5>
               </td>
               <td>
-                <div class="container ">
-                  <h5 class="row justify-content-around">Värviga</h5>
-                </div>
+                <h5>Värviga</h5>
               </td>
             </tr>
             <tr v-for="(material,index) in upcResponseBody.materials" :key="index">
               <td>
-                <div class="container ">
-                  <div class="row justify-content-center"> {{ material.materialName }}</div>
-                </div>
+                <div> {{ material.materialName }}</div>
               </td>
               <td>
-                <div class=" container  justify-content-center">
-                  <div class="row justify-content-center"> {{ material.materialBinName }}</div>
-                </div>
+                <div> {{ material.materialBinName }}</div>
               </td>
               <td>
-                <div class="container">
-                  <div class="row justify-content-center"> {{ material.materialBinColorName }}</div>
-                </div>
+                <div> {{ material.materialBinColorName }}</div>
               </td>
             </tr>
             </tbody>
@@ -50,6 +38,9 @@
           <ProductImage :image-data-base64="upcResponseBody.imageData"/>
         </div>
       </div>
+    </div>
+    <div>
+     <h5> {{ upcResponseBody.productInfo }}</h5>
     </div>
   </div>
 </template>
