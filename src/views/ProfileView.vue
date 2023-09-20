@@ -3,9 +3,13 @@
   <ChangeProfileInfoModal @event-show-profile-success-message="handleProfileInfoUpdatedMessage"
                           ref="ChangeProfileInfoModalRef"/>
   <AlertSuccess :success-message="successMessage"/>
+
   <div class="justify-content-center">
+
     <h1 class="mt-5">Minu andmed</h1>
+
     <div class="container w-50 myContainer mt-5">
+
       <div class="container text-center mt-3">
         <div class="row">
           <div class="col">
