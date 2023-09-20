@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <h1 class="mt-5">Logi sisse</h1>
+  </div>
   <div class="container text-center position-absolute top-50 start-50 translate-middle">
     <AlertDanger :error-message="errorResponse.message"></AlertDanger>
     <div class="row justify-content-center ">
