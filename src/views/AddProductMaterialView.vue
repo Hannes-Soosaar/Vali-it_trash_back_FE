@@ -205,6 +205,7 @@ export default {
 
   },
   beforeMount() {
+    this.getProductMaterials()
     this.getAllCategories()
   },
 }

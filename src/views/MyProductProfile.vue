@@ -49,7 +49,7 @@
         </table>
 
         <button class="btn btn-success" type="button" @click="openChangeProductInfoModal">Muuda toote andmeid</button>
-        <button class="btn btn-success" type="button" @click="">Muuda toote materjale</button>
+        <button class="btn btn-success" type="button" @click="navigateToAddMaterials">Muuda toote materjale</button>
         <button @click="openDeleteProductModal" class="btn btn-danger" type="button">Kustuta toode</button>
 
       </div>
@@ -75,6 +75,7 @@ import ProductImage from "@/views/ProductImage.vue";
 import ChangeProductInfoModal from "@/views/ChangeProductInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import ChangeProductImageModal from "@/views/ChangeProductImageModal.vue";
+import router from "@/router";
 
 export default {
   name: "MyProductProfile",
@@ -154,7 +155,11 @@ export default {
 
    handleImage(imageDataBase64){
       this.image.imageData = imageDataBase64
-   }
+   },
+    navigateToAddMaterials() {
+      router.push({name:'newProductMaterialRoute', query:{productId:this.productId}})
+      sessionStorage.setItem('productName', this.productResponse.productName)
+    },
   },
   beforeMount() {
     this.getProductInfo()
