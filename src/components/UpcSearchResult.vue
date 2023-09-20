@@ -1,12 +1,10 @@
 <template>
 
   <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
-    OPEN
     <div class="row justify-content-center">
       <div class="col col-6">
 
-        <p>{{ upcResponseBody.productName }}
-        </p>
+        <h2>{{ upcResponseBody.productName }}</h2>
         <table class="table">
           <tbody>
           <tr>
@@ -36,7 +34,7 @@
 
       </div>
       <div class="col col-6">
-        <p>{{upcResponseBody.imageData}}</p>
+        <p><ProductImage :image-data-base64="upcResponseBody.imageData"/></p>
       </div>
     </div>
 
@@ -68,10 +66,13 @@
 <script>
 
 
+import ProductImage from "@/views/ProductImage.vue";
+
 export default {
 
 
   name: 'UpcSearchResult',
+  components: {ProductImage},
   props: {
     searchInput: {},
     upcResponseBody: {}
