@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h2>Materjalide lisamine tootele {{ productName }}</h2>
+    <h1>Materjalide lisamine tootele {{ productName }}</h1>
     <AlertSuccess :success-message="successMessage"/>
     <AlertDanger :error-message="errorResponse.message"/>
 
     <div class="container text-center">
       <div class="row justify-content-center">
-        <div class="col col-5">
+        <div class="col col-5 bg-danger">
           <div>
             <select v-model="selectedCategoryId" @change="setCategoryIdAndSendRequest" class="form-select">
               <option value="" disabled selected>Materjali tüüp</option>
@@ -15,6 +15,9 @@
               </option>
             </select>
           </div>
+        </div>
+
+        <div class="col col-5 bg-success">
           <div>
             <select v-model="selectedMaterialId" class="form-select">
               <option value="" disabled selected>Materjalid</option>
@@ -22,15 +25,29 @@
                 {{ material.materialName }}
               </option>
             </select>
-            <button @click="addMaterialToProduct" type="button" class="btn btn-primary">Lisa materjal</button>
+
           </div>
         </div>
+
+        <div class="col col-2 bg-warning">
+          <div>
+            <div>
+              <button @click="addMaterialToProduct" type="button" class="btn btn-primary">Lisa materjal</button>
+            </div>
+          </div>
+        </div>
+
       </div>
+    </div>
+
+
+    <div class="container text-center">
+
 
       <div class="row justify-content-center mt-3">
         <div class="col col-5">
           <div>
-            <h3>Valitud materjalid: </h3>
+            <h3>Lisatud materjalid: </h3>
           </div>
 
           <div>
@@ -50,7 +67,7 @@
                 <td>{{ productMaterial.materialCategoryName }}</td>
                 <td>{{ productMaterial.materialName }}</td>
                 <td>{{ productMaterial.materialBinName }}</td>
-                <td @click="deleteAddedMaterial(productMaterial.productMaterialId)">
+                <td class="fingerPointer" @click="deleteAddedMaterial(productMaterial.productMaterialId)">
                   <font-awesome-icon icon="fa-solid fa-trash" size="xl" style="color: #000000;"/>
                 </td>
               </tr>
@@ -212,5 +229,9 @@ export default {
 
 
 <style scoped>
+
+h1 {
+  padding: 20px;
+}
 
 </style>

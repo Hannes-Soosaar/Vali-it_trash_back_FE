@@ -91,8 +91,6 @@ export default {
       }
     },
 
-
-
     sendNewProductProfile() {
       this.$http.post("/products", this.newProduct
 
