@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center position-absolute top-50 start-50 translate-middle">
-    <div>{{ errorResponse.message }}</div>
+    <AlertDanger :error-message="errorResponse.message"></AlertDanger>
     <div class="row justify-content-center ">
       <div class="col col-4">
         <div class="form-floating mb-4 ">
@@ -24,9 +24,12 @@
 <script>
 import router from "@/router";
 import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
+import AlertDanger from "@/components/AlertDanger.vue";
+import AlertSuccess from "@/components/AlertSuccess.vue";
 
 export default {
   name: "LoginView",
+  components: {AlertSuccess, AlertDanger},
   data() {
     return {
       email: '',
@@ -53,6 +56,10 @@ export default {
     resetErrorMessage() {
       this.errorResponse.message = ''
     },
+    resetFields() {
+      this.email = ''
+      this.password = ''
+    },
     mandatoryFieldsAreFilled() {
       return this.email.length > 0 && this.password.length > 0
     },
@@ -75,12 +82,20 @@ export default {
         this.handleError500(error);
         this.errorResponse = error.response.data;
         sessionStorage.setItem('email', this.email)
+        this.handleErrorMessage()
       })
     },
     handleError500(error) {
       if (error.response.status === 500) {
         router.push({name: 'errorRoute'})
       }
+    },
+
+    handleErrorMessage() {
+      setTimeout(() => {
+        this.resetErrorMessage()
+        this.resetFields();
+      }, 2000)
     },
   }
 }

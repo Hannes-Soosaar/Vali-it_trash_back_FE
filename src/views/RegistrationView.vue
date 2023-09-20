@@ -78,6 +78,7 @@ export default {
                 setTimeout(() => {
                   router.push({name: 'loginRoute'});
                 }, 2000)
+
               }
           ).catch(error => {
 
