@@ -10,6 +10,7 @@ import MyProductsView from "@/views/MyProductsView.vue";
 import HelpView from "@/views/HelpView.vue";
 import MyProductProfile from "@/views/MyProductProfile.vue";
 import AddProductView from "@/views/AddProductView.vue";
+import AddProductMaterialView from "@/views/AddProductMaterialView.vue";
 
 const routes = [
   {
@@ -58,9 +59,13 @@ const routes = [
     component: MyProductProfile
   },
   {
-    path: '/addproduct',
-    name: 'addProductProfileRoute',
+    path: '/newproduct',
+    name: 'newProductRoute',
     component: AddProductView
+  },
+  {path: '/newproduct/material',
+    name: 'newProductMaterialRoute',
+    component: AddProductMaterialView
   },
 
 ]

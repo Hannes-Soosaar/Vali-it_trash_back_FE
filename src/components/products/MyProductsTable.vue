@@ -1,29 +1,13 @@
 <template>
   <div class="col col-8">
-
-<!--    <div class="dropdown text-end justify-content-end">-->
-<!--      <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
-<!--         aria-expanded="false">-->
-<!--        Sorteeri-->
-<!--      </a>-->
-
-<!--      <ul class="dropdown-menu">-->
-<!--        <li><a class="dropdown-item" href="#">Aktiivsed</a></li>-->
-<!--        <li><a class="dropdown-item" href="#">Mitteaktiivsed</a></li>-->
-<!--      </ul>-->
-<!--    </div>-->
-
     <table class="table table-hover">
-
       <thead>
       <tr>
         <th scope="col"></th>
         <th scope="col">Toote nimi</th>
         <th scope="col">UPC</th>
-
       </tr>
       </thead>
-
       <tbody>
       <tr class="fingerPointer"
           @click="navigateToMyProductProfile(productProfile.productId)"
@@ -32,7 +16,6 @@
         <th>{{ sequenceCounter + 1 }}</th>
         <td>{{ productProfile.productName }}</td>
         <td>{{ productProfile.upc }}</td>
-
       </tr>
       </tbody>
 

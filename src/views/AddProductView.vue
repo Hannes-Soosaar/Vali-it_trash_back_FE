@@ -5,19 +5,39 @@
       <div class="col col-5">
 
         <h1>Uue toote lisamine</h1>
-        <AddProductInput :add-new-product="addNewProduct" :error-response="errorResponse" :new-product="newProduct"
-                      :set-product-image-input-data="setProductImageInputData"/>
 
         <div>
-          <h2>Materjalide lisamine tootele {{newProduct.productName}}</h2>
+          <AlertDanger :error-message="errorResponse.message"/>
 
-          <select class="form-select" aria-label="Default select example">
-            <option value="" disabled selected>Materjali tüüp</option>
-            <option v-for="category in categories" :key="category" >{{category.categoryName}}</option>
+          <div class="form-floating mb-4">
+            <input v-model="newProduct.productName" type="text" class="form-control" id="floatingInput"
+                   placeholder="Toote nimetus">
+            <label for="floatingInput">Toote nimetus</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input v-model="newProduct.upc" type="text" class="form-control" id="floatingInput" placeholder="UPC">
+            <label for="floatingInput" class="form-label">UPC</label>
+          </div>
+
+          <div class="form-floating mb-3">
+          <textarea v-model="newProduct.productInfo" type="text" class="form-control" id="floatingInput"
+                    placeholder="Lisainfo"></textarea>
+            <label for="floatingInput" class="form-label">Lisainfo</label>
+          </div>
+
+          <select v-model="newProduct.status" class="form-select" aria-label="Default select example">
+            <option value="" disabled selected>Staatus</option>
+            <option value="A">Aktiivne</option>
+            <option value="D">Mitteaktiivne</option>
           </select>
+
+          <!--      siin on pildi lisamise nupp:-->
+          <p>
+            <ImageInput @event-emit-base64="setProductImageInputData"/>
+          </p>
+          <button @click="addNewProduct" type="submit" class="btn btn-primary">Lisa toode</button>
         </div>
-
-
 
       </div>
     </div>
@@ -28,11 +48,14 @@
 
 <script>
 import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
-import AddProductInput from "@/views/AddProductInput.vue";
+import ImageInput from "@/components/ImageInput.vue";
+import AlertDanger from "@/components/AlertDanger.vue";
+import router from "@/router";
+import {useRoute} from "vue-router";
 
 export default {
   name: "AddProductView",
-  components: { AddProductInput},
+  components: {AlertDanger, ImageInput},
   data() {
     return {
       successMessage: '',
@@ -51,13 +74,7 @@ export default {
       },
       productResponse: {
         productId: 0
-      },
-      categories: [
-        {
-          categoryId: 0,
-          categoryName: ''
-        }
-      ]
+      }
     }
   },
   methods: {
@@ -65,6 +82,7 @@ export default {
     addNewProduct() {
       if (this.mandatoryFieldsAreFilled()) {
         this.sendNewProductProfile()
+        sessionStorage.setItem('productName', this.newProduct.productName)
       } else {
         this.errorResponse.message = FILL_MANDATORY_FIELDS
         setTimeout(() => {
@@ -74,15 +92,24 @@ export default {
     },
 
 
+
     sendNewProductProfile() {
       this.$http.post("/products", this.newProduct
+
       ).then(response => {
         this.productResponse = response.data
+        this.handleRouterPushToMaterialView(this.productResponse.productId)
+
       }).catch(error => {
         this.errorResponse = error.response.data
 
       })
     },
+
+    handleRouterPushToMaterialView(productId){
+      router.push({ name: 'newProductMaterialRoute', query: {productId: productId}})
+    },
+
 
     setProductImageInputData(imageDataBase64) {
       this.newProduct.imageData = imageDataBase64
@@ -92,23 +119,12 @@ export default {
       return this.newProduct.productName.length > 0 && this.newProduct.upc.length > 0 && this.newProduct.status !== ''
     },
 
-    getAllCategories() {
-      this.$http.get("/get-all-categories")
-          .then(response => {
-            // Siit saame kätte JSONi  ↓↓↓↓↓↓↓↓
-            this.categories = response.data
-          })
-          .catch(error => {
-            // Siit saame kätte errori JSONi  ↓↓↓↓↓↓↓↓
-            const errorResponseBody = error.response.data
-          })
-    },
+
 
 
   },
-  beforeMount() {
-    this.getAllCategories()
-  }
+
+
 }
 </script>
 
