@@ -9,7 +9,7 @@
       <div class="row justify-content-center">
         <div class="col col-6">
           <div class="input-group mb-5">
-            <input v-model="searchInput" type="text" class="form-control"
+            <input v-model="searchInput" type="text" class="form-control" @keyup.enter="determineSearchCriteria"
                    placeholder="Otsing triipkoodi või materjali nimejärgi">
             <button @click="determineSearchCriteria" class="btn btn-outline-secondary" type="button" id="button-addon2">
               Otsi
@@ -39,7 +39,7 @@
 <script>
 
 import LogoComponent from "@/views/LogoComponent.vue";
-import SearchResultWithNoMatch from "@/components/modal/SearchResultWithNoMatchModal.vue";
+import SearchResultWithNoMatch from "@/components/SearchResultWithNoMatch.vue";
 import MaterialSearchResult from "@/components/MaterialSearchResult.vue";
 import UpcSearchResult from "@/components/UpcSearchResult.vue";
 

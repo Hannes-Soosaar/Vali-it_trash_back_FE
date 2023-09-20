@@ -1,81 +1,98 @@
 <template>
 
-  <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
-    OPEN
-    <div class="row justify-content-center">
-      <div class="col col-6">
+  <div class="container text-start">
 
-        <p>{{ upcResponseBody.productName }}
-        </p>
-        <table class="table">
+    <div class="row justify-content-center">
+
+      <div class="">
+
+        <table class="table ">
+
           <tbody>
+
           <tr>
+
             <td>
-              <h5>materjal</h5>
+              <div class="justify-content-center">
+                <h5 class="row justify-content-around">Materjal</h5>
+              </div>
+
             </td>
+
             <td>
-              <h5>Kontinerisse</h5>
+              <div class="container ">
+                <h5 class="row justify-content-around"> Konteiner </h5>
+              </div>
             </td>
+
             <td>
-              <h5>Värviga</h5>
+              <div class="container ">
+                <h5 class="row justify-content-around">Värviga</h5>
+              </div>
             </td>
+
           </tr>
+
           <tr v-for="(material,index) in upcResponseBody.materials" :key="index">
+
             <td>
-              <p>{{ material.materialName }}</p>
+              <div class="container ">
+                <div class="row justify-content-center"> {{ material.materialName }}</div>
+              </div>
             </td>
+
             <td>
-              <p>{{ material.materialBinName }}</p>
+              <div class=" container  justify-content-center">
+                <div class="row justify-content-center"> {{ material.materialBinName }}</div>
+              </div>
             </td>
+
             <td>
-              <p>{{ material.materialBinColorName }}</p>
+              <div class="container">
+                <div class="row justify-content-center"> {{ material.materialBinColorName }}</div>
+              </div>
             </td>
+
           </tr>
           </tbody>
         </table>
 
       </div>
-      <div class="col col-6">
-        <p>{{upcResponseBody.imageData}}</p>
+
+    </div>
+
+    <div class=" container justify-content-center">
+      <h2 class="row justify-content-center">{{ upcResponseBody.productName }}</h2>
+    </div>
+    <div class="container">
+      <div class="row justify-content-evenly"> {{ upcResponseBody.productInfo }}</div>
+    </div>
+    <div class=" col  container">
+      <div class="row m-5">
+        <ProductImage :image-data-base64="upcResponseBody.imageData"/>
       </div>
     </div>
 
   </div>
-  <div class="d-grid gap-2 d-md-block">
-  </div>
-  <!--  <div v-if="upcResponseBody.productId" class="input-group mb-3 justify-content-center"-->
-  <!--       :key="upcResponseBody.productName">-->
-
-  <!--    <div>-->
-  <!--      {{ searchInput }}-->
-  <!--    </div>-->
-  <!--    <div>-->
-  <!--      {{ upcResponseBody.productName }}-->
-  <!--    </div>-->
-  <!--    <div>-->
-  <!--      {{ upcResponseBody.imageData }}-->
-  <!--    </div>-->
-  <!--    <div>-->
-  <!--      {{ upcResponseBody.productInfo }}-->
-  <!--    </div>-->
-  <!--    <div>-->
-  <!--      {{ upcResponseBody.materials }}-->
-  <!--    </div>-->
 
 
-  <!--  </div>-->
 </template>
 <script>
 
+
+import ProductImage from "@/views/ProductImage.vue";
 
 export default {
 
 
   name: 'UpcSearchResult',
+  components: {ProductImage},
+
   props: {
     searchInput: {},
     upcResponseBody: {}
   },
+
 
 }
 </script>
