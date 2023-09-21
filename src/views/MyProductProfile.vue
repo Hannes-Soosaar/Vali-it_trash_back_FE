@@ -60,7 +60,7 @@
     </div>
 
   </div>
-  <div class="d-grid gap-2 d-md-block">
+  <div class="d-grid gap-2 d-md-bloc">
     <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete
       nimekirja
     </button>

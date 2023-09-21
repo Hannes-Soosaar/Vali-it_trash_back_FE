@@ -1,3 +1,10 @@
+/* Muudab  tabeli rea või ikooni peal hoverdades kursori pointeriks*/
+.fingerPointer {
+    cursor: pointer;
+}
+
+
+
 
 .image-size{
     width: 75%;

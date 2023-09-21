@@ -9,16 +9,13 @@
   </nav>
   <router-view/>
 
-  <Footer />
 </template>
 
 <script>
 import router from "@/router";
-import LogoComponent from "@/components/LogoComponent.vue";
-import Footer from "@/components/Footer.vue";
 
 export default {
-  components: {LogoComponent, Footer},
+  components: {},
 
   data() {
     return{

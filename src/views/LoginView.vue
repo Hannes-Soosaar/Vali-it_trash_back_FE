@@ -29,10 +29,11 @@ import router from "@/router";
 import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
 import AlertDanger from "@/components/AlertDanger.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
+import LogoComponent from "@/components/LogoComponent.vue";
 
 export default {
   name: "LoginView",
-  components: {AlertSuccess, AlertDanger},
+  components: {LogoComponent, AlertSuccess, AlertDanger},
   data() {
     return {
       email: '',
