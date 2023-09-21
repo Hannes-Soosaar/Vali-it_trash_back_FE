@@ -28,8 +28,8 @@
 
         <div class="col col-2 text-center">
           <div class="row">
-            <div class="mb-1">
-              <button @click="addMaterialToProduct" type="button" class="btn btn-primary">Lisa materjal</button>
+            <div>
+              <button @click="addMaterialToProduct" type="button" class="mybutton">Lisa materjal</button>
             </div>
           </div>
         </div>
@@ -247,6 +247,10 @@ export default {
 
 h1 {
   padding: 20px;
+}
+
+h3{
+  color: #9a9a9a;
 }
 
 select {

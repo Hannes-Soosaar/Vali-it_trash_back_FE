@@ -10,18 +10,18 @@
           <AlertDanger :error-message="errorResponse.message"/>
 
           <div class="form-floating mb-4">
-            <input v-model="newProduct.productName" type="text" class="form-control" id="floatingInput"
+            <input v-model="newProduct.productName" type="text" class="form-control my-focus-area" id="floatingInput"
                    placeholder="Toote nimetus">
             <label for="floatingInput">Toote nimetus</label>
           </div>
 
           <div class="form-floating mb-3">
-            <input v-model="newProduct.upc" type="text" class="form-control resizable-textarea" id="floatingInput" placeholder="UPC">
+            <input v-model="newProduct.upc" type="text" class="form-control my-focus-area resizable-textarea" id="floatingInput" placeholder="UPC">
             <label for="floatingInput" class="form-label">UPC</label>
           </div>
 
           <div class="form-floating mb-3">
-          <textarea v-model="newProduct.productInfo" type="text" class="form-control" id="floatingInput"
+          <textarea v-model="newProduct.productInfo" type="text" class="form-control my-focus-area" id="floatingInput"
                     placeholder="Lisainfo"></textarea>
             <label for="floatingInput" class="form-label">Lisainfo</label>
           </div>
@@ -31,7 +31,7 @@
           <p>
             <ImageInput @event-emit-base64="setProductImageInputData"/>
           </p>
-          <button @click="addNewProduct" type="submit" class="btn btn-primary">Lisa toode</button>
+          <button @click="addNewProduct" type="submit" class="mybutton">Lisa toode</button>
         </div>
 
       </div>
@@ -127,5 +127,12 @@ h1 {
   margin: 20px;
 }
 
+.my-focus-area:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: rgba(59, 112, 63, 0.8);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(166, 163, 163);
+}
 
 </style>
