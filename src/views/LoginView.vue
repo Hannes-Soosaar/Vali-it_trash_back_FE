@@ -17,8 +17,8 @@
           <label for="floatingPassword">Salasõna</label>
         </div>
         <div class="mt-2">
-          <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
-          <button @click="registerNewUser" class="btn btn-primary m-2" type="button">Registreeri kasutaja</button>
+          <button @click="login" class="mybutton m-3" type="button">Logi sisse</button>
+          <button @click="registerNewUser" class="mybutton" type="button">Registreeri kasutaja</button>
         </div>
       </div>
     </div>
@@ -29,6 +29,7 @@ import router from "@/router";
 import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
 import AlertDanger from "@/components/AlertDanger.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
+
 
 export default {
   name: "LoginView",

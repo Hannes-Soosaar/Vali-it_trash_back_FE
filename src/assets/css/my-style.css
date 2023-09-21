@@ -26,3 +26,19 @@
     left: 50%; /* Vasak paigutus on 50% */
     transform: translateX(-50%); /* Teisendab X-telje piki -50% võrra */
 }
+
+.mybutton {
+
+    padding: 10px 20px;
+    border: 1px solid #C2CFB2;
+    border-radius: 10px;
+    background-color: #C2CFB2;
+    color: black;
+    cursor: pointer;
+
+}
+.mybutton:hover {
+    background-color: #b7c4a9;
+    color: black; /* teksti värv */
+}
+
