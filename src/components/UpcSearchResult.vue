@@ -6,7 +6,16 @@
 
       <div class="">
 
-        <table class="table ">
+
+        <div class=" container justify-content-center">
+          <h2 class="row justify-content-center">{{ upcResponseBody.productName }}</h2>
+        </div>
+
+        <div class="container justify-content-center custom-table-style" >
+          <div class="row justify-content-evenly "> {{ upcResponseBody.productInfo }}</div>
+        </div>
+
+        <table class="table mt-4 ">
 
           <tbody>
 
@@ -25,11 +34,11 @@
               </div>
             </td>
 
-            <td>
-              <div class="container ">
-                <h5 class="row justify-content-around">Värviga</h5>
-              </div>
-            </td>
+<!--            <td>-->
+<!--              <div class="container ">-->
+<!--                <h5 class="row justify-content-around">Värviga</h5>-->
+<!--              </div>-->
+<!--            </td>-->
 
           </tr>
 
@@ -47,11 +56,11 @@
               </div>
             </td>
 
-            <td>
-              <div class="container">
-                <div class="row justify-content-center"> {{ material.materialBinColorName }}</div>
-              </div>
-            </td>
+<!--            <td>-->
+<!--              <div class="container">-->
+<!--                <div class="row justify-content-center"> {{ material.materialBinColorName }}</div>-->
+<!--              </div>-->
+<!--            </td>-->
 
           </tr>
           </tbody>
@@ -61,12 +70,8 @@
 
     </div>
 
-    <div class=" container justify-content-center">
-      <h2 class="row justify-content-center">{{ upcResponseBody.productName }}</h2>
-    </div>
-    <div class="container">
-      <div class="row justify-content-evenly"> {{ upcResponseBody.productInfo }}</div>
-    </div>
+
+
     <div class=" col  container">
       <div class="row m-5">
         <ProductImage :image-data-base64="upcResponseBody.imageData"/>
@@ -96,3 +101,15 @@ export default {
 
 }
 </script>
+
+<style>
+
+.custom-table-style {
+  border: 1px solid #808080;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+</style>
