@@ -10,7 +10,7 @@
       </template>
 
       <template #footer>
-        <button class="btn btn-success" type="button" @click="modifyProductPicture">Muuda pilt</button>
+        <button class="mybutton" type="button" @click="modifyProductPicture">Muuda pilt</button>
       </template>
 
     </Modal>

@@ -6,19 +6,15 @@
     <router-link to="/help">Abi</router-link>
     <router-link v-if="!isLoggedIn" to="/login">Logi sisse</router-link>
     <router-link v-if="isLoggedIn" @click="handleLogout" to="/#">Logi välja</router-link>
+
   </nav>
   <router-view/>
-
-  <Footer />
 </template>
 
 <script>
 import router from "@/router";
-import LogoComponent from "@/components/LogoComponent.vue";
-import Footer from "@/components/Footer.vue";
 
 export default {
-  components: {LogoComponent, Footer},
 
   data() {
     return{

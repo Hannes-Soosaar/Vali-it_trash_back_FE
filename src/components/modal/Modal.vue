@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="isOpen" class="modal fade show d-block" tabindex="-1" @click="closeModal">
     <div class="modal-dialog" @click.stop>
       <div class="modal-content">
@@ -16,13 +17,14 @@
           </slot>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="closeModal">{{ closeButtonName }}</button>
+          <button type="button" class="mybutton" @click="closeModal">{{ closeButtonName }}</button>
           <slot name="footer">
           </slot>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>

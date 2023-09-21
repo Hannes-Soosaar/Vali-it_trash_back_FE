@@ -11,7 +11,7 @@
               Toote nimi
             </div>
             <div class="col">
-              <input v-model="productRequest.productName" class="m-1">
+              <input v-model="productRequest.productName" class="m-1 custom-input">
             </div>
           </div>
           <div class="row">
@@ -19,7 +19,7 @@
               UPC
             </div>
             <div class="col">
-              <input v-model="productRequest.upc" class="m-1">
+              <input v-model="productRequest.upc" class="m-1 custom-input">
             </div>
           </div>
           <div class="row">
@@ -27,13 +27,13 @@
               Toote info
             </div>
             <div class="col">
-              <input v-model="productRequest.productInfo" class="m-1">
+              <input v-model="productRequest.productInfo" class="m-1 custom-input">
             </div>
           </div>
         </div>
       </template>
       <template #footer>
-        <button type="button" class="btn btn-secondary" @click="changeProductInfo">Muuda toote andmed</button>
+        <button type="button" class="mybutton" @click="changeProductInfo">Muuda toote andmed</button>
       </template>
     </Modal>
   </div>
@@ -85,4 +85,11 @@ h2 {
 button {
   margin: 10px;
 }
+
+.custom-input {
+  width: 300px; /* Adjust the width to your preferred size */
+  height: 40px; /* Adjust the height to your preferred size */
+  font-size: 16px; /* Adjust the font size to your preferred size */
+}
+
 </style>

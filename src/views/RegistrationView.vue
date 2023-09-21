@@ -1,12 +1,17 @@
 <template>
   <div>
+    <LogoComponent/>
+  </div>
+  <div>
     <div>
       <h1>Registreeri kasutaja</h1>
-      <AlertSuccess :success-message="successMessage"/>
-      <AlertDanger :error-message="errorResponse.message"/>
     </div>
     <div class="row justify-content-center ">
       <div class="col col-4">
+        <div class="alert-container mb-4">
+        <AlertSuccess :success-message="successMessage"/>
+        <AlertDanger :error-message="errorResponse.message"/>
+        </div>
         <div class="form-floating mb-3">
           <input v-model="requestBody.email" type="email" class="form-control" id="floatingInput"
                  placeholder="name@example.com">
@@ -32,7 +37,7 @@
                  placeholder="name@example.com">
           <label for="floatingInput">Ettevõtte registrikood</label>
         </div>
-        <button @click="createUser" type="button" class="btn btn-secondary">Registreeri kasutaja</button>
+        <button @click="createUser" type="button" class="mybutton">Registreeri kasutaja</button>
       </div>
     </div>
   </div>
@@ -45,10 +50,11 @@
 import router from "@/router";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import AlertDanger from "@/components/AlertDanger.vue";
+import LogoComponent from "@/components/LogoComponent.vue";
 
 export default {
   name: "CreateUserView",
-  components: {AlertDanger, AlertSuccess},
+  components: {LogoComponent, AlertDanger, AlertSuccess},
   data() {
     return {
       passwordAgain: '',
@@ -150,4 +156,12 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.alert-container {
+  height: 50px; /* Adjust the height as needed */
+  margin-bottom: 10px; /* Add margin to separate from other content */
+  margin-top: 10px;
+}
+</style>
 
