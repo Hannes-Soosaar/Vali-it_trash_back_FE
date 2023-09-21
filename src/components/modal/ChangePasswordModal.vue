@@ -37,7 +37,7 @@
         </div>
       </template>
       <template #footer>
-        <button type="button" class="btn btn-secondary" @click="updatePassword">Muuda parooli</button>
+        <button type="button" class="mybutton" @click="updatePassword">Muuda parooli</button>
       </template>
     </Modal>
   </div>

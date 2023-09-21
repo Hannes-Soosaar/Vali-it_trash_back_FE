@@ -2,7 +2,7 @@
   <div>
     <Modal close-button-name="Sulge" ref="ModalRef">
       <template #header>
-        Muuda ettevõtte andmeid
+        Ettevõtte andmete muutmine
       </template>
       <template #body>
         <div class="container text-center">
@@ -25,7 +25,7 @@
         </div>
       </template>
       <template #footer>
-        <button type="button" class="btn btn-secondary" @click="updateProfileInfo">Muuda andmeid</button>
+        <button type="button" class="mybutton" @click="updateProfileInfo">Muuda andmeid</button>
       </template>
     </Modal>
   </div>

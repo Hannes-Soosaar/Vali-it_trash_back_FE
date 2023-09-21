@@ -8,7 +8,7 @@
         Kas oled kindel, et soovid toote kustutada?
       </template>
       <template #footer>
-        <button @click="deleteProduct">Kustuta toode</button>
+        <button class="mybutton" @click="deleteProduct">Kustuta toode</button>
       </template>
     </Modal>
   </div>

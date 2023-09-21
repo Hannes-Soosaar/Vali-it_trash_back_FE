@@ -9,12 +9,14 @@
 
   </nav>
   <router-view/>
+
 </template>
 
 <script>
 import router from "@/router";
 
 export default {
+  components: {},
 
   data() {
     return{
@@ -59,13 +61,13 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #8DB580;
   text-decoration: none;
   padding: 15px;
 }
 
 nav a.router-link-exact-active {
-  color: #bdbdbd;
+  color: #595757;
 }
 
 </style>

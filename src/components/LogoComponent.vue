@@ -1,5 +1,5 @@
 <template>
-  <img class="img-fluid" src="../assets/trash_back-low-resolution-logo-color-on-transparent-background.png">
+  <img class="img-fluid" src="../assets/trash_back-low-resolution-logo-black-on-white-background.png">
 </template>
 <script>
 export default {

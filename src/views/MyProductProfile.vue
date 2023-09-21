@@ -5,7 +5,7 @@
   <ChangeProductImageModal ref="ChangeProductImageModal" @event-image-updated = "handleImageSuccessMessage"/>
 
   <AlertSuccess :success-message="successMessage"/>
-  <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
+  <div class="container text-start container-default-style" >
     <div class="row justify-content-center">
       <div class="col col-6">
         <h2>{{ productResponse.productName }}</h2>
@@ -19,24 +19,24 @@
           <tbody>
           <tr>
             <td>
-              <h5>Materjalid</h5>
+              <h5>Kategooria</h5>
             </td>
             <td>
-              <h5>Kategooriad</h5>
+              <h5>Materjal</h5>
             </td>
             <td>
-              <h5>Prügikastid</h5>
+              <h5>Prügikast</h5>
             </td>
             <td>
-              <h5>Värv</h5>
+              <h5>Prügikasti värv</h5>
             </td>
           </tr>
           <tr v-for="material in productResponse.materials" :key="productResponse.materials.materialId">
             <td>
-              <p>{{ material.materialName }}</p>
+              <p>{{ material.materialCategoryName }}</p>
             </td>
             <td>
-              <p>{{ material.materialCategoryName }}</p>
+              <p>{{ material.materialName }}</p>
             </td>
             <td>
               <p>{{ material.materialBinName }}</p>
@@ -49,7 +49,7 @@
         </table>
 
         <button class="btn btn-success" type="button" @click="openChangeProductInfoModal">Muuda toote andmeid</button>
-        <button class="btn btn-success" type="button" @click="">Muuda toote materjale</button>
+        <button class="btn btn-success" type="button" @click="navigateToAddMaterials">Muuda toote materjale</button>
         <button @click="openDeleteProductModal" class="btn btn-danger" type="button">Kustuta toode</button>
 
       </div>
@@ -60,7 +60,7 @@
     </div>
 
   </div>
-  <div class="d-grid gap-2 d-md-block">
+  <div class="d-grid gap-2 d-md-bloc">
     <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete
       nimekirja
     </button>
@@ -70,11 +70,12 @@
 
 <script>
 import {useRoute} from "vue-router";
-import DeleteProductModal from "@/components/modal/DeleteProductModal.vue";
+import DeleteProductModal from "@/views/DeleteProductModal.vue";
 import ProductImage from "@/views/ProductImage.vue";
-import ChangeProductInfoModal from "@/components/modal/ChangeProductInfoModal.vue";
+import ChangeProductInfoModal from "@/views/ChangeProductInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
-import ChangeProductImageModal from "@/components/modal/ChangeProductImageModal.vue";
+import ChangeProductImageModal from "@/views/ChangeProductImageModal.vue";
+import router from "@/router";
 
 export default {
   name: "MyProductProfile",
@@ -154,7 +155,11 @@ export default {
 
    handleImage(imageDataBase64){
       this.image.imageData = imageDataBase64
-   }
+   },
+    navigateToAddMaterials() {
+      router.push({name:'newProductMaterialRoute', query:{productId:this.productId}})
+      sessionStorage.setItem('productName', this.productResponse.productName)
+    },
   },
   beforeMount() {
     this.getProductInfo()
@@ -169,11 +174,17 @@ h2 {
   padding: 20px;
 }
 
-.container{
-padding: 50px;
-}
+
 
 button {
   margin: 10px;
+}
+
+.container-default-style{
+  border: solid 1px grey;
+  border-radius :20px;
+  padding: 30px;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 </style>

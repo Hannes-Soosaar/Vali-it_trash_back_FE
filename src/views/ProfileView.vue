@@ -4,47 +4,40 @@
                           ref="ChangeProfileInfoModalRef"/>
   <AlertSuccess :success-message="successMessage"/>
 
+
   <div class="justify-content-center">
+    <LogoComponent/>
+    <h1 class="mb-4">Minu andmed</h1>
 
-    <h1 class="mt-5">Minu andmed</h1>
-
-    <div class="container w-50 myContainer mt-5">
-
+    <div class="container w-50 mt-5">
       <div class="container text-center mt-3">
         <div class="row">
-          <div class="col">
-            Email
-          </div>
-          <div class="col">
-            {{ email }}
-          </div>
+          <table class="table">
+            <thead>
+            <tr>
+
+              <th scope="col">Email</th>
+              <th scope="col">Ettevõte</th>
+              <th scope="col">Ettevõtte registrikood</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="fingerPointer">
+
+              <td>{{ email }}</td>
+              <td>{{ companyInfo.companyName }}</td>
+              <td>{{ companyInfo.registrationCode }}</td>
+            </tr>
+            </tbody>
+
+          </table>
+
         </div>
       </div>
 
-      <div class="container text-center">
-        <div class="row">
-          <div class="col">
-            Ettevõte
-          </div>
-          <div class="col">
-            {{ companyInfo.companyName }}
-          </div>
-        </div>
-      </div>
-
-      <div class="container text-center">
-        <div class="row">
-          <div class="col">
-            Ettevõtte registrikood
-          </div>
-          <div class="col">
-            {{ companyInfo.registrationCode }}
-          </div>
-        </div>
-      </div>
       <div class="mt-3 ">
-        <button type="button" class="btn m-4 btn-secondary" @click="openChangeProfileModal">Muuda andmeid</button>
-        <button type="button" class="btn m-4 btn-secondary" @click="openChangePasswordModal">Muuda parooli</button>
+        <button type="button" class="mybutton m-3" @click="openChangeProfileModal">Muuda andmeid</button>
+        <button type="button" class="mybutton" @click="openChangePasswordModal">Muuda parooli</button>
       </div>
     </div>
   </div>
@@ -55,10 +48,11 @@ import ChangePasswordModal from "@/components/modal/ChangePasswordModal.vue";
 import ChangeProfileInfoModal from "@/components/modal/ChangeProfileInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import {PASSWORD_UPDATED, PROFILE_INFO_UPDATED} from "@/assets/script/AlertMessage";
+import LogoComponent from "@/components/LogoComponent.vue";
 
 export default {
   name: "ProfileView",
-  components: {AlertSuccess, ChangeProfileInfoModal, ChangePasswordModal},
+  components: {LogoComponent, AlertSuccess, ChangeProfileInfoModal, ChangePasswordModal},
   data() {
     return {
       successMessage: '',

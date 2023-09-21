@@ -1,9 +1,17 @@
 <template>
-  <div class="container text-center position-absolute top-50 start-50 translate-middle">
-    <AlertDanger :error-message="errorResponse.message"></AlertDanger>
+  <div>
+  <LogoComponent/>
+  </div>
+  <div>
+    <h1>Logi sisse</h1>
+  </div>
+  <div class="container">
     <div class="row justify-content-center ">
       <div class="col col-4">
-        <div class="form-floating mb-4 ">
+        <div class="alert-container mb-4">
+          <AlertDanger :error-message="errorResponse.message"></AlertDanger>
+        </div>
+          <div class="form-floating mb-4 mt-4 ">
           <input v-model="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
                  @keyup.enter="login">
           <label for="floatingInput">E-posti aadress</label>
@@ -14,8 +22,8 @@
           <label for="floatingPassword">Salasõna</label>
         </div>
         <div class="mt-2">
-          <button @click="login" class="btn btn-primary m-2 " type="button">Logi sisse</button>
-          <button @click="registerNewUser" class="btn btn-primary m-2" type="button">Registreeri kasutaja</button>
+          <button @click="login" class="mybutton m-3" type="button">Logi sisse</button>
+          <button @click="registerNewUser" class="mybutton" type="button">Registreeri kasutaja</button>
         </div>
       </div>
     </div>
@@ -26,10 +34,12 @@ import router from "@/router";
 import {FILL_MANDATORY_FIELDS} from "@/assets/script/AlertMessage";
 import AlertDanger from "@/components/AlertDanger.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
+import LogoComponent from "@/components/LogoComponent.vue";
+
 
 export default {
   name: "LoginView",
-  components: {AlertSuccess, AlertDanger},
+  components: {LogoComponent, AlertSuccess, AlertDanger},
   data() {
     return {
       email: '',
@@ -100,3 +110,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.alert-container {
+  height: 50px; /* Adjust the height as needed */
+  margin-bottom: 10px; /* Add margin to separate from other content */
+  margin-top: 20px;
+}
+</style>

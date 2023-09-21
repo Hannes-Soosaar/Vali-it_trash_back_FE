@@ -61,8 +61,6 @@ button {
   margin: 10px;
 }
 
-.fingerPointer {
-  cursor: pointer;
-}
+
 
 </style>
