@@ -16,7 +16,7 @@
           </div>
 
           <div class="form-floating mb-3">
-            <input v-model="newProduct.upc" type="text" class="form-control" id="floatingInput" placeholder="UPC">
+            <input v-model="newProduct.upc" type="text" class="form-control resizable-textarea" id="floatingInput" placeholder="UPC">
             <label for="floatingInput" class="form-label">UPC</label>
           </div>
 
@@ -26,11 +26,6 @@
             <label for="floatingInput" class="form-label">Lisainfo</label>
           </div>
 
-          <select v-model="newProduct.status" class="form-select" aria-label="Default select example">
-            <option value="" disabled selected>Staatus</option>
-            <option value="A">Aktiivne</option>
-            <option value="D">Mitteaktiivne</option>
-          </select>
 
           <!--      siin on pildi lisamise nupp:-->
           <p>
@@ -65,7 +60,7 @@ export default {
         productName: '',
         upc: '',
         productInfo: '',
-        status: '',
+        status: 'A',
         userId: sessionStorage.getItem('userId')
       },
       errorResponse: {
@@ -120,13 +115,6 @@ export default {
       return this.newProduct.productName.length > 0 && this.newProduct.upc.length > 0 && this.newProduct.status !== ''
     },
 
-    // handleErrorResponse500(error) {
-    //   if (error.response.status === 500) {
-    //     this.errorResponse.message = 'Selline toode on juba andmebaasis olemas'
-    //   }
-    // },
-
-
   },
 
 
@@ -138,5 +126,6 @@ export default {
 h1 {
   margin: 20px;
 }
+
 
 </style>
