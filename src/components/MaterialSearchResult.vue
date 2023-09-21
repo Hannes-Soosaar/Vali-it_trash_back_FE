@@ -1,13 +1,10 @@
 <template>
 
   <div class="container text-start  ">
-
     <div class="row justify-content-center">
       <div class="">
         <div class=" container  justify-content-center">
-
           <table class="table">
-
             <tr>
               <td>
                 <div class="container">
@@ -58,7 +55,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
