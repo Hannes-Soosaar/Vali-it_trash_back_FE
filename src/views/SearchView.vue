@@ -39,7 +39,7 @@
 <script>
 
 import LogoComponent from "@/components/LogoComponent.vue";
-import SearchResultWithNoMatch from "@/components/modal/SearchResultWithNoMatchModal.vue";
+import SearchResultWithNoMatch from "@/components/SearchResultWithNoMatch.vue";
 import MaterialSearchResult from "@/components/MaterialSearchResult.vue";
 import UpcSearchResult from "@/components/UpcSearchResult.vue";
 
