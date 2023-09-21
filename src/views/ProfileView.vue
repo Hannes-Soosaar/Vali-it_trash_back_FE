@@ -45,7 +45,7 @@
 
 <script>
 import ChangePasswordModal from "@/components/modal/ChangePasswordModal.vue";
-import ChangeProfileInfoModal from "@/components/modal/ChangeProfileInfoModal.vue";
+import ChangeProfileInfoModal from "@/views/ChangeProfileInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import {PASSWORD_UPDATED, PROFILE_INFO_UPDATED} from "@/assets/script/AlertMessage";
 import LogoComponent from "@/components/LogoComponent.vue";

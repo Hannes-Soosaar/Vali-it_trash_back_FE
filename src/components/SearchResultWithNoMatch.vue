@@ -21,16 +21,16 @@
                 <h2 class="row justify-content-center">{{ errorResponse.message }}</h2>
               </div>
             </td>
-
           </tr>
 
         </table>
       </div>
     </div>
 
-    <div class="d-grid gap 2 row justify-content-center border">
-      <button type="button" class="btn btn-danger" @click='sendEmailToManufacturer'>
-        <h3>Registreeri toode</h3>
+    <div class="d-grid gap 2 row justify-content-center ">
+      <button type="button" class="btn-HS-outline btn " @click='sendEmailToManufacturer'>
+        <h2 class="m-auto">Palu taaskasutus infot tootjalt
+          <font-awesome-icon class="m-auto" icon="fa-solid fa-envelope-open-text" size="l" /></h2>
       </button>
     </div>
 
