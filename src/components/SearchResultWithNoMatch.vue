@@ -8,12 +8,10 @@
 
         <table class="table">
 
-          <tbody>
-
           <tr>
             <td>
               <div>
-                <h2 class="row justify-content-around">{{ displaySearchedInput }}</h2>
+                <h2 class="row justify-content-around">{{ displaySearchedInput.toUpperCase() }}</h2>
               </div>
             </td>
           </tr>
@@ -25,14 +23,14 @@
             </td>
 
           </tr>
-          </tbody>
+
         </table>
       </div>
     </div>
 
-    <div class="d-grid gap 2 row justify-content-end">
-      <button type="button"  class="btn btn-danger" @click='sendEmailToManufacturer'>
-        <h3>Palu tootjal registreeida enda trash_back lehel</h3>
+    <div class="d-grid gap 2 row justify-content-center border">
+      <button type="button" class="btn btn-danger" @click='sendEmailToManufacturer'>
+        <h3>Registreeri toode</h3>
       </button>
     </div>
 
@@ -63,11 +61,14 @@ export default {
       this.displaySearchedInput = this.searchInput
     },
 //todo: try to get it to work.
-    sendEmailToManufacturer(){
-      const emailPlaceholder = 'infor@newcompany.com'
-      const subject = 'pakendi taaskasutamine'
-      const body ='Tere, sooviksin saada teie toote pakendi korrektseks taaskasutamisks infoPalun lisage oma tood trash_back kesonda!'
-     window.open(`mailto:${emailPlaceholder}?subject=${encodeURI(subject)}&body${encodeURI(body)}`)
+    sendEmailToManufacturer() {
+      const emailPlaceholder = 'SISESTA TOOTJA E-POSTI AADRESS'
+      const subject = this.displaySearchedInput + ' pakendi sorteerimine'
+      const body =
+          'Tere, sooviksin saada teie toote '+ this.displaySearchedInput
+          +' pakendi sorteerimise kohta infot. Palun lisage '+this.displaySearchedInput+'trash_back keskkonda.'
+      window.open(`mailto:${emailPlaceholder}?subject=${encodeURI(subject)}&body
+      =${encodeURI(body)}`)
     }
 
   },
