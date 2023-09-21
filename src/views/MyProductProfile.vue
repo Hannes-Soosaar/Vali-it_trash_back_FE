@@ -7,17 +7,18 @@
   <div class="container text-start container-default-style">
     <div class="row justify-content-center">
       <div class="col col-6">
-        <h2>{{ productResponse.productName }}</h2>
         <div class="custom-background">
+          <h2>{{ productResponse.productName }}</h2>
+          <hr class="my-3">
           <h3>
             UPC: {{ productResponse.upc }}
           </h3>
           <h3>
             Toote info: {{ productResponse.productInfo }}
           </h3>
-          <font-awesome-icon @click="openChangeProductInfoModal" icon="fa-regular fa-pen-to-square" class="fingerPointer" size="lg"
-                             style="color: #000000;" />
-<!--          <button class="mybutton" type="button" @click="openChangeProductInfoModal">Muuda toote andmeid</button>-->
+          <font-awesome-icon @click="openChangeProductInfoModal" icon="fa-regular fa-pen-to-square"
+                             class="fingerPointer" size="lg"
+                             style="color: #000000;"/>
         </div>
         <table class="table">
           <tbody>
@@ -31,9 +32,6 @@
             <td>
               <h5>Prügikast</h5>
             </td>
-<!--            <td>-->
-<!--              <h5>Prügikasti värv</h5>-->
-<!--            </td>-->
           </tr>
           <tr v-for="material in productResponse.materials" :key="productResponse.materials.materialId">
             <td>
@@ -45,31 +43,30 @@
             <td>
               <p>{{ material.materialBinName }}</p>
             </td>
-<!--            <td>-->
-<!--              <p>{{ material.materialBinColorName }}</p>-->
-<!--            </td>-->
           </tr>
           </tbody>
         </table>
 
-        <button class="mybutton" type="button" @click="navigateToAddMaterials">Muuda toote materjale</button>
-        <button @click="openDeleteProductModal" class="my-red-button" type="button">Kustuta toode</button>
+        <font-awesome-icon @click="navigateToAddMaterials" icon="fa-regular fa-pen-to-square" class="fingerPointer"
+                           size="lg"
+                           style="color: #000000;"/>
+
 
       </div>
       <div class="col col-6">
-        <ProductImage :image-data-base64="productResponse.imageString"/>
-        <font-awesome-icon @click="openChangeProductImageModal" icon="fa-regular fa-folder-open" class="fingerPointer" size="xl"
-                           style="color: #000000;"/>
-        <!--        <button class="btn btn-success" type="button" @click="openChangeProductImageModal">Muuda toote pilti</button>-->
+        <div>
+          <ProductImage :image-data-base64="productResponse.imageString"/>
+        </div>
+        <div>
+          <font-awesome-icon @click="openChangeProductImageModal" icon="fa-regular fa-folder-open" class="fingerPointer"
+                             size="xl"
+                             style="color: #000000;"/>
+        </div>
+
       </div>
     </div>
-
   </div>
-  <!--  <div>-->
-  <!--    <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete-->
-  <!--      nimekirja-->
-  <!--    </button>-->
-  <!--  </div>-->
+  <button @click="openDeleteProductModal" class="my-red-button" type="button">Kustuta toode</button>
 </template>
 
 
@@ -182,7 +179,6 @@ h2 {
 
 h3 {
   font-size: 18px;
-  margin-left: 10px;
 }
 
 h5 {
@@ -202,9 +198,11 @@ button {
   margin-bottom: 20px;
 }
 
-.custom-background{
-  background-color: #e1e1e1;
+.custom-background {
+  background-color: #c9d0c2;
   padding: 10px;
+  border-radius: 10px;
+
 
 }
 
