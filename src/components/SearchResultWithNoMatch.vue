@@ -29,7 +29,7 @@
 
     <div class="d-grid gap 2 row justify-content-center ">
       <button type="button" class="btn-HS-outline btn " @click='sendEmailToManufacturer'>
-        <h2 class="m-auto">Palu taaskasutus infot tootjalt
+        <h2 class="m-auto">Küsi tootjalt sorteerimise kohta infot
           <font-awesome-icon class="m-auto" icon="fa-solid fa-envelope-open-text" size="l" /></h2>
       </button>
     </div>
