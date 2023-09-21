@@ -53,7 +53,7 @@
         <button @click="openDeleteProductModal" class="btn btn-danger" type="button">Kustuta toode</button>
 
       </div>
-      <div class="col col-6">
+      <div class="col col-6 ">
         <ProductImage :image-data-base64="productResponse.imageString"/>
         <button class="btn btn-success" type="button" @click="openChangeProductImageModal">Muuda toote pilti</button>
       </div>
@@ -70,11 +70,11 @@
 
 <script>
 import {useRoute} from "vue-router";
-import DeleteProductModal from "@/views/DeleteProductModal.vue";
+import DeleteProductModal from "@/components/modal/DeleteProductModal.vue";
 import ProductImage from "@/views/ProductImage.vue";
-import ChangeProductInfoModal from "@/views/ChangeProductInfoModal.vue";
+import ChangeProductInfoModal from "@/components/modal/ChangeProductInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
-import ChangeProductImageModal from "@/views/ChangeProductImageModal.vue";
+import ChangeProductImageModal from "@/components/modal/ChangeProductImageModal.vue";
 import router from "@/router";
 
 export default {

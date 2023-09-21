@@ -33,15 +33,12 @@
             </div>
           </div>
         </div>
-
       </div>
       <div class="alert-container">
         <AlertSuccess :success-message="successMessage"/>
         <AlertDanger :error-message="errorResponse.message"/>
       </div>
     </div>
-
-
 
     <div class="container text-center">
       <div class="row justify-content-center mt-3">

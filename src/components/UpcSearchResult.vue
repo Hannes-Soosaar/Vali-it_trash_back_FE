@@ -1,18 +1,15 @@
 <template>
 
   <div class="container text-start">
-
     <div class="row justify-content-center">
-
       <div class="">
 
-
-        <div class=" container justify-content-center">
+        <div class="container text-center">
           <h2 class="row justify-content-center">{{ upcResponseBody.productName }}</h2>
         </div>
 
-        <div class="container justify-content-center custom-table-style" >
-          <div class="row justify-content-evenly "> {{ upcResponseBody.productInfo }}</div>
+        <div class="container myborder backgroundColor text-center" >
+          <h4 class="mt-2"> {{ upcResponseBody.productInfo }}</h4>
         </div>
 
         <table class="table mt-4 ">
@@ -34,11 +31,6 @@
               </div>
             </td>
 
-<!--            <td>-->
-<!--              <div class="container ">-->
-<!--                <h5 class="row justify-content-around">Värviga</h5>-->
-<!--              </div>-->
-<!--            </td>-->
 
           </tr>
 
@@ -51,16 +43,10 @@
             </td>
 
             <td>
-              <div class=" container  justify-content-center">
+              <div class=" container justify-content-center">
                 <div class="row justify-content-center"> {{ material.materialBinName }}</div>
               </div>
             </td>
-
-<!--            <td>-->
-<!--              <div class="container">-->
-<!--                <div class="row justify-content-center"> {{ material.materialBinColorName }}</div>-->
-<!--              </div>-->
-<!--            </td>-->
 
           </tr>
           </tbody>
@@ -82,6 +68,7 @@
 
 
 </template>
+
 <script>
 
 
@@ -104,12 +91,15 @@ export default {
 
 <style>
 
-.custom-table-style {
+.myborder {
   border: 1px solid #808080;
   border-radius: 10px;
   padding: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+.backgroundColor {
+  background-color: #C2CFB2; /* or any other color you prefer */
 }
 
 </style>
