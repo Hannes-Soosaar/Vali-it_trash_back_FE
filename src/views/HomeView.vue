@@ -4,7 +4,7 @@
     <h1> Tere, {{ companyInfo.companyName }}! </h1>
 
   </div>
-  <div class="container position-absolute top-50 start-50 translate-middle">
+  <div class="container">
     <div class="row">
       <div class="col-sm-6">
         <button @click="$router.push({name: 'productsRoute'})" class="btn btn-custom-size btn-block mb-sm-4">
@@ -34,6 +34,13 @@
       </div>
     </div>
   </div>
+
+  <div>
+    <logo-component/>
+  </div>
+
+
+
 </template>
 
 
@@ -91,6 +98,8 @@ export default {
 
 h1 {
   margin: 20px;
+  padding-top: 10px;
+  padding-bottom: 100px;
 }
 
 .btn-custom-size {
@@ -117,7 +126,7 @@ h1 {
 }
 
 .btn-custom-size:hover {
-  background-color: #eeeeee;
+  background-color: #C2CFB2;
   color: black; /* teksti värv */
   border-color: #bdbdbd;
   transform: scale(1.005);
