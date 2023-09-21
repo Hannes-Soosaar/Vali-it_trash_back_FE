@@ -28,8 +28,8 @@
 
         <div class="col col-2 text-center">
           <div class="row">
-            <div class="mb-1">
-              <button @click="addMaterialToProduct" type="button" class="btn btn-primary">Lisa materjal</button>
+            <div>
+              <button @click="addMaterialToProduct" type="button" class="mybutton">Lisa materjal</button>
             </div>
           </div>
         </div>
@@ -60,7 +60,8 @@
               </tr>
               </thead>
               <tbody>
-              <tr class="row-text" v-for="(productMaterial, sequenceCounter) in productMaterials" :key="productMaterial">
+              <tr class="row-text" v-for="(productMaterial, sequenceCounter) in productMaterials"
+                  :key="productMaterial">
                 <td class="text-center">{{ sequenceCounter + 1 }}</td>
                 <td class="text-center">{{ productMaterial.materialCategoryName }}</td>
                 <td class="text-center">{{ productMaterial.materialName }}</td>
@@ -75,6 +76,16 @@
           </div>
         </div>
 
+        <div v-show="productMaterials.length>0" class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col col-3">
+              <button @click="$router.push({name: 'productsRoute'})"  type="button" class="mybutton">Salvesta lisatud materjalid</button>
+            </div>
+          </div>
+        </div>
+
+
+
         <div v-show="productMaterials.length<1">
           <alert-danger/>
         </div>
@@ -88,6 +99,7 @@
 import {useRoute} from "vue-router";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import AlertDanger from "@/components/AlertDanger.vue";
+import router from "@/router";
 
 export default {
   name: "AddProductMaterialView",
@@ -129,6 +141,9 @@ export default {
   },
 
   methods: {
+    router() {
+      return router
+    },
     getAllCategories() {
       this.$http.get("/categories")
           .then(response => {
@@ -215,10 +230,10 @@ export default {
     },
 
     handleDeletedMaterialDangerMessage() {
-        this.errorResponse.message = 'Materjal tootelt eemaldatud'
-        setTimeout(() => {
-          this.errorResponse.message = '';
-        }, 1500)
+      this.errorResponse.message = 'Materjal tootelt eemaldatud'
+      setTimeout(() => {
+        this.errorResponse.message = '';
+      }, 1500)
 
     },
 
@@ -244,6 +259,10 @@ export default {
 
 h1 {
   padding: 20px;
+}
+
+h3 {
+  color: #9a9a9a;
 }
 
 select {

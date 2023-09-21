@@ -5,7 +5,7 @@
       <div class="row justify-content-center">
         <h1> {{ this.companyName }} tooted </h1>
         <div>
-          <button @click="$router.push({name: 'newProductRoute'})"  class="btn btn-success" type="button">Lisa uus toode</button>
+          <button @click="$router.push({name: 'newProductRoute'})"  class="mybutton" type="button">Lisa uus toode</button>
         </div>
         <MyProductsTable :product-profiles="productProfiles"/>
       </div>

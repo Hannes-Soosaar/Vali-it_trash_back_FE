@@ -1,20 +1,24 @@
 <template>
   <DeleteProductModal ref="DeleteProductModalRef"/>
-  <ChangeProductInfoModal :product-response="productResponse" ref="ChangeProductInfoModal" @event-show-product-info-changed-success="handleSuccessMessage"/>
-
-  <ChangeProductImageModal ref="ChangeProductImageModal" @event-image-updated = "handleImageSuccessMessage"/>
-
+  <ChangeProductInfoModal :product-response="productResponse" ref="ChangeProductInfoModal"
+                          @event-show-product-info-changed-success="handleSuccessMessage"/>
+  <ChangeProductImageModal ref="ChangeProductImageModal" @event-image-updated="handleImageSuccessMessage"/>
   <AlertSuccess :success-message="successMessage"/>
-  <div class="container text-start container-default-style" >
+  <div class="container text-start container-default-style">
     <div class="row justify-content-center">
       <div class="col col-6">
         <h2>{{ productResponse.productName }}</h2>
-        <p>
-          UPC: {{ productResponse.upc }}
-        </p>
-        <p>
-          Toote info: {{ productResponse.productInfo }}
-        </p>
+        <div class="custom-background">
+          <h3>
+            UPC: {{ productResponse.upc }}
+          </h3>
+          <h3>
+            Toote info: {{ productResponse.productInfo }}
+          </h3>
+          <font-awesome-icon @click="openChangeProductInfoModal" icon="fa-regular fa-pen-to-square" class="fingerPointer" size="lg"
+                             style="color: #000000;" />
+<!--          <button class="mybutton" type="button" @click="openChangeProductInfoModal">Muuda toote andmeid</button>-->
+        </div>
         <table class="table">
           <tbody>
           <tr>
@@ -27,9 +31,9 @@
             <td>
               <h5>Prügikast</h5>
             </td>
-            <td>
-              <h5>Prügikasti värv</h5>
-            </td>
+<!--            <td>-->
+<!--              <h5>Prügikasti värv</h5>-->
+<!--            </td>-->
           </tr>
           <tr v-for="material in productResponse.materials" :key="productResponse.materials.materialId">
             <td>
@@ -41,30 +45,31 @@
             <td>
               <p>{{ material.materialBinName }}</p>
             </td>
-            <td>
-              <p>{{ material.materialBinColorName }}</p>
-            </td>
+<!--            <td>-->
+<!--              <p>{{ material.materialBinColorName }}</p>-->
+<!--            </td>-->
           </tr>
           </tbody>
         </table>
 
-        <button class="btn btn-success" type="button" @click="openChangeProductInfoModal">Muuda toote andmeid</button>
-        <button class="btn btn-success" type="button" @click="navigateToAddMaterials">Muuda toote materjale</button>
+        <button class="mybutton" type="button" @click="navigateToAddMaterials">Muuda toote materjale</button>
         <button @click="openDeleteProductModal" class="btn btn-danger" type="button">Kustuta toode</button>
 
       </div>
       <div class="col col-6 ">
         <ProductImage :image-data-base64="productResponse.imageString"/>
-        <button class="btn btn-success" type="button" @click="openChangeProductImageModal">Muuda toote pilti</button>
+        <font-awesome-icon @click="openChangeProductImageModal" icon="fa-regular fa-folder-open" size="xl"
+                           style="color: #000000;"/>
+        <!--        <button class="btn btn-success" type="button" @click="openChangeProductImageModal">Muuda toote pilti</button>-->
       </div>
     </div>
 
   </div>
-  <div class="d-grid gap-2 d-md-bloc">
-    <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete
-      nimekirja
-    </button>
-  </div>
+  <!--  <div>-->
+  <!--    <button @click="$router.push({name: 'productsRoute'})" class="btn btn-success" type="button">Tagasi toodete-->
+  <!--      nimekirja-->
+  <!--    </button>-->
+  <!--  </div>-->
 </template>
 
 
@@ -153,11 +158,11 @@ export default {
     },
 
 
-   handleImage(imageDataBase64){
+    handleImage(imageDataBase64) {
       this.image.imageData = imageDataBase64
-   },
+    },
     navigateToAddMaterials() {
-      router.push({name:'newProductMaterialRoute', query:{productId:this.productId}})
+      router.push({name: 'newProductMaterialRoute', query: {productId: this.productId}})
       sessionStorage.setItem('productName', this.productResponse.productName)
     },
   },
@@ -172,20 +177,35 @@ export default {
 
 
 h2 {
-  padding: 20px;
+  margin-top: 10px;
 }
 
+h3 {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+h5 {
+  color: #7f9179;
+}
 
 
 button {
   margin: 10px;
 }
 
-.container-default-style{
+.container-default-style {
   border: solid 1px grey;
-  border-radius :20px;
+  border-radius: 20px;
   padding: 30px;
   margin-top: 50px;
   margin-bottom: 20px;
 }
+
+.custom-background{
+  background-color: #e1e1e1;
+  padding: 10px;
+
+}
+
 </style>

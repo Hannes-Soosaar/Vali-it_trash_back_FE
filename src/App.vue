@@ -61,13 +61,13 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #8DB580;
+  color: #696969;
   text-decoration: none;
   padding: 15px;
 }
 
 nav a.router-link-exact-active {
-  color: #595757;
+  color: #8DB580;
 }
 
 </style>

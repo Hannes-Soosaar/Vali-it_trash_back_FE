@@ -3,6 +3,13 @@
     cursor: pointer;
 }
 
+/* Input area fookuse värv(border color)*/
+.my-focus-area:focus {
+    border-color: rgba(195, 197, 196, 0.8);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(199, 198, 198);
+}
+
 .image-size{
     width: 75%;
 }
