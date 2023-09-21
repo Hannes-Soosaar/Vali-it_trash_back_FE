@@ -42,13 +42,34 @@
 .mybutton {
 
     padding: 10px 20px;
-    border: 1px solid #C2CFB2;
+    border: 1px solid #a0ab93;
     border-radius: 10px;
     background-color: #C2CFB2;
     color: black;
     cursor: pointer;
-
 }
+
+.mybutton:hover{
+    background-color: #a8b49b;
+}
+
+
+.my-red-button {
+
+    padding: 10px 20px;
+    border: 1px solid #a94b4b;
+    border-radius: 10px;
+    background-color: #ec6767;
+    color: black;
+    cursor: pointer;
+}
+
+.my-red-button:hover{
+    background-color: #da6060;
+}
+
+
+
 .btn-HS-outline {
     --bs-btn-color: #212529;
     --bs-btn-border-color: #212529;

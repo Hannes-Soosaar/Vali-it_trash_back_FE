@@ -53,12 +53,12 @@
         </table>
 
         <button class="mybutton" type="button" @click="navigateToAddMaterials">Muuda toote materjale</button>
-        <button @click="openDeleteProductModal" class="btn btn-danger" type="button">Kustuta toode</button>
+        <button @click="openDeleteProductModal" class="my-red-button" type="button">Kustuta toode</button>
 
       </div>
-      <div class="col col-6 ">
+      <div class="col col-6">
         <ProductImage :image-data-base64="productResponse.imageString"/>
-        <font-awesome-icon @click="openChangeProductImageModal" icon="fa-regular fa-folder-open" size="xl"
+        <font-awesome-icon @click="openChangeProductImageModal" icon="fa-regular fa-folder-open" class="fingerPointer" size="xl"
                            style="color: #000000;"/>
         <!--        <button class="btn btn-success" type="button" @click="openChangeProductImageModal">Muuda toote pilti</button>-->
       </div>
