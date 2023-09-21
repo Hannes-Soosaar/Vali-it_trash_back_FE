@@ -2,28 +2,35 @@
 
   <div class="custom-message-style mb-5">
     <h1> Tere, {{ companyInfo.companyName }}! </h1>
-    <p> ettvõtte logo? andmebaasis pole</p>
+
   </div>
   <div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row">
-      <div class="col-sm-6 bg-success">
-        <button @click="$router.push({name: 'productsRoute'})"  class="btn btn-custom-size btn-block mb-sm-4">
-          <font-awesome-icon icon="fa-solid fa-suitcase" size="xl" style="color: #000000;" />
-          Minu tooted</button>
+      <div class="col-sm-6">
+        <button @click="$router.push({name: 'productsRoute'})" class="btn btn-custom-size btn-block mb-sm-4">
+          <font-awesome-icon icon="fa-solid fa-suitcase" size="xl" style="color: #000000;"/>
+          Minu tooted
+        </button>
       </div>
-      <div class="col-sm-6 bg-info">
+      <div class="col-sm-6">
         <button @click="$router.push({name: 'newProductRoute'})" class="btn btn-custom-size btn-block mb-sm-4">
-          <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" style="color: black;" /> Lisa toode</button>
+          <font-awesome-icon icon="fa-solid fa-circle-plus" size="xl" style="color: black;"/>
+          Lisa toode
+        </button>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6 bg-danger">
+      <div class="col-sm-6">
         <button @click="$router.push({name: 'profileRoute'})" class="btn btn-custom-size btn-block m-sm-2">
-          <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;" /> Muuda kasutaja andmeid</button>
+          <font-awesome-icon icon="fa-solid fa-gear" size="xl" style="color: #000000;"/>
+          Muuda kasutaja andmeid
+        </button>
       </div>
-      <div class="col-sm-6 bg-warning">
+      <div class="col-sm-6">
         <button @click="$router.push({name: 'helpRoute'})" class="btn btn-custom-size btn-block m-sm-2">
-          <font-awesome-icon icon="circle-question" size="xl" style="color: black;" /> Abi</button>
+          <font-awesome-icon icon="circle-question" size="xl" style="color: black;"/>
+          Abi
+        </button>
       </div>
     </div>
   </div>
@@ -32,9 +39,11 @@
 
 <script>
 import router from "@/router";
+import LogoComponent from "@/components/LogoComponent.vue";
 
 export default {
   name: "HomeView",
+  components: {LogoComponent},
   data() {
     return {
       userId: sessionStorage.getItem('userId'),
@@ -106,7 +115,6 @@ h1 {
 .btn-custom-size:hover span {
   font-size: 1.05em; /* Increase the font size slightly on hover */
 }
-
 
 .btn-custom-size:hover {
   background-color: #eeeeee;

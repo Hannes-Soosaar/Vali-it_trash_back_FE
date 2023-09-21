@@ -38,8 +38,8 @@
 
 <script>
 
-import LogoComponent from "@/views/LogoComponent.vue";
-import SearchResultWithNoMatch from "@/components/SearchResultWithNoMatch.vue";
+import LogoComponent from "@/components/LogoComponent.vue";
+import SearchResultWithNoMatch from "@/components/modal/SearchResultWithNoMatchModal.vue";
 import MaterialSearchResult from "@/components/MaterialSearchResult.vue";
 import UpcSearchResult from "@/components/UpcSearchResult.vue";
 

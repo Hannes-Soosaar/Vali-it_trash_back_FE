@@ -91,23 +91,24 @@ export default {
       }
     },
 
-
-
     sendNewProductProfile() {
       this.$http.post("/products", this.newProduct
-
       ).then(response => {
         this.productResponse = response.data
         this.handleRouterPushToMaterialView(this.productResponse.productId)
 
       }).catch(error => {
-        this.errorResponse = error.response.data
+        if (error.response.status === 500) {
+          this.errorResponse.message = 'Sellise UPC koodiga toode on juba andmebaasis olemas'
+        } else {
+          this.errorResponse = error.response.data
+        }
 
       })
     },
 
-    handleRouterPushToMaterialView(productId){
-      router.push({ name: 'newProductMaterialRoute', query: {productId: productId}})
+    handleRouterPushToMaterialView(productId) {
+      router.push({name: 'newProductMaterialRoute', query: {productId: productId}})
     },
 
 
@@ -119,7 +120,11 @@ export default {
       return this.newProduct.productName.length > 0 && this.newProduct.upc.length > 0 && this.newProduct.status !== ''
     },
 
-
+    // handleErrorResponse500(error) {
+    //   if (error.response.status === 500) {
+    //     this.errorResponse.message = 'Selline toode on juba andmebaasis olemas'
+    //   }
+    // },
 
 
   },
@@ -133,4 +138,5 @@ export default {
 h1 {
   margin: 20px;
 }
+
 </style>
