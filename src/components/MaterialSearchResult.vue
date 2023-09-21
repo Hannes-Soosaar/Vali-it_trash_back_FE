@@ -1,64 +1,20 @@
 <template>
-
-  <div class="container text-start  ">
-
-    <div class="row justify-content-center">
-      <div class="">
-        <div class=" container  justify-content-center">
-
-          <table class="table">
-
-            <tr>
-              <td>
-                <div class="container">
-                  <h1>
-                    <div class="row justify-content-center fw-bold">
-                      {{ searchedCriteria.toUpperCase() }}
-                    </div>
-                  </h1>
-                </div>
-              </td>
-
-            </tr>
-            <tr>
-              <td>
-                <div class="container">
-                  <h1>
-                    <div class="row  justify-content-center fw-bold">
-                       {{ searchedMaterialName }}
-                    </div>
-                  </h1>
-                </div>
-              </td>
-            </tr>
-
-          </table>
-
-          <div class="container mb-1 mt-1">
-            <h4>
-              <div class="row container m-2"> {{
-                  materialResponseBody.binRequirements
-                }}
-              </div>
-            </h4>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class=" col  container">
-      <div class="row m-5">
-        <img v-if=" searchedMaterialName === 'Plast- ja metallpakend' " src="../assets/plastpakendite.jpeg"
+  <h2>{{ searchedCriteria.toUpperCase() }}</h2>
+  <div class="container myborder backgroundColor text-center">
+    <h3 class="mt-2"> {{ materialResponseBody.binRequirements }}</h3>
+  </div>
+  <h3>{{ searchedMaterialName }} </h3>
+    <div class=" col container mt-3">
+      <div class="row m-1">
+        <img v-if=" searchedMaterialName === 'Plast- ja metallpakendi konteiner' " src="../assets/plastpakendite.jpeg"
              alt="No image to show "/>
-        <img v-else-if=" searchedMaterialName === 'Biojäätmed' " src="../assets/Biojäätmed.jpg" alt="No image to show "/>
-        <img v-else-if=" searchedMaterialName === 'Olmeprügi' " src="../assets/olmeprygi.jpg" alt="No image to show "/>
-        <img v-else-if=" searchedMaterialName === 'Klaaspakend' " src="../assets/klaaspakend-pakendimaterjal-02.webp" alt="No image to show "/>
-        <img v-else-if=" searchedMaterialName === 'Papp- ja paberpakendi' " src="../assets/papjapaber.jpeg" alt="No image to show "/>
+        <img v-else-if=" searchedMaterialName === 'Biojäätmete konteiner' " src="../assets/Biojäätmed.jpg" alt="No image to show "/>
+        <img v-else-if=" searchedMaterialName === 'Olmeprügi konteiner' " src="../assets/olmeprygi.jpg" alt="No image to show "/>
+        <img v-else-if=" searchedMaterialName === 'Klaaspakendi konteiner' " src="../assets/klaaspakend-pakendimaterjal-02.webp" alt="No image to show "/>
+        <img v-else-if=" searchedMaterialName === 'Papp- ja paberpakendi konteiner' " src="../assets/papjapaber.jpeg" alt="No image to show "/>
         <img v-else src="../assets/sadcat.jpg" alt="No image to show "/>
       </div>
     </div>
-  </div>
-
 </template>
 
 <script>
@@ -95,8 +51,19 @@ export default {
     this.setSearchedCriteria()
     this.setMaterial()
   }
+}
+</script>
+
+<style>
+.myborder {
+  border: 1px solid #808080;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
 }
-
-
-</script>
+.backgroundColor {
+  background-color: #C2CFB2; /* or any other color you prefer */
+}
+</style>

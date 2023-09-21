@@ -15,7 +15,6 @@
             </option>
           </select>
         </div>
-
         <div class="col col-5">
           <h3>Lisa tootele materjal(id)</h3>
           <select v-model="selectedMaterialId" class="form-select custom-select-margin">
@@ -25,7 +24,6 @@
             </option>
           </select>
         </div>
-
         <div class="col col-2 align-content-center bg-warning">
           <div class="row">
             <div>
@@ -33,7 +31,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -44,7 +41,7 @@
 
     <div class="container text-center">
       <div class="row justify-content-center mt-3">
-        <div v-show="productMaterials.length>0" class="col col-5 custom-table-style">
+        <div v-show="productMaterials.length>0" class="col col-5 myborder">
           <div>
             <h3>Lisatud materjalid</h3>
           </div>
@@ -252,7 +249,7 @@ select {
 
 }
 
-.custom-table-style {
+.myborder {
   border: 1px solid #808080;
   border-radius: 20px;
   padding: 30px;
