@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row justify-content-center align-items-end">
         <div class="col col-5 text-center">
-          <h3>Vali toote kategooria</h3>
+          <h3>Vali toote pakendi kategooria</h3>
           <select v-model="selectedCategoryId" @change="setCategoryIdAndSendRequest"
                   class="form-select custom-select-margin">
             <option value="" selected disabled>Materjali tüüp</option>

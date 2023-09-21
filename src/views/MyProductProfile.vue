@@ -3,7 +3,9 @@
   <ChangeProductInfoModal :product-response="productResponse" ref="ChangeProductInfoModal"
                           @event-show-product-info-changed-success="handleSuccessMessage"/>
   <ChangeProductImageModal ref="ChangeProductImageModal" @event-image-updated="handleImageSuccessMessage"/>
-  <AlertSuccess :success-message="successMessage"/>
+  <div class="alert-container">
+    <AlertSuccess :success-message="successMessage"/>
+  </div>
   <div class="container text-start container-default-style">
     <div class="row justify-content-center">
       <div class="col col-6">
@@ -58,15 +60,18 @@
           <ProductImage :image-data-base64="productResponse.imageString"/>
         </div>
         <div>
-          <font-awesome-icon @click="openChangeProductImageModal" icon="fa-regular fa-folder-open" class="fingerPointer"
+          <font-awesome-icon @click="openChangeProductImageModal" icon="fa-regular fa-folder-open"
+                             class="fingerPointer m-1"
                              size="xl"
-                             style="color: #000000;"/>
+                             style="color: #2c2c2c;"/>
+
+          <span style="color: #262626" class="fingerPointer" @click="openChangeProductImageModal">Muuda pilti</span>
         </div>
 
       </div>
     </div>
   </div>
-  <button @click="openDeleteProductModal" class="my-red-button" type="button">Kustuta toode</button>
+  <button @click="openDeleteProductModal" class="my-red-button mb-3" type="button">Kustuta toode</button>
 </template>
 
 
@@ -202,8 +207,14 @@ button {
   background-color: #c9d0c2;
   padding: 10px;
   border-radius: 10px;
-
-
 }
+
+.alert-container {
+  height: 50px; /* Adjust the height as needed */
+  margin-bottom: 10px; /* Add margin to separate from other content */
+}
+
+
+
 
 </style>
