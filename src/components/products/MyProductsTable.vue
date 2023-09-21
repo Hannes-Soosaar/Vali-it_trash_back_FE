@@ -1,18 +1,5 @@
 <template>
   <div class="col col-8">
-
-<!--    <div class="dropdown text-end justify-content-end">-->
-<!--      <a class="btn btn-success dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
-<!--         aria-expanded="false">-->
-<!--        Sorteeri-->
-<!--      </a>-->
-
-<!--      <ul class="dropdown-menu">-->
-<!--        <li><a class="dropdown-item" href="#">Aktiivsed</a></li>-->
-<!--        <li><a class="dropdown-item" href="#">Mitteaktiivsed</a></li>-->
-<!--      </ul>-->
-<!--    </div>-->
-
     <table class="table table-hover">
 
       <thead>
@@ -79,8 +66,6 @@ button {
   margin: 10px;
 }
 
-.fingerPointer {
-  cursor: pointer;
-}
+
 
 </style>

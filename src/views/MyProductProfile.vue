@@ -2,7 +2,7 @@
   <DeleteProductModal ref="DeleteProductModalRef"/>
   <ChangeProductInfoModal :product-response="productResponse" ref="ChangeProductInfoModal" @event-show-product-info-changed-success="handleSuccessMessage"/>
   <AlertSuccess :success-message="successMessage"/>
-  <div class="container text-start" style="border: solid 1px grey; border-radius:20px">
+  <div class="container text-start container-default-style" >
     <div class="row justify-content-center">
       <div class="col col-6">
         <h2>{{ productResponse.productName }}</h2>
@@ -16,24 +16,24 @@
           <tbody>
           <tr>
             <td>
-              <h5>Materjalid</h5>
+              <h5>Kategooria</h5>
             </td>
             <td>
-              <h5>Kategooriad</h5>
+              <h5>Materjal</h5>
             </td>
             <td>
-              <h5>Prügikastid</h5>
+              <h5>Prügikast</h5>
             </td>
             <td>
-              <h5>Värv</h5>
+              <h5>Prügikasti värv</h5>
             </td>
           </tr>
           <tr v-for="material in productResponse.materials" :key="productResponse.materials.materialId">
             <td>
-              <p>{{ material.materialName }}</p>
+              <p>{{ material.materialCategoryName }}</p>
             </td>
             <td>
-              <p>{{ material.materialCategoryName }}</p>
+              <p>{{ material.materialName }}</p>
             </td>
             <td>
               <p>{{ material.materialBinName }}</p>
@@ -144,15 +144,22 @@ export default {
 
 <style scoped>
 
+
 h2 {
   padding: 20px;
 }
 
-.container{
-padding: 50px;
-}
+
 
 button {
   margin: 10px;
+}
+
+.container-default-style{
+  border: solid 1px grey;
+  border-radius :20px;
+  padding: 30px;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 </style>
