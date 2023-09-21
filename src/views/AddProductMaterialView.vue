@@ -24,10 +24,10 @@
             </option>
           </select>
         </div>
-        <div class="col col-2 align-content-center bg-warning">
+        <div class="col col-2 align-content-center ">
           <div class="row">
             <div>
-              <button @click="addMaterialToProduct" type="button" class="btn btn-primary">Lisa materjal</button>
+              <button @click="addMaterialToProduct" type="button" class="mybutton">Lisa materjal</button>
             </div>
           </div>
         </div>
