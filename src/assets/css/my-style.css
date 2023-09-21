@@ -1,3 +1,14 @@
+/* Muudab  tabeli rea või ikooni peal hoverdades kursori pointeriks*/
+.fingerPointer {
+    cursor: pointer;
+}
+
+/* Input area fookuse värv(border color)*/
+.my-focus-area:focus {
+    border-color: rgba(195, 197, 196, 0.8);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(199, 198, 198);
+}
 
 .image-size{
     width: 75%;
@@ -38,8 +49,19 @@
     cursor: pointer;
 
 }
-.mybutton:hover {
-    background-color: #b7c4a9;
-    color: black; /* teksti värv */
+.btn-HS-outline {
+    --bs-btn-color: #212529;
+    --bs-btn-border-color: #212529;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #8DB580;
+    --bs-btn-hover-border-color: #212529;
+    --bs-btn-focus-shadow-rgb: 33, 37, 41;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #8DB580;
+    --bs-btn-active-border-color: #212529;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #C2CFB2;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #212529;
+    --bs-gradient: none;
 }
-

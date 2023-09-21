@@ -107,7 +107,7 @@ h1 {
   height: 120px;
   padding: 20px;
   font-size: 15pt;
-  text-align: left;
+  text-align: center;
   background-color: #bdbdbd;
   color: black;
   border: 1px solid #bdbdbd;

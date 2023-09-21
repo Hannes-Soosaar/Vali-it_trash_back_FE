@@ -1,17 +1,17 @@
 <template>
   <div>
+
     <div class="container text-center">
       <div class="row justify-content-center">
-        <h1> Minu tooted </h1>
-        <h2>{{ this.companyName }} </h2>
+        <h1> {{ this.companyName }} tooted </h1>
+        <div>
+          <button @click="$router.push({name: 'newProductRoute'})"  class="mybutton" type="button">Lisa uus toode</button>
+        </div>
         <MyProductsTable :product-profiles="productProfiles"/>
       </div>
     </div>
-    <div>
-      <button @click="$router.push({name: 'newProductRoute'})"  class="btn btn-success" type="button">Lisa toode</button>
-    </div>
-  </div>
 
+  </div>
 </template>
 
 <script>
@@ -74,7 +74,7 @@ export default {
 <style scoped>
 
 table {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 h1 {

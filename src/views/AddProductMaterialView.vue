@@ -4,7 +4,7 @@
 
 
     <div class="container">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center align-items-end">
         <div class="col col-5 text-center">
           <h3>Vali toote kategooria</h3>
           <select v-model="selectedCategoryId" @change="setCategoryIdAndSendRequest"
@@ -24,7 +24,8 @@
             </option>
           </select>
         </div>
-        <div class="col col-2 align-content-center ">
+
+        <div class="col col-2 text-center">
           <div class="row">
             <div>
               <button @click="addMaterialToProduct" type="button" class="mybutton">Lisa materjal</button>
@@ -32,16 +33,15 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="alert-container">
-      <AlertSuccess :success-message="successMessage"/>
-      <AlertDanger :error-message="errorResponse.message"/>
+      <div class="alert-container">
+        <AlertSuccess :success-message="successMessage"/>
+        <AlertDanger :error-message="errorResponse.message"/>
+      </div>
     </div>
 
     <div class="container text-center">
       <div class="row justify-content-center mt-3">
-        <div v-show="productMaterials.length>0" class="col col-5 myborder">
+        <div v-show="productMaterials.length>0" class="col col-5 custom-table-style">
           <div>
             <h3>Lisatud materjalid</h3>
           </div>
@@ -49,22 +49,23 @@
           <div>
             <table class="table">
               <thead>
-              <tr>
+              <tr class="row-text">
                 <th scope="col"></th>
-                <th scope="col">Kategooria</th>
-                <th scope="col">Materjal</th>
-                <th scope="col">Prügikast</th>
-                <th scope="col">Prügikasti värv</th>
-                <th scope="col"></th>
+                <th scope="col" class="text-center">Kategooria</th>
+                <th scope="col" class="text-center">Materjal</th>
+                <th scope="col" class="text-center">Prügikast</th>
+                <th scope="col" class="text-center">Prügikasti värv</th>
+                <th scope="col" class="text-center"></th>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="(productMaterial, sequenceCounter) in productMaterials" :key="productMaterial">
-                <th scope="row">{{ sequenceCounter + 1 }}</th>
-                <td>{{ productMaterial.materialCategoryName }}</td>
-                <td>{{ productMaterial.materialName }}</td>
-                <td>{{ productMaterial.materialBinName }}</td>
-                <td>{{ productMaterial.materialBinColorName }}</td>
+              <tr class="row-text" v-for="(productMaterial, sequenceCounter) in productMaterials"
+                  :key="productMaterial">
+                <td class="text-center">{{ sequenceCounter + 1 }}</td>
+                <td class="text-center">{{ productMaterial.materialCategoryName }}</td>
+                <td class="text-center">{{ productMaterial.materialName }}</td>
+                <td class="text-center">{{ productMaterial.materialBinName }}</td>
+                <td class="text-center">{{ productMaterial.materialBinColorName }}</td>
                 <td class="fingerPointer" @click="deleteAddedMaterial(productMaterial.productMaterialId)">
                   <font-awesome-icon icon="fa-solid fa-trash" size="xl" style="color: #000000;"/>
                 </td>
@@ -73,6 +74,21 @@
             </table>
           </div>
         </div>
+
+        <div v-show="productMaterials.length>0" class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col col-3">
+              <button @click="$router.push({name: 'productsRoute'})"  type="button" class="mybutton">Salvesta lisatud materjalid</button>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div v-show="productMaterials.length<1">
+          <alert-danger/>
+        </div>
+
       </div>
     </div>
   </div>
@@ -82,6 +98,7 @@
 import {useRoute} from "vue-router";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import AlertDanger from "@/components/AlertDanger.vue";
+import router from "@/router";
 
 export default {
   name: "AddProductMaterialView",
@@ -123,6 +140,9 @@ export default {
   },
 
   methods: {
+    router() {
+      return router
+    },
     getAllCategories() {
       this.$http.get("/categories")
           .then(response => {
@@ -205,14 +225,15 @@ export default {
       this.successMessage = 'Materjal tootele lisatud'
       setTimeout(() => {
         this.successMessage = ''
-      }, 2000)
+      }, 1500)
     },
 
     handleDeletedMaterialDangerMessage() {
       this.errorResponse.message = 'Materjal tootelt eemaldatud'
       setTimeout(() => {
         this.errorResponse.message = '';
-      }, 2000)
+      }, 1500)
+
     },
 
     productMaterialsAreAdded() {
@@ -239,6 +260,10 @@ h1 {
   padding: 20px;
 }
 
+h3 {
+  color: #9a9a9a;
+}
+
 select {
   padding: 10px;
 }
@@ -249,17 +274,22 @@ select {
 
 }
 
-.myborder {
+.custom-table-style {
   border: 1px solid #808080;
   border-radius: 20px;
-  padding: 30px;
-  margin-top: 50px;
+  padding: 20px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .alert-container {
   height: 40px; /* Adjust the height as needed */
   margin-bottom: 10px; /* Add margin to separate from other content */
+  margin-top: 20px;
+}
+
+.row-text {
+  text-align: center; /* Center align text within rows */
 }
 
 

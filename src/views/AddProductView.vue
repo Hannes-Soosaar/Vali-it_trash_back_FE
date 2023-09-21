@@ -10,33 +10,28 @@
           <AlertDanger :error-message="errorResponse.message"/>
 
           <div class="form-floating mb-4">
-            <input v-model="newProduct.productName" type="text" class="form-control" id="floatingInput"
+            <input v-model="newProduct.productName" type="text" class="form-control my-focus-area" id="floatingInput"
                    placeholder="Toote nimetus">
             <label for="floatingInput">Toote nimetus</label>
           </div>
 
           <div class="form-floating mb-3">
-            <input v-model="newProduct.upc" type="text" class="form-control" id="floatingInput" placeholder="UPC">
+            <input v-model="newProduct.upc" type="text" class="form-control my-focus-area resizable-textarea" id="floatingInput" placeholder="UPC">
             <label for="floatingInput" class="form-label">UPC</label>
           </div>
 
           <div class="form-floating mb-3">
-          <textarea v-model="newProduct.productInfo" type="text" class="form-control" id="floatingInput"
+          <textarea v-model="newProduct.productInfo" type="text" class="form-control my-focus-area" id="floatingInput"
                     placeholder="Lisainfo"></textarea>
             <label for="floatingInput" class="form-label">Lisainfo</label>
           </div>
 
-          <select v-model="newProduct.status" class="form-select" aria-label="Default select example">
-            <option value="" disabled selected>Staatus</option>
-            <option value="A">Aktiivne</option>
-            <option value="D">Mitteaktiivne</option>
-          </select>
 
           <!--      siin on pildi lisamise nupp:-->
           <p>
             <ImageInput @event-emit-base64="setProductImageInputData"/>
           </p>
-          <button @click="addNewProduct" type="submit" class="btn btn-primary">Lisa toode</button>
+          <button @click="addNewProduct" type="submit" class="mybutton">Lisa toode</button>
         </div>
 
       </div>
@@ -65,7 +60,7 @@ export default {
         productName: '',
         upc: '',
         productInfo: '',
-        status: '',
+        status: 'A',
         userId: sessionStorage.getItem('userId')
       },
       errorResponse: {
@@ -120,13 +115,6 @@ export default {
       return this.newProduct.productName.length > 0 && this.newProduct.upc.length > 0 && this.newProduct.status !== ''
     },
 
-    // handleErrorResponse500(error) {
-    //   if (error.response.status === 500) {
-    //     this.errorResponse.message = 'Selline toode on juba andmebaasis olemas'
-    //   }
-    // },
-
-
   },
 
 
@@ -138,5 +126,7 @@ export default {
 h1 {
   margin: 20px;
 }
+
+
 
 </style>
