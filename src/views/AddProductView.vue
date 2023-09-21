@@ -127,12 +127,6 @@ h1 {
   margin: 20px;
 }
 
-.my-focus-area:focus {
-  color: var(--bs-body-color);
-  background-color: var(--bs-body-bg);
-  border-color: rgba(59, 112, 63, 0.8);
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgb(166, 163, 163);
-}
+
 
 </style>

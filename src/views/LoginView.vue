@@ -12,12 +12,12 @@
           <AlertDanger :error-message="errorResponse.message"></AlertDanger>
         </div>
           <div class="form-floating mb-4 mt-4 ">
-          <input v-model="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+          <input v-model="email" type="email" class="form-control my-focus-area" id="floatingInput" placeholder="name@example.com"
                  @keyup.enter="login">
           <label for="floatingInput">E-posti aadress</label>
         </div>
         <div class="form-floating">
-          <input v-model="password" type="password" class="form-control" id="floatingPassword" placeholder="Password"
+          <input v-model="password" type="password" class="form-control my-focus-area" id="floatingPassword" placeholder="Password"
                  @keyup.enter="login">
           <label for="floatingPassword">Salasõna</label>
         </div>

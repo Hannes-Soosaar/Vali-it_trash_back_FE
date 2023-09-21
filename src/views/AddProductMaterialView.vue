@@ -42,7 +42,6 @@
     </div>
 
 
-
     <div class="container text-center">
       <div class="row justify-content-center mt-3">
         <div v-show="productMaterials.length>0" class="col col-5 custom-table-style">
@@ -63,7 +62,8 @@
               </tr>
               </thead>
               <tbody>
-              <tr class="row-text" v-for="(productMaterial, sequenceCounter) in productMaterials" :key="productMaterial">
+              <tr class="row-text" v-for="(productMaterial, sequenceCounter) in productMaterials"
+                  :key="productMaterial">
                 <td class="text-center">{{ sequenceCounter + 1 }}</td>
                 <td class="text-center">{{ productMaterial.materialCategoryName }}</td>
                 <td class="text-center">{{ productMaterial.materialName }}</td>
@@ -78,6 +78,16 @@
           </div>
         </div>
 
+        <div v-show="productMaterials.length>0" class="container text-center">
+          <div class="row justify-content-center">
+            <div class="col col-3">
+              <button @click="$router.push({name: 'productsRoute'})"  type="button" class="mybutton">Salvesta lisatud materjalid</button>
+            </div>
+          </div>
+        </div>
+
+
+
         <div v-show="productMaterials.length<1">
           <alert-danger/>
         </div>
@@ -91,6 +101,7 @@
 import {useRoute} from "vue-router";
 import AlertSuccess from "@/components/AlertSuccess.vue";
 import AlertDanger from "@/components/AlertDanger.vue";
+import router from "@/router";
 
 export default {
   name: "AddProductMaterialView",
@@ -132,6 +143,9 @@ export default {
   },
 
   methods: {
+    router() {
+      return router
+    },
     getAllCategories() {
       this.$http.get("/categories")
           .then(response => {
@@ -218,10 +232,10 @@ export default {
     },
 
     handleDeletedMaterialDangerMessage() {
-        this.errorResponse.message = 'Materjal tootelt eemaldatud'
-        setTimeout(() => {
-          this.errorResponse.message = '';
-        }, 1500)
+      this.errorResponse.message = 'Materjal tootelt eemaldatud'
+      setTimeout(() => {
+        this.errorResponse.message = '';
+      }, 1500)
 
     },
 
@@ -249,7 +263,7 @@ h1 {
   padding: 20px;
 }
 
-h3{
+h3 {
   color: #9a9a9a;
 }
 
