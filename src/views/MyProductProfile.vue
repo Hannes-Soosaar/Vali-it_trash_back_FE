@@ -70,11 +70,11 @@
 
 <script>
 import {useRoute} from "vue-router";
-import DeleteProductModal from "@/views/DeleteProductModal.vue";
+import DeleteProductModal from "@/components/modal/DeleteProductModal.vue";
 import ProductImage from "@/views/ProductImage.vue";
-import ChangeProductInfoModal from "@/views/ChangeProductInfoModal.vue";
+import ChangeProductInfoModal from "@/components/modal/ChangeProductInfoModal.vue";
 import AlertSuccess from "@/components/AlertSuccess.vue";
-import ChangeProductImageModal from "@/views/ChangeProductImageModal.vue";
+import ChangeProductImageModal from "@/components/modal/ChangeProductImageModal.vue";
 
 export default {
   name: "MyProductProfile",

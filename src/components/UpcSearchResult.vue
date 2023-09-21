@@ -12,7 +12,7 @@
         </div>
 
         <div class="container justify-content-center custom-table-style" >
-          <div class="row justify-content-evenly "> {{ upcResponseBody.productInfo }}</div>
+          <h4><div class="row justify-content-center"> {{ upcResponseBody.productInfo }}</div></h4>
         </div>
 
         <table class="table mt-4 ">
@@ -34,11 +34,6 @@
               </div>
             </td>
 
-<!--            <td>-->
-<!--              <div class="container ">-->
-<!--                <h5 class="row justify-content-around">Värviga</h5>-->
-<!--              </div>-->
-<!--            </td>-->
 
           </tr>
 
@@ -55,12 +50,6 @@
                 <div class="row justify-content-center"> {{ material.materialBinName }}</div>
               </div>
             </td>
-
-<!--            <td>-->
-<!--              <div class="container">-->
-<!--                <div class="row justify-content-center"> {{ material.materialBinColorName }}</div>-->
-<!--              </div>-->
-<!--            </td>-->
 
           </tr>
           </tbody>
@@ -82,6 +71,7 @@
 
 
 </template>
+
 <script>
 
 
