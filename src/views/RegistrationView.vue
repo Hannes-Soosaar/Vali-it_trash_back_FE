@@ -9,8 +9,8 @@
     <div class="row justify-content-center ">
       <div class="col col-4">
         <div class="alert-container mb-4">
-        <AlertSuccess :success-message="successMessage"/>
-        <AlertDanger :error-message="errorResponse.message"/>
+          <AlertSuccess :success-message="successMessage"/>
+          <AlertDanger :error-message="errorResponse.message"/>
         </div>
         <div class="form-floating mb-3">
           <input v-model="requestBody.email" type="email" class="form-control my-focus-area" id="floatingInput"
@@ -77,6 +77,8 @@ export default {
 
   methods: {
 
+
+
     sendPostCompanyRequest() {
       this.$http.post("/company", this.requestBody)
           .then(response => {
@@ -87,9 +89,9 @@ export default {
 
               }
           ).catch(error => {
-
         this.handleErrorStatusCode500(error);
         this.errorResponse = error.response.data;
+        this.resetFields();
       })
     },
 
@@ -148,6 +150,12 @@ export default {
     },
 
     resetPasswordFields() {
+      this.requestBody.password = ''
+      this.passwordAgain = ''
+    },
+
+    resetFields() {
+      this.requestBody.email = ''
       this.requestBody.password = ''
       this.passwordAgain = ''
     },
